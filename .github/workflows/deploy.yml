@@ -1,19 +1,21 @@
-name: Build and publish site
+name: Build GitHub Pages site
 
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'docs/**'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: pages
+  group: pages-build
   cancel-in-progress: true
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
@@ -31,22 +33,23 @@ jobs:
       - name: Build static site
         run: npm run build
 
-      - name: Publish build to gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Sync build output to docs
         run: |
-          set -euo pipefail
+          rm -rf docs
+          mkdir docs
+          cp -R build/. docs/
+          touch docs/.nojekyll
 
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Commit docs build
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs
 
-          publish_dir="$(mktemp -d)"
-          cp -R build/. "$publish_dir/"
-          touch "$publish_dir/.nojekyll"
+          if git diff --cached --quiet; then
+            echo "No docs changes to commit."
+            exit 0
+          fi
 
-          git -C "$publish_dir" init
-          git -C "$publish_dir" checkout -b gh-pages
-          git -C "$publish_dir" add -A
-          git -C "$publish_dir" commit -m "Deploy site from ${GITHUB_SHA}"
-          git -C "$publish_dir" remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          git -C "$publish_dir" push --force origin gh-pages
+          git commit -m "Build GitHub Pages site"
+          git push
