@@ -4,7 +4,12 @@ on:
   push:
     branches: [main]
     paths-ignore:
-      - 'docs/**'
+      - '.nojekyll'
+      - '_app/**'
+      - 'Elham_Aboutorabi_Resume.md'
+      - 'fa.html'
+      - 'index.html'
+      - 'robots.txt'
   workflow_dispatch:
 
 permissions:
@@ -33,23 +38,23 @@ jobs:
       - name: Build static site
         run: npm run build
 
-      - name: Sync build output to docs
+      - name: Sync build output to repository root
         run: |
-          rm -rf docs
-          mkdir docs
-          cp -R build/. docs/
-          touch docs/.nojekyll
+          rm -rf _app
+          rm -f .nojekyll Elham_Aboutorabi_Resume.md fa.html index.html robots.txt
+          cp -R build/. .
+          touch .nojekyll
 
-      - name: Commit docs build
+      - name: Commit root build
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs
+          git add .nojekyll _app Elham_Aboutorabi_Resume.md fa.html index.html robots.txt
 
           if git diff --cached --quiet; then
-            echo "No docs changes to commit."
+            echo "No root build changes to commit."
             exit 0
           fi
 
-          git commit -m "Build GitHub Pages site"
+          git commit -m "Build GitHub Pages root site"
           git push
