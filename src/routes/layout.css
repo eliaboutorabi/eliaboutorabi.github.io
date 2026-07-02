@@ -287,6 +287,13 @@ a {
 	line-height: 1.1;
 }
 
+.rtl .site-nav nav a span {
+	display: inline-flex;
+	align-items: center;
+	line-height: 1;
+	transform: translateY(1.5px);
+}
+
 .rtl .language-link {
 	font-size: 13.5px;
 	font-weight: 800;
@@ -305,7 +312,7 @@ a {
 .rtl .site-nav nav a[target='_blank'] {
 	font-family: 'Lato', ui-sans-serif, system-ui, sans-serif;
 	font-size: 11.75px;
-	font-weight: 700;
+	font-weight: 800;
 	letter-spacing: 0.18em;
 	line-height: 1.5;
 	text-transform: uppercase;
@@ -365,7 +372,7 @@ a {
 	gap: 7px;
 	text-decoration: none;
 	font-size: 11.75px;
-	font-weight: 700;
+	font-weight: 800;
 	letter-spacing: 0.18em;
 	text-transform: uppercase;
 	color: var(--muted);
