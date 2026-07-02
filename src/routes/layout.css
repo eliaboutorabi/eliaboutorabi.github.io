@@ -451,20 +451,42 @@ em {
 }
 
 .band {
+	--blend-from: var(--cream);
+	--section-bg: var(--cream);
+	position: relative;
 	padding: clamp(54px, 7vh, 96px) clamp(22px, 5vw, 52px);
+	background:
+		linear-gradient(
+			180deg,
+			var(--blend-from) 0,
+			color-mix(in srgb, var(--blend-from) 38%, var(--section-bg)) 34px,
+			var(--section-bg) clamp(74px, 9vw, 132px)
+		),
+		var(--section-bg);
 }
 
 .band-warm {
-	background: var(--warm);
+	--section-bg: var(--warm);
 }
 
 .band-cream {
-	background: var(--cream-soft);
+	--section-bg: var(--cream-soft);
 }
 
 .bordered-band {
-	border-top: 1px solid rgba(192, 141, 79, 0.16);
-	border-bottom: 1px solid rgba(192, 141, 79, 0.16);
+	border: 0;
+}
+
+#about {
+	--blend-from: var(--cream);
+}
+
+#work {
+	--blend-from: var(--cream);
+}
+
+#resume {
+	--blend-from: var(--cream-soft);
 }
 
 .content-wrap {
@@ -588,8 +610,18 @@ em {
 }
 
 .stats-band {
+	--blend-from: var(--warm);
+	--section-bg: var(--cream);
+	position: relative;
 	padding: clamp(42px, 5vh, 64px) clamp(22px, 5vw, 52px);
-	background: var(--cream);
+	background:
+		linear-gradient(
+			180deg,
+			var(--blend-from) 0,
+			color-mix(in srgb, var(--blend-from) 42%, var(--section-bg)) 30px,
+			var(--section-bg) clamp(64px, 8vw, 110px)
+		),
+		var(--section-bg);
 }
 
 .stats-grid {
@@ -1015,8 +1047,18 @@ em {
 }
 
 .testimonial-band {
+	--blend-from: var(--warm);
+	--section-bg: var(--cream);
+	position: relative;
 	padding: clamp(50px, 7vh, 86px) clamp(22px, 5vw, 52px);
-	background: var(--cream);
+	background:
+		linear-gradient(
+			180deg,
+			var(--blend-from) 0,
+			color-mix(in srgb, var(--blend-from) 42%, var(--section-bg)) 32px,
+			var(--section-bg) clamp(70px, 8vw, 120px)
+		),
+		var(--section-bg);
 }
 
 .testimonial {
@@ -1053,8 +1095,18 @@ em {
 }
 
 .contact-band {
+	--blend-from: var(--cream);
+	--section-bg: var(--ink);
+	position: relative;
 	padding: clamp(60px, 8vh, 104px) clamp(22px, 5vw, 52px) 0;
-	background: var(--ink);
+	background:
+		linear-gradient(
+			180deg,
+			var(--blend-from) 0,
+			color-mix(in srgb, var(--blend-from) 34%, var(--section-bg)) 42px,
+			var(--section-bg) clamp(88px, 10vw, 150px)
+		),
+		var(--section-bg);
 	color: var(--warm);
 }
 
