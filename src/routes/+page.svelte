@@ -125,7 +125,7 @@
 				titleName: 'Eli',
 				titleNameSuffix: ',',
 				titleTail: 'an',
-				accent: 'AI-enabled accountant',
+				accent: 'AI-enabled accounting specialist',
 				intro:
 					'I care about clear books, useful systems, and calmer decisions. My work blends accounting, sales operations, data analysis, and practical AI automation.',
 				primary: 'Portfolio',
@@ -134,8 +134,8 @@
 			about: {
 				kicker: 'About',
 				name: 'Elham "Eli" Aboutorabi',
-				title: 'A decade of ledgers, now fluent in',
-				accent: 'machines',
+				title: 'A decade across accounting and sales',
+				accent: "AI systems built for today's needs",
 				body: [
 					"Results-driven and tech-forward, I hold a Master's in Accounting and more than ten years across financial reporting, data analysis and full-cycle operations. I've built accounting infrastructures from the ground up and engineered the dashboards that grew revenue.",
 					'Today I merge that traditional rigor with agentic AI, prompt engineering and no-code automation, solving intricate problems and bringing financial innovation to corporate and Big Four environments.'
@@ -212,9 +212,9 @@
 			},
 			resume: {
 				kicker: 'The Resume',
-				titleLead: 'Experience,',
-				titleTail: 'in outcomes.',
-				accent: 'measured',
+				titleLead: 'Experience measured by results.',
+				titleTail: '',
+				accent: '',
 				experienceHeading: 'Professional Experience',
 				experience: [
 					{
@@ -301,8 +301,8 @@
 			},
 			contact: {
 				kicker: "Let's Connect",
-				title: "Let's build something",
-				accent: 'precise',
+				title: 'Reimagining accounting through the lens of AI',
+				accent: '',
 				body: "Open to corporate and Big Four opportunities where accounting rigor and AI strategy meet. I'd love to hear what you're working on.",
 				cta: 'Work With Eli',
 				email: 'Email',
@@ -331,7 +331,7 @@
 				titleName: 'الی',
 				titleNameSuffix: ' هستم',
 				titleTail: '',
-				accent: 'حسابداری با هوش مصنوعی',
+				accent: 'متخصص حسابداری با هوش مصنوعی',
 				intro:
 					'کار من ترکیب حسابداری دقیق، تحلیل داده، تجربه فروش و اتوماسیون کاربردی با هوش مصنوعی است؛ برای تصمیم های شفاف تر و کارهای روزمره آرام تر.',
 				primary: 'نمونه کارها',
@@ -340,8 +340,8 @@
 			about: {
 				kicker: 'درباره',
 				name: 'الهام «الی» ابوترابی',
-				title: 'یک دهه تجربه در دفترها، حالا مسلط به',
-				accent: 'ماشین ها',
+				title: 'یک دهه تجربه در حسابداری و فروش',
+				accent: 'پیاده سازی سیستم های هوش مصنوعی برای نیاز های امروز',
 				body: [
 					'من یک متخصص حسابداری نتیجه محور و علاقه مند به فناوری هستم، با کارشناسی ارشد حسابداری و بیش از ده سال تجربه در گزارشگری مالی، تحلیل داده و عملیات کامل حسابداری.',
 					'امروز این دقت سنتی را با هوش مصنوعی عاملی، مهندسی پرامپت و اتوماسیون کم کد ترکیب می کنم تا مسائل پیچیده را حل کنم و نوآوری مالی را وارد محیط های شرکتی و Big Four کنم.'
@@ -418,9 +418,9 @@
 			},
 			resume: {
 				kicker: 'رزومه',
-				titleLead: 'تجربه ای که با',
-				titleTail: 'سنجیده می شود.',
-				accent: 'نتیجه',
+				titleLead: 'تجربه ای که با نتایج سنجیده می شود.',
+				titleTail: '',
+				accent: '',
 				experienceHeading: 'سوابق حرفه ای',
 				experience: [
 					{
@@ -504,8 +504,8 @@
 			},
 			contact: {
 				kicker: 'ارتباط',
-				title: 'بیایید چیزی',
-				accent: 'دقیق',
+				title: 'تصور دوباره حساب داری از روزنه ی هوش مصنوعی',
+				accent: '',
 				body: 'آماده فرصت های شرکتی و Big Four؛ جایی که دقت حسابداری و استراتژی هوش مصنوعی به هم می رسند. خوشحال می شوم درباره کاری که می سازید بشنوم.',
 				cta: 'همکاری با الی',
 				email: 'ایمیل',
@@ -584,7 +584,13 @@
 	/>
 </svelte:head>
 
-<main class:rtl={isFarsi} class:dark-theme={isDark} class="site-shell">
+<main
+	class:rtl={isFarsi}
+	class:dark-theme={isDark}
+	class="site-shell"
+	data-persian-font="iranNastaliq"
+	lang={currentLocale}
+>
 	<header class="site-nav" aria-label="Primary navigation">
 		<a class="wordmark" href={homeHref}>
 			<span>Eli</span>
@@ -667,7 +673,7 @@
 							: ''}
 					</span>
 					<span class="hero-title-role">
-						{currentLocale === 'en' ? `${c.hero.titleTail} ` : ''}<em dir="ltr">{c.hero.accent}</em
+						{currentLocale === 'en' ? `${c.hero.titleTail} ` : ''}<em>{c.hero.accent}</em
 						>{#if currentLocale === 'en'}<span class="terminal-mark">.</span>{/if}
 					</span>
 				</h1>
@@ -705,7 +711,7 @@
 						<span>{c.about.kicker}</span>
 					</div>
 					<p class="about-name">{c.about.name}</p>
-					<h2>{c.about.title} <em>{c.about.accent}</em>.</h2>
+					<h2>{c.about.title}<br /><em>{c.about.accent}</em></h2>
 				</div>
 				<div class="body-copy reveal">
 					{#each c.about.body as paragraph (paragraph)}
@@ -717,16 +723,18 @@
 			<div class="value-grid">
 				{#each c.about.cards as card (card.title)}
 					<article class="value-card reveal">
-						<div class="icon-shell">
-							{#if card.icon === 'decisions'}
-								<ChartNoAxesCombined size={27} strokeWidth={1.9} animate={false} />
-							{:else if card.icon === 'ai'}
-								<BrainCog size={27} strokeWidth={1.9} animate={false} />
-							{:else}
-								<ChartColumnIncreasing size={27} strokeWidth={1.9} animate={false} />
-							{/if}
+						<div class="value-card-heading">
+							<div class="icon-shell">
+								{#if card.icon === 'decisions'}
+									<ChartNoAxesCombined size={24} strokeWidth={1.9} animate={false} />
+								{:else if card.icon === 'ai'}
+									<BrainCog size={24} strokeWidth={1.9} animate={false} />
+								{:else}
+									<ChartColumnIncreasing size={24} strokeWidth={1.9} animate={false} />
+								{/if}
+							</div>
+							<h3>{card.title}</h3>
 						</div>
-						<h3>{card.title}</h3>
 						<p>{card.text}</p>
 					</article>
 				{/each}
@@ -738,11 +746,13 @@
 		<div class="stats-grid">
 			{#each c.stats as stat (stat.label)}
 				<div class="stat-cell reveal">
-					<p>
+					<p class="stat-value">
 						{#if isFarsi}
-							<span>{stat.suffix}</span>{stat.value}
+							<span class="stat-suffix">{stat.suffix === '%' ? '٪' : stat.suffix}</span><span
+								class="stat-number">{stat.value}</span
+							>
 						{:else}
-							{stat.value}<span>{stat.suffix}</span>
+							<span class="stat-number">{stat.value}</span><span class="stat-suffix">{stat.suffix}</span>
 						{/if}
 					</p>
 					<strong>{stat.label}</strong>
@@ -796,7 +806,10 @@
 						<FileText size={18} strokeWidth={2.1} animate={false} />
 						<span>{c.resume.kicker}</span>
 					</div>
-					<h2>{c.resume.titleLead} <em>{c.resume.accent}</em><br />{c.resume.titleTail}</h2>
+					<h2>
+						{c.resume.titleLead}{#if c.resume.accent} <em>{c.resume.accent}</em>{/if}{#if c.resume
+							.titleTail}<br />{c.resume.titleTail}{/if}
+					</h2>
 				</div>
 			</div>
 
@@ -905,7 +918,9 @@
 					<SmartphoneNfc size={18} strokeWidth={2.1} animate={false} />
 					<span>{c.contact.kicker}</span>
 				</div>
-				<h2>{c.contact.title}<br /><em>{c.contact.accent}</em>.</h2>
+				<h2>
+					{c.contact.title}{#if c.contact.accent}<br /><em>{c.contact.accent}</em>.{/if}
+				</h2>
 				<p>{c.contact.body}</p>
 				<a
 					class="button contact-button"
@@ -1024,4 +1039,5 @@
 			</footer>
 		</div>
 	</section>
+
 </main>
