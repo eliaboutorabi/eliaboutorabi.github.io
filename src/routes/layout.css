@@ -591,28 +591,7 @@ em {
 }
 
 .icon-shell svg {
-	width: 26px;
-	height: 26px;
-	fill: none;
-	stroke: var(--gold);
-	stroke-width: 1.5;
-}
-
-.icon-shell svg circle:last-child {
-	fill: var(--gold);
-	stroke: none;
-}
-
-.icon-shell strong {
-	display: grid;
-	place-items: center;
-	width: 34px;
-	height: 34px;
-	border: 1.5px solid var(--gold);
-	border-radius: 8px;
 	color: #a6753c;
-	font-family: 'Playfair Display', Georgia, serif;
-	font-size: 15px;
 }
 
 .value-card h3,

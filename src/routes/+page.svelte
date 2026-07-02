@@ -1,6 +1,9 @@
 <script lang="ts">
 	import {
+		BrainCog,
 		BriefcaseBusiness,
+		ChartColumnIncreasing,
+		ChartNoAxesCombined,
 		CloudMoon,
 		FileText,
 		HandHeart,
@@ -46,7 +49,7 @@
 			title: string;
 			accent: string;
 			body: string[];
-			cards: Array<{ title: string; text: string; icon: 'chart' | 'ai' | 'target' }>;
+			cards: Array<{ title: string; text: string; icon: 'decisions' | 'ai' | 'growth' }>;
 		};
 		stats: Array<{ value: string; suffix: string; label: string }>;
 		work: {
@@ -132,7 +135,7 @@
 					{
 						title: 'Data-Driven Decisions',
 						text: 'Complex data turned into clear insight that drives smarter, faster business calls.',
-						icon: 'chart'
+						icon: 'decisions'
 					},
 					{
 						title: 'AI-Powered Efficiency',
@@ -142,7 +145,7 @@
 					{
 						title: 'Growth-Focused',
 						text: 'Accounting and sales discipline aimed squarely at measurable, durable growth.',
-						icon: 'target'
+						icon: 'growth'
 					}
 				]
 			},
@@ -324,7 +327,7 @@
 					{
 						title: 'تصمیم گیری داده محور',
 						text: 'تبدیل داده های پیچیده به بینشی روشن برای تصمیم های سریع تر و هوشمندتر.',
-						icon: 'chart'
+						icon: 'decisions'
 					},
 					{
 						title: 'بهره وری با هوش مصنوعی',
@@ -334,7 +337,7 @@
 					{
 						title: 'تمرکز بر رشد',
 						text: 'ترکیب نظم حسابداری و فروش برای رشد قابل اندازه گیری و پایدار.',
-						icon: 'target'
+						icon: 'growth'
 					}
 				]
 			},
@@ -653,21 +656,12 @@
 				{#each c.about.cards as card (card.title)}
 					<article class="value-card reveal">
 						<div class="icon-shell">
-							{#if card.icon === 'chart'}
-								<svg viewBox="0 0 26 26" aria-hidden="true">
-									<line x1="4" y1="22" x2="22" y2="22"></line>
-									<rect x="5.5" y="13" width="3.6" height="7"></rect>
-									<rect x="11.2" y="8" width="3.6" height="12"></rect>
-									<rect x="16.9" y="4" width="3.6" height="16"></rect>
-								</svg>
+							{#if card.icon === 'decisions'}
+								<ChartNoAxesCombined size={27} strokeWidth={1.9} animate={false} />
 							{:else if card.icon === 'ai'}
-								<strong>AI</strong>
+								<BrainCog size={27} strokeWidth={1.9} animate={false} />
 							{:else}
-								<svg viewBox="0 0 26 26" aria-hidden="true">
-									<circle cx="13" cy="13" r="9"></circle>
-									<circle cx="13" cy="13" r="4.6"></circle>
-									<circle cx="13" cy="13" r="1.3"></circle>
-								</svg>
+								<ChartColumnIncreasing size={27} strokeWidth={1.9} animate={false} />
 							{/if}
 						</div>
 						<h3>{card.title}</h3>
