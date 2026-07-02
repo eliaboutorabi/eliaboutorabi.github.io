@@ -270,7 +270,10 @@
 				],
 				educationHeading: 'Education',
 				education: [
-					{ degree: 'M.S., Accounting', school: 'Islamic Azad University, Tehran · 2013-2017' },
+					{
+						degree: 'M.S., Accounting',
+						school: 'Islamic Azad University, Science and Research Branch · 2013-2017'
+					},
 					{
 						degree: 'B.S., Applied Accounting',
 						school: 'Islamic Azad University, Birjand · 2010-2013'
@@ -476,7 +479,10 @@
 				],
 				educationHeading: 'تحصیلات',
 				education: [
-					{ degree: 'کارشناسی ارشد حسابداری', school: 'دانشگاه آزاد اسلامی، تهران · ۲۰۱۳-۲۰۱۷' },
+					{
+						degree: 'کارشناسی ارشد حسابداری',
+						school: 'دانشگاه آزاد اسلامی، واحد علوم و تحقیقات تهران · ۲۰۱۳-۲۰۱۷'
+					},
 					{
 						degree: 'کارشناسی حسابداری کاربردی',
 						school: 'دانشگاه آزاد اسلامی، بیرجند · ۲۰۱۰-۲۰۱۳'
