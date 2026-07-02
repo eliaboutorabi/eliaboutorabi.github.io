@@ -1,6 +1,9 @@
 <script lang="ts">
 	import {
+		Award,
+		BadgeCheck,
 		BrainCog,
+		BookOpenCheck,
 		BriefcaseBusiness,
 		ChartColumnIncreasing,
 		ChartNoAxesCombined,
@@ -78,6 +81,7 @@
 			education: Array<{ degree: string; school: string }>;
 			certsHeading: string;
 			certs: string[];
+			alsoHeading: string;
 			also: string;
 		};
 		testimonial: {
@@ -209,8 +213,14 @@
 				experienceHeading: 'Professional Experience',
 				experience: [
 					{
+						role: 'CEO',
+						period: '2026 - Present',
+						place: 'Ledgerling · Dallas, TX',
+						text: 'Started Ledgerling to revolutionize the way accounting is taught through AI. Accounting does not need to be boring anymore; it can be clear, practical and alive.'
+					},
+					{
 						role: 'Sales Specialist',
-						period: 'Feb 2025 - Present',
+						period: '2025 - 2026',
 						place: "Dillard's · United States",
 						text: 'KPI tracking, forecasting and UPT optimization across high-volume POS operations, turning single-item visits into multi-item sales.'
 					},
@@ -265,12 +275,13 @@
 						school: 'Birjand Technical School · 2008-2010'
 					}
 				],
-				certsHeading: 'AI Certifications',
+				certsHeading: 'Certifications',
 				certs: [
 					'The AI-Driven Accountant',
 					'Generative AI in Finance & Accounting',
 					'The Future of AI for Finance'
 				],
+				alsoHeading: 'Additional Credentials',
 				also: 'Also: Professional Baking · Karate Brown Belt · CPR & Basic Life Support · 20 years leading Aboumoslem Soccer Club.'
 			},
 			testimonial: {
@@ -401,8 +412,14 @@
 				experienceHeading: 'سوابق حرفه ای',
 				experience: [
 					{
+						role: 'مدیرعامل',
+						period: '۲۰۲۶ - اکنون',
+						place: 'Ledgerling · دالاس، تگزاس',
+						text: 'Ledgerling را شروع کردم تا روش آموزش حسابداری را با کمک هوش مصنوعی متحول کنم. حسابداری دیگر لازم نیست خسته کننده باشد؛ می تواند روشن، کاربردی و زنده باشد.'
+					},
+					{
 						role: 'متخصص فروش',
-						period: 'فوریه ۲۰۲۵ - اکنون',
+						period: '۲۰۲۵ - ۲۰۲۶',
 						place: "Dillard's · ایالات متحده",
 						text: 'پیگیری KPI، پیش بینی و بهینه سازی UPT در عملیات فروش پرتراکنش، با تبدیل خریدهای تک محصولی به فروش چندمحصولی.'
 					},
@@ -454,12 +471,13 @@
 					},
 					{ degree: 'کاردانی حسابداری بازرگانی', school: 'آموزشکده فنی بیرجند · ۲۰۰۸-۲۰۱۰' }
 				],
-				certsHeading: 'گواهی های AI',
+				certsHeading: 'گواهی ها',
 				certs: [
 					'The AI-Driven Accountant',
 					'Generative AI in Finance & Accounting',
 					'The Future of AI for Finance'
 				],
+				alsoHeading: 'گواهی ها و تجربه های دیگر',
 				also: 'همچنین: گواهی شیرینی پزی حرفه ای · کمربند قهوه ای کاراته · CPR و کمک های اولیه · ۲۰ سال فعالیت در باشگاه ابومسلم.'
 			},
 			testimonial: {
@@ -604,10 +622,14 @@
 		<div class="hero-grid">
 			<div class="hero-copy reveal">
 				<h1>
-					{c.hero.titleLead} <span class="hero-name">{c.hero.titleName}</span>{c.hero
-						.titleNameSuffix}
-					{c.hero.titleTail}
-					<em dir="ltr">{c.hero.accent}</em><span class="terminal-mark">.</span>
+					<span class="hero-title-line">
+						{c.hero.titleLead} <span class="hero-name">{c.hero.titleName}</span>{c.hero
+							.titleNameSuffix}{currentLocale === 'fa' ? ` ${c.hero.titleTail}` : ''}
+					</span>
+					<span class="hero-title-role">
+						{currentLocale === 'en' ? `${c.hero.titleTail} ` : ''}<em dir="ltr">{c.hero.accent}</em
+						><span class="terminal-mark">.</span>
+					</span>
 				</h1>
 				<p class="hero-intro">{c.hero.intro}</p>
 				<div class="button-row">
@@ -780,14 +802,32 @@
 						</div>
 					</section>
 
-					<section class="cert-card">
-						<h3>{c.resume.certsHeading}</h3>
-						{#each c.resume.certs as cert (cert)}
-							<p><span></span>{cert}</p>
-						{/each}
-						<small>{c.resume.also}</small>
-					</section>
 				</aside>
+			</div>
+
+			<div class="credentials-grid reveal">
+				<section class="credential-card">
+					<div class="credential-heading">
+						<Award size={22} strokeWidth={2} animate={false} />
+						<h3>{c.resume.certsHeading}</h3>
+					</div>
+					<div class="credential-list">
+						{#each c.resume.certs as cert (cert)}
+							<p>
+								<BadgeCheck size={17} strokeWidth={2.1} animate={false} />
+								<span>{cert}</span>
+							</p>
+						{/each}
+					</div>
+				</section>
+
+				<section class="credential-card credential-card-soft">
+					<div class="credential-heading">
+						<BookOpenCheck size={22} strokeWidth={2} animate={false} />
+						<h3>{c.resume.alsoHeading}</h3>
+					</div>
+					<p>{c.resume.also}</p>
+				</section>
 			</div>
 		</div>
 	</section>
