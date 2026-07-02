@@ -86,16 +86,16 @@
 				work: 'Work',
 				resume: 'Resume',
 				contact: "Let's Connect",
-				language: 'فارسی',
+				language: 'FA',
 				languageHref: '/fa'
 			},
 			hero: {
 				status: 'Dallas, TX · Open to select work',
 				eyebrow: 'Elham "Eli" Aboutorabi',
-				title: 'Where accounting rigor meets the intelligence of',
-				accent: 'AI',
+				title: 'Hi, my name is Eli, an',
+				accent: 'AI-enabled accountant',
 				intro:
-					'I turn complex financial data into clear, confident decisions, pairing full-cycle accounting discipline with agentic AI and no-code automation to help businesses move faster and grow with care.',
+					'I care about clear books, useful systems, and calmer decisions. My work blends accounting, sales operations, data analysis, and practical AI automation.',
 				primary: 'View the Portfolio',
 				secondary: 'Read the Resume'
 			},
@@ -274,16 +274,16 @@
 				work: 'نمونه کار',
 				resume: 'رزومه',
 				contact: 'ارتباط',
-				language: 'English',
+				language: 'EN',
 				languageHref: '/'
 			},
 			hero: {
 				status: 'دالاس، تگزاس · آماده همکاری منتخب',
 				eyebrow: 'الهام «الی» ابوترابی',
-				title: 'جایی که دقت حسابداری با هوشمندی',
-				accent: 'AI',
+				title: 'سلام، من الی هستم؛ یک',
+				accent: 'حسابدار مجهز به هوش مصنوعی',
 				intro:
-					'من داده های پیچیده مالی را به تصمیم های روشن و مطمئن تبدیل می کنم؛ با ترکیب حسابداری کامل، هوش مصنوعی عاملی و اتوماسیون کم کد برای رشد دقیق تر کسب و کارها.',
+					'کار من ترکیب حسابداری دقیق، تحلیل داده، تجربه فروش و اتوماسیون کاربردی با هوش مصنوعی است؛ برای تصمیم های شفاف تر و کارهای روزمره آرام تر.',
 				primary: 'مشاهده نمونه کارها',
 				secondary: 'خواندن رزومه'
 			},
@@ -463,6 +463,12 @@
 		resolve(localizeHref('/', { locale: isFarsi ? 'en' : 'fa' }) as Pathname)
 	);
 	const resumeHref = resolve('/Elham_Aboutorabi_Resume.md' as Pathname);
+	let theme = $state<'light' | 'dark'>('light');
+	const isDark = $derived(theme === 'dark');
+
+	function toggleTheme() {
+		theme = isDark ? 'light' : 'dark';
+	}
 
 	const email = 'Eli.abotorabi@gmail.com';
 	const phone = '+1 (469) 618-8462';
@@ -485,7 +491,7 @@
 	/>
 </svelte:head>
 
-<main class:rtl={isFarsi} class="site-shell">
+<main class:rtl={isFarsi} class:dark-theme={isDark} class="site-shell">
 	<header class="site-nav" aria-label="Primary navigation">
 		<a class="wordmark" href={homeHref}>
 			<span>Eli</span>
@@ -499,7 +505,24 @@
 			<a href="#contact">{c.nav.contact}</a>
 		</nav>
 
-		<a class="language-link" href={languageHref}>{c.nav.language}</a>
+		<div class="nav-actions">
+			<a
+				class="language-link"
+				href={languageHref}
+				aria-label={isFarsi ? 'Switch to English' : 'تغییر زبان به فارسی'}
+			>
+				{c.nav.language}
+			</a>
+			<button
+				class="theme-toggle"
+				type="button"
+				aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+				aria-pressed={isDark}
+				onclick={toggleTheme}
+			>
+				<span aria-hidden="true"></span>
+			</button>
+		</div>
 	</header>
 
 	<section class="hero-section">
