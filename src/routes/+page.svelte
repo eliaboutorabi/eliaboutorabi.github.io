@@ -85,7 +85,7 @@
 			certsHeading: string;
 			certs: string[];
 			alsoHeading: string;
-			also: string;
+			also: string[];
 		};
 		testimonial: {
 			quote: string;
@@ -280,14 +280,19 @@
 						school: 'Birjand Technical School · 2008-2010'
 					}
 				],
-				certsHeading: 'Certifications',
+				certsHeading: 'Online Certifications',
 				certs: [
 					'The AI-Driven Accountant',
 					'Generative AI in Finance & Accounting',
 					'The Future of AI for Finance'
 				],
 				alsoHeading: 'Additional Credentials',
-				also: 'Also: Professional Baking · Karate Brown Belt · CPR & Basic Life Support · 20 years leading Aboumoslem Soccer Club.'
+				also: [
+					'Professional baking',
+					'Karate brown belt',
+					'CPR & Basic Life Support',
+					'20 years of professional soccer playing experience, including four years leading Aboumoslem Soccer Club.'
+				]
 			},
 			testimonial: {
 				quote:
@@ -478,14 +483,19 @@
 					},
 					{ degree: 'کاردانی حسابداری بازرگانی', school: 'آموزشکده فنی بیرجند · ۲۰۰۸-۲۰۱۰' }
 				],
-				certsHeading: 'گواهی ها',
+				certsHeading: 'گواهی های آنلاین',
 				certs: [
 					'The AI-Driven Accountant',
 					'Generative AI in Finance & Accounting',
 					'The Future of AI for Finance'
 				],
 				alsoHeading: 'گواهی ها و تجربه های دیگر',
-				also: 'همچنین: گواهی شیرینی پزی حرفه ای · کمربند قهوه ای کاراته · CPR و کمک های اولیه · ۲۰ سال فعالیت در باشگاه ابومسلم.'
+				also: [
+					'شیرینی پزی حرفه ای',
+					'کمربند قهوه ای کاراته',
+					'CPR و حمایت حیاتی پایه',
+					'۲۰ سال تجربه بازی فوتبال حرفه ای، از جمله ۴ سال هدایت باشگاه ابومسلم.'
+				]
 			},
 			testimonial: {
 				quote:
@@ -842,27 +852,38 @@
 			</div>
 
 			<div class="credentials-grid reveal">
-				<section class="credential-card">
-					<div class="credential-heading">
-						<Award size={22} strokeWidth={2} animate={false} />
-						<h3>{c.resume.certsHeading}</h3>
-					</div>
-					<div class="credential-list">
-						{#each c.resume.certs as cert (cert)}
-							<div class="credential-list-item">
-								<BadgeCheck size={17} strokeWidth={2.1} animate={false} />
-								<span>{cert}</span>
+				<section class="credential-card credential-card-unified">
+					<div class="credential-sections">
+						<div class="credential-section">
+							<div class="credential-heading">
+								<Award size={22} strokeWidth={2} animate={false} />
+								<h3>{c.resume.certsHeading}</h3>
 							</div>
-						{/each}
-					</div>
-				</section>
+							<div class="credential-list">
+								{#each c.resume.certs as cert (cert)}
+									<div class="credential-list-item">
+										<BadgeCheck size={17} strokeWidth={2.1} animate={false} />
+										<span>{cert}</span>
+									</div>
+								{/each}
+							</div>
+						</div>
 
-				<section class="credential-card credential-card-soft">
-					<div class="credential-heading">
-						<BookOpenCheck size={22} strokeWidth={2} animate={false} />
-						<h3>{c.resume.alsoHeading}</h3>
+						<div class="credential-section">
+							<div class="credential-heading">
+								<BookOpenCheck size={22} strokeWidth={2} animate={false} />
+								<h3>{c.resume.alsoHeading}</h3>
+							</div>
+							<div class="credential-list">
+								{#each c.resume.also as item (item)}
+									<div class="credential-list-item">
+										<BadgeCheck size={17} strokeWidth={2.1} animate={false} />
+										<span>{item}</span>
+									</div>
+								{/each}
+							</div>
+						</div>
 					</div>
-					<p>{c.resume.also}</p>
 				</section>
 			</div>
 		</div>

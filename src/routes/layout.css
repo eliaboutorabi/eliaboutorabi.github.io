@@ -1177,9 +1177,6 @@ em {
 }
 
 .credentials-grid {
-	display: grid;
-	grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.75fr);
-	gap: 24px;
 	margin-top: clamp(28px, 4vw, 44px);
 }
 
@@ -1188,6 +1185,29 @@ em {
 	border: 1px solid rgba(192, 141, 79, 0.2);
 	border-radius: 10px;
 	background: color-mix(in srgb, var(--cream-soft) 88%, var(--sand));
+}
+
+.credential-card-unified {
+	padding: clamp(22px, 3vw, 30px);
+}
+
+.credential-sections {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+	gap: clamp(22px, 3vw, 34px);
+	align-items: start;
+}
+
+.credential-section + .credential-section {
+	padding-left: clamp(22px, 3vw, 34px);
+	border-left: 1px solid rgba(192, 141, 79, 0.18);
+}
+
+.rtl .credential-section + .credential-section {
+	padding-right: clamp(22px, 3vw, 34px);
+	padding-left: 0;
+	border-right: 1px solid rgba(192, 141, 79, 0.18);
+	border-left: 0;
 }
 
 .credential-heading {
@@ -1206,6 +1226,10 @@ em {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: 12px;
+}
+
+.credential-section .credential-list {
+	grid-template-columns: 1fr;
 }
 
 .credential-list-item {
@@ -1474,8 +1498,7 @@ em {
 
 	.hero-grid,
 	.split-heading,
-	.resume-grid,
-	.credentials-grid {
+	.resume-grid {
 		grid-template-columns: 1fr;
 	}
 
@@ -1512,6 +1535,22 @@ em {
 
 	.featured-tile {
 		grid-column: span 2;
+	}
+}
+
+@media (max-width: 760px) {
+	.credential-sections {
+		grid-template-columns: 1fr;
+	}
+
+	.credential-section + .credential-section,
+	.rtl .credential-section + .credential-section {
+		padding-top: 22px;
+		padding-right: 0;
+		padding-left: 0;
+		border-top: 1px solid rgba(192, 141, 79, 0.18);
+		border-right: 0;
+		border-left: 0;
 	}
 }
 
