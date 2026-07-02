@@ -1095,18 +1095,10 @@ em {
 }
 
 .contact-band {
-	--blend-from: var(--cream);
-	--section-bg: var(--ink);
 	position: relative;
 	padding: clamp(60px, 8vh, 104px) clamp(22px, 5vw, 52px) 0;
-	background:
-		linear-gradient(
-			180deg,
-			var(--blend-from) 0,
-			color-mix(in srgb, var(--blend-from) 34%, var(--section-bg)) 42px,
-			var(--section-bg) clamp(88px, 10vw, 150px)
-		),
-		var(--section-bg);
+	border-top: 1px solid rgba(192, 141, 79, 0.22);
+	background: var(--ink);
 	color: var(--warm);
 }
 
