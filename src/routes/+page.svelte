@@ -23,6 +23,7 @@
 
 	type Locale = 'en' | 'fa';
 	type NavKey = 'about' | 'work' | 'resume' | 'contact';
+	type HeaderNavKey = NavKey | 'linkedin' | 'github';
 	type ContactKey = 'email' | 'phone' | 'location' | 'linkedin' | 'github';
 
 	type Copy = {
@@ -31,6 +32,8 @@
 			work: string;
 			resume: string;
 			contact: string;
+			linkedin: string;
+			github: string;
 			language: string;
 			languageHref: string;
 		};
@@ -109,7 +112,9 @@
 				about: 'About',
 				work: 'Work',
 				resume: 'Resume',
-				contact: "Let's Connect",
+				contact: 'Contact',
+				linkedin: 'LinkedIn',
+				github: 'GitHub',
 				language: 'FA',
 				languageHref: '/fa'
 			},
@@ -308,7 +313,9 @@
 				about: 'درباره',
 				work: 'نمونه کار',
 				resume: 'رزومه',
-				contact: 'ارتباط',
+				contact: 'تماس',
+				linkedin: 'LinkedIn',
+				github: 'GitHub',
 				language: 'EN',
 				languageHref: '/'
 			},
@@ -507,15 +514,26 @@
 	const homeHref = $derived(resolve(localizeHref('/', { locale: currentLocale }) as Pathname));
 	const pathWithoutLocale = $derived(page.url.pathname.replace(/^\/fa(?=\/|$)/, '') || '/');
 	const languageHref = $derived(getLanguageHref(pathWithoutLocale, isFarsi));
-	const navItems = $derived<Array<{ key: NavKey; label: string; href: string }>>([
-		{ key: 'about', label: c.nav.about, href: '#about' },
-		{ key: 'work', label: c.nav.work, href: '#work' },
-		{ key: 'resume', label: c.nav.resume, href: '#resume' },
-		{ key: 'contact', label: c.nav.contact, href: '#contact' }
+	const linkedin = '/in/elham-aboutorabi';
+	const linkedinUrl = 'https://www.linkedin.com/in/elham-aboutorabi/';
+	const github = '@eliaboutorabi';
+	const githubUrl = 'https://github.com/eliaboutorabi';
+	const navItems = $derived<
+		Array<
+			| { key: NavKey; label: string; href: string; kind: 'section' }
+			| { key: 'linkedin' | 'github'; label: string; href: string; kind: 'external' }
+		>
+	>([
+		{ key: 'about', label: c.nav.about, href: '#about', kind: 'section' },
+		{ key: 'work', label: c.nav.work, href: '#work', kind: 'section' },
+		{ key: 'resume', label: c.nav.resume, href: '#resume', kind: 'section' },
+		{ key: 'contact', label: c.nav.contact, href: '#contact', kind: 'section' },
+		{ key: 'linkedin', label: c.nav.linkedin, href: linkedinUrl, kind: 'external' },
+		{ key: 'github', label: c.nav.github, href: githubUrl, kind: 'external' }
 	]);
 	let theme = $state<'light' | 'dark'>('light');
 	let themeIconActive = $state(false);
-	let activeNavKey = $state<NavKey | null>(null);
+	let activeNavKey = $state<HeaderNavKey | null>(null);
 	let contactCtaActive = $state(false);
 	let activeContactKey = $state<ContactKey | null>(null);
 	const isDark = $derived(theme === 'dark');
@@ -540,10 +558,6 @@
 	const email = 'Eli.abotorabi@gmail.com';
 	const phone = '+1 (469) 618-8462';
 	const location = 'Dallas, TX';
-	const linkedin = '/in/elham-aboutorabi';
-	const linkedinUrl = 'https://www.linkedin.com/in/elham-aboutorabi/';
-	const github = '@eliaboutorabi';
-	const githubUrl = 'https://github.com/eliaboutorabi';
 </script>
 
 <svelte:head>
@@ -572,6 +586,8 @@
 				<a
 					href={item.href}
 					aria-label={item.label}
+					target={item.kind === 'external' ? '_blank' : undefined}
+					rel={item.kind === 'external' ? 'noreferrer' : undefined}
 					onmouseenter={() => (activeNavKey = item.key)}
 					onmouseleave={() => (activeNavKey = null)}
 					onfocus={() => (activeNavKey = item.key)}
@@ -583,8 +599,20 @@
 						<BriefcaseBusiness size={17} strokeWidth={2.1} animate={activeNavKey === item.key} />
 					{:else if item.key === 'resume'}
 						<FileText size={17} strokeWidth={2.1} animate={activeNavKey === item.key} />
+					{:else if item.key === 'contact'}
+						<MailCheck size={17} strokeWidth={2.1} animate={activeNavKey === item.key} />
+					{:else if item.key === 'linkedin'}
+						<svg class="brand-icon nav-brand-icon" viewBox="0 0 24 24" aria-hidden="true">
+							<path
+								d="M20.45 20.45h-3.56v-5.58c0-1.33-0.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.67H9.34V8.99h3.42v1.57h0.05c0.48-0.9 1.64-1.85 3.37-1.85 3.61 0 4.27 2.37 4.27 5.46v6.28zM5.32 7.43c-1.14 0-2.06-0.93-2.06-2.06s0.92-2.06 2.06-2.06 2.06 0.92 2.06 2.06-0.92 2.06-2.06 2.06zM7.1 20.45H3.54V8.99H7.1v11.46zM22.22 0H1.77C0.79 0 0 0.77 0 1.72v20.56C0 23.23 0.79 24 1.77 24h20.45c0.98 0 1.78-0.77 1.78-1.72V1.72C24 0.77 23.2 0 22.22 0z"
+							/>
+						</svg>
 					{:else}
-						<SmartphoneNfc size={17} strokeWidth={2.1} animate={activeNavKey === item.key} />
+						<svg class="brand-icon nav-brand-icon" viewBox="0 0 16 16" aria-hidden="true">
+							<path
+								d="M8 0.2C3.6 0.2 0 3.8 0 8.2c0 3.5 2.3 6.5 5.5 7.6 0.4 0.1 0.5-0.2 0.5-0.4v-1.4c-2.2 0.5-2.7-0.9-2.7-0.9-0.4-0.9-0.9-1.2-0.9-1.2-0.7-0.5 0.1-0.5 0.1-0.5 0.8 0.1 1.2 0.8 1.2 0.8 0.7 1.2 1.9 0.9 2.3 0.7 0.1-0.5 0.3-0.9 0.5-1.1-1.8-0.2-3.6-0.9-3.6-3.9 0-0.9 0.3-1.6 0.8-2.1-0.1-0.2-0.3-1 0.1-2.1 0 0 0.7-0.2 2.2 0.8 0.6-0.2 1.3-0.3 2-0.3s1.4 0.1 2 0.3c1.5-1 2.2-0.8 2.2-0.8 0.4 1.1 0.2 1.9 0.1 2.1 0.5 0.6 0.8 1.3 0.8 2.1 0 3-1.8 3.7-3.6 3.9 0.3 0.3 0.6 0.8 0.6 1.6v2.4c0 0.2 0.1 0.5 0.6 0.4 3.2-1.1 5.5-4.1 5.5-7.6C16 3.8 12.4 0.2 8 0.2z"
+							/>
+						</svg>
 					{/if}
 					<span>{item.label}</span>
 				</a>
@@ -813,10 +841,10 @@
 					</div>
 					<div class="credential-list">
 						{#each c.resume.certs as cert (cert)}
-							<p>
+							<div class="credential-list-item">
 								<BadgeCheck size={17} strokeWidth={2.1} animate={false} />
 								<span>{cert}</span>
-							</p>
+							</div>
 						{/each}
 					</div>
 				</section>
@@ -874,10 +902,10 @@
 					onfocusout={() => (activeContactKey = null)}
 				>
 					<div>
-						<p class="contact-label">
+						<div class="contact-label">
 							<MailCheck size={14} strokeWidth={2.1} animate={activeContactKey === 'email'} />
 							<span>{c.contact.email}</span>
-						</p>
+						</div>
 						<a href={`mailto:${email}`}>{email}</a>
 					</div>
 				</div>
@@ -891,10 +919,10 @@
 					onfocusout={() => (activeContactKey = null)}
 				>
 					<div>
-						<p class="contact-label">
+						<div class="contact-label">
 							<SmartphoneNfc size={14} strokeWidth={2.1} animate={activeContactKey === 'phone'} />
 							<span>{c.contact.phone}</span>
-						</p>
+						</div>
 						<a href={`tel:${phone.replace(/[^+\d]/g, '')}`}>{phone}</a>
 					</div>
 				</div>
@@ -908,10 +936,10 @@
 					onfocusout={() => (activeContactKey = null)}
 				>
 					<div>
-						<p class="contact-label">
+						<div class="contact-label">
 							<MapPinCheck size={14} strokeWidth={2.1} animate={activeContactKey === 'location'} />
 							<span>{c.contact.location}</span>
-						</p>
+						</div>
 						<span>{location}</span>
 					</div>
 				</div>
@@ -925,14 +953,14 @@
 					onfocusout={() => (activeContactKey = null)}
 				>
 					<div>
-						<p class="contact-label">
+						<div class="contact-label">
 							<svg class="brand-icon linkedin-icon" viewBox="0 0 24 24" aria-hidden="true">
 								<path
 									d="M20.45 20.45h-3.56v-5.58c0-1.33-0.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.67H9.34V8.99h3.42v1.57h0.05c0.48-0.9 1.64-1.85 3.37-1.85 3.61 0 4.27 2.37 4.27 5.46v6.28zM5.32 7.43c-1.14 0-2.06-0.93-2.06-2.06s0.92-2.06 2.06-2.06 2.06 0.92 2.06 2.06-0.92 2.06-2.06 2.06zM7.1 20.45H3.54V8.99H7.1v11.46zM22.22 0H1.77C0.79 0 0 0.77 0 1.72v20.56C0 23.23 0.79 24 1.77 24h20.45c0.98 0 1.78-0.77 1.78-1.72V1.72C24 0.77 23.2 0 22.22 0z"
 								/>
 							</svg>
 							<span>{c.contact.linkedin}</span>
-						</p>
+						</div>
 						<a href={linkedinUrl} target="_blank" rel="noreferrer">{linkedin}</a>
 					</div>
 				</div>
@@ -946,14 +974,14 @@
 					onfocusout={() => (activeContactKey = null)}
 				>
 					<div>
-						<p class="contact-label">
+						<div class="contact-label">
 							<svg class="brand-icon github-icon" viewBox="0 0 16 16" aria-hidden="true">
 								<path
 									d="M8 0.2C3.6 0.2 0 3.8 0 8.2c0 3.5 2.3 6.5 5.5 7.6 0.4 0.1 0.5-0.2 0.5-0.4v-1.4c-2.2 0.5-2.7-0.9-2.7-0.9-0.4-0.9-0.9-1.2-0.9-1.2-0.7-0.5 0.1-0.5 0.1-0.5 0.8 0.1 1.2 0.8 1.2 0.8 0.7 1.2 1.9 0.9 2.3 0.7 0.1-0.5 0.3-0.9 0.5-1.1-1.8-0.2-3.6-0.9-3.6-3.9 0-0.9 0.3-1.6 0.8-2.1-0.1-0.2-0.3-1 0.1-2.1 0 0 0.7-0.2 2.2 0.8 0.6-0.2 1.3-0.3 2-0.3s1.4 0.1 2 0.3c1.5-1 2.2-0.8 2.2-0.8 0.4 1.1 0.2 1.9 0.1 2.1 0.5 0.6 0.8 1.3 0.8 2.1 0 3-1.8 3.7-3.6 3.9 0.3 0.3 0.6 0.8 0.6 1.6v2.4c0 0.2 0.1 0.5 0.6 0.4 3.2-1.1 5.5-4.1 5.5-7.6C16 3.8 12.4 0.2 8 0.2z"
 								/>
 							</svg>
 							<span>{c.contact.github}</span>
-						</p>
+						</div>
 						<a href={githubUrl} target="_blank" rel="noreferrer">{github}</a>
 					</div>
 				</div>

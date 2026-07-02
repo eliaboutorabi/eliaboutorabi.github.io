@@ -134,7 +134,7 @@ a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: clamp(18px, 3vw, 34px);
+	gap: clamp(14px, 2.2vw, 28px);
 }
 
 .site-nav nav a,
@@ -1065,7 +1065,7 @@ em {
 	gap: 12px;
 }
 
-.credential-list p {
+.credential-list-item {
 	display: flex;
 	align-items: flex-start;
 	gap: 9px;
@@ -1080,7 +1080,7 @@ em {
 	line-height: 1.55;
 }
 
-.credential-list p > div {
+.credential-list-item > div {
 	flex: none;
 	margin-top: 1px;
 	color: var(--gold);
@@ -1210,7 +1210,12 @@ em {
 	display: flex;
 	align-items: center;
 	gap: 7px;
+	margin: 0 0 8px;
 	color: var(--gold-light);
+	font-size: 10.5px;
+	font-weight: 700;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
 }
 
 .contact-label > div,
@@ -1225,13 +1230,25 @@ em {
 	fill: currentColor;
 }
 
-.contact-grid p {
-	margin: 0 0 8px;
-	color: #9a7a55;
-	font-size: 10.5px;
-	font-weight: 700;
-	letter-spacing: 0.22em;
-	text-transform: uppercase;
+.nav-brand-icon {
+	width: 15px;
+	height: 15px;
+	flex: 0 0 15px;
+	opacity: 0.78;
+}
+
+.linkedin-icon {
+	width: 13px;
+	height: 13px;
+	flex-basis: 13px;
+	opacity: 0.86;
+}
+
+.github-icon {
+	width: 13px;
+	height: 13px;
+	flex-basis: 13px;
+	opacity: 0.82;
 }
 
 .contact-item > div > a,
@@ -1376,7 +1393,7 @@ em {
 
 	.site-nav nav {
 		justify-content: center;
-		gap: clamp(6px, 2.2vw, 10px);
+		gap: clamp(4px, 1.6vw, 7px);
 		min-width: 0;
 		overflow: hidden;
 	}
@@ -1390,7 +1407,7 @@ em {
 	.site-nav nav a {
 		position: relative;
 		justify-content: center;
-		width: 32px;
+		width: 28px;
 		height: 32px;
 		gap: 0;
 		border-radius: 999px;

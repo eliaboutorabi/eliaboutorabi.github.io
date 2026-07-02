@@ -41,7 +41,7 @@ jobs:
       - name: Sync build output to repository root
         run: |
           rm -rf _app
-          rm -f .nojekyll Elham_Aboutorabi_Resume.md fa.html index.html robots.txt
+          rm -f .nojekyll Elham_Aboutorabi_Resume.md fa.html hero_headshot.png index.html robots.txt
           cp -R build/. .
           touch .nojekyll
 
@@ -49,7 +49,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .nojekyll _app Elham_Aboutorabi_Resume.md fa.html index.html robots.txt
+          git add .nojekyll _app Elham_Aboutorabi_Resume.md fa.html hero_headshot.png index.html robots.txt
 
           if git diff --cached --quiet; then
             echo "No root build changes to commit."
