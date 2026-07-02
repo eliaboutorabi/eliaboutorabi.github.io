@@ -1,10 +1,19 @@
 <script lang="ts">
+	import {
+		BriefcaseBusiness,
+		CloudMoon,
+		FileText,
+		SendHorizontal,
+		Sun,
+		UserRound
+	} from '@jis3r/icons';
 	import { page } from '$app/state';
 	import type { Pathname } from '$app/types';
 	import { resolve } from '$app/paths';
-	import { localizeHref } from '$lib/paraglide/runtime';
+	import { getLocale, localizeHref } from '$lib/paraglide/runtime';
 
 	type Locale = 'en' | 'fa';
+	type NavKey = 'about' | 'work' | 'resume' | 'contact';
 
 	type Copy = {
 		nav: {
@@ -26,6 +35,7 @@
 		};
 		about: {
 			kicker: string;
+			name: string;
 			title: string;
 			accent: string;
 			body: string[];
@@ -92,7 +102,7 @@
 			hero: {
 				status: 'Dallas, TX · Open to select work',
 				eyebrow: 'Elham "Eli" Aboutorabi',
-				title: 'Hi, my name is Eli, an',
+				title: "Hi, I'm Eli, an",
 				accent: 'AI-enabled accountant',
 				intro:
 					'I care about clear books, useful systems, and calmer decisions. My work blends accounting, sales operations, data analysis, and practical AI automation.',
@@ -101,6 +111,7 @@
 			},
 			about: {
 				kicker: '01 - About',
+				name: 'Elham "Eli" Aboutorabi',
 				title: 'A decade of ledgers, now fluent in',
 				accent: 'machines',
 				body: [
@@ -289,6 +300,7 @@
 			},
 			about: {
 				kicker: '۰۱ - درباره',
+				name: 'الهام «الی» ابوترابی',
 				title: 'یک دهه تجربه در دفترها، حالا مسلط به',
 				accent: 'ماشین ها',
 				body: [
@@ -455,19 +467,39 @@
 		}
 	};
 
-	const currentLocale = $derived(page.url.pathname.startsWith('/fa') ? 'fa' : 'en');
+	const currentLocale = $derived(getLocale() as Locale);
 	const c = $derived(copy[currentLocale]);
 	const isFarsi = $derived(currentLocale === 'fa');
 	const homeHref = $derived(resolve(localizeHref('/', { locale: currentLocale }) as Pathname));
-	const languageHref = $derived(
-		resolve(localizeHref('/', { locale: isFarsi ? 'en' : 'fa' }) as Pathname)
-	);
+	const pathWithoutLocale = $derived(page.url.pathname.replace(/^\/fa(?=\/|$)/, '') || '/');
+	const languageHref = $derived(getLanguageHref(pathWithoutLocale, isFarsi));
 	const resumeHref = resolve('/Elham_Aboutorabi_Resume.md' as Pathname);
+	const navItems = $derived<Array<{ key: NavKey; label: string; href: string }>>([
+		{ key: 'about', label: c.nav.about, href: '#about' },
+		{ key: 'work', label: c.nav.work, href: '#work' },
+		{ key: 'resume', label: c.nav.resume, href: '#resume' },
+		{ key: 'contact', label: c.nav.contact, href: '#contact' }
+	]);
 	let theme = $state<'light' | 'dark'>('light');
+	let themeIconActive = $state(false);
+	let activeNavKey = $state<NavKey | null>(null);
 	const isDark = $derived(theme === 'dark');
 
 	function toggleTheme() {
 		theme = isDark ? 'light' : 'dark';
+		themeIconActive = true;
+	}
+
+	function getLanguageHref(path: string, fromFarsi = isFarsi) {
+		const cleanPath = path === '/' ? '' : path;
+		return fromFarsi ? path : `/fa${cleanPath}`;
+	}
+
+	function switchLanguage(event: MouseEvent) {
+		event.preventDefault();
+
+		const nextPath = window.location.pathname.replace(/^\/fa(?=\/|$)/, '') || '/';
+		window.location.href = getLanguageHref(nextPath);
 	}
 
 	const email = 'Eli.abotorabi@gmail.com';
@@ -499,10 +531,27 @@
 		</a>
 
 		<nav>
-			<a href="#about">{c.nav.about}</a>
-			<a href="#work">{c.nav.work}</a>
-			<a href="#resume">{c.nav.resume}</a>
-			<a href="#contact">{c.nav.contact}</a>
+			{#each navItems as item (item.key)}
+				<a
+					href={item.href}
+					aria-label={item.label}
+					onmouseenter={() => (activeNavKey = item.key)}
+					onmouseleave={() => (activeNavKey = null)}
+					onfocus={() => (activeNavKey = item.key)}
+					onblur={() => (activeNavKey = null)}
+				>
+					{#if item.key === 'about'}
+						<UserRound size={15} strokeWidth={2.1} animate={activeNavKey === item.key} />
+					{:else if item.key === 'work'}
+						<BriefcaseBusiness size={15} strokeWidth={2.1} animate={activeNavKey === item.key} />
+					{:else if item.key === 'resume'}
+						<FileText size={15} strokeWidth={2.1} animate={activeNavKey === item.key} />
+					{:else}
+						<SendHorizontal size={15} strokeWidth={2.1} animate={activeNavKey === item.key} />
+					{/if}
+					<span>{item.label}</span>
+				</a>
+			{/each}
 		</nav>
 
 		<div class="nav-actions">
@@ -510,6 +559,7 @@
 				class="language-link"
 				href={languageHref}
 				aria-label={isFarsi ? 'Switch to English' : 'تغییر زبان به فارسی'}
+				onclick={switchLanguage}
 			>
 				{c.nav.language}
 			</a>
@@ -519,8 +569,14 @@
 				aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
 				aria-pressed={isDark}
 				onclick={toggleTheme}
+				onmouseenter={() => (themeIconActive = true)}
+				onmouseleave={() => (themeIconActive = false)}
 			>
-				<span aria-hidden="true"></span>
+				{#if isDark}
+					<Sun size={17} strokeWidth={2.1} animate={themeIconActive} />
+				{:else}
+					<CloudMoon size={17} strokeWidth={2.1} animate={themeIconActive} />
+				{/if}
 			</button>
 		</div>
 	</header>
@@ -528,8 +584,6 @@
 	<section class="hero-section">
 		<div class="hero-grid">
 			<div class="hero-copy reveal">
-				<p class="status-pill"><span></span>{c.hero.status}</p>
-				<p class="kicker">{c.hero.eyebrow}</p>
 				<h1>
 					{c.hero.title} <em dir="ltr">{c.hero.accent}</em><span class="terminal-mark">.</span>
 				</h1>
@@ -548,7 +602,6 @@
 					<div class="portrait-pattern"></div>
 					<div>
 						<p>Eli</p>
-						<span>[ portrait ]</span>
 					</div>
 				</div>
 			</div>
@@ -564,6 +617,7 @@
 			<div class="split-heading">
 				<div class="reveal">
 					<p class="section-kicker">{c.about.kicker}</p>
+					<p class="about-name">{c.about.name}</p>
 					<h2>{c.about.title} <em>{c.about.accent}</em>.</h2>
 				</div>
 				<div class="body-copy reveal">

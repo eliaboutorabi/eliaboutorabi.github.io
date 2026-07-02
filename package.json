@@ -7,8 +7,8 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"prepare": "paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide --strategy url cookie globalVariable baseLocale --silent && svelte-kit sync || echo ''",
-		"check": "paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide --strategy url cookie globalVariable baseLocale --silent && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"prepare": "paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide --strategy url baseLocale --silent && svelte-kit sync || echo ''",
+		"check": "paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide --strategy url baseLocale --silent && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
@@ -19,6 +19,7 @@
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
 		"@inlang/paraglide-js": "^2.18.2",
+		"@jis3r/icons": "^2.7.0",
 		"@playwright/test": "^1.60.0",
 		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/kit": "^2.63.0",
