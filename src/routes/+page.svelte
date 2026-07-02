@@ -3,7 +3,7 @@
 		BriefcaseBusiness,
 		CloudMoon,
 		FileText,
-		SendHorizontal,
+		SmartphoneNfc,
 		Sun,
 		UserRound
 	} from '@jis3r/icons';
@@ -27,7 +27,10 @@
 		hero: {
 			status: string;
 			eyebrow: string;
-			title: string;
+			titleLead: string;
+			titleName: string;
+			titleNameSuffix: string;
+			titleTail: string;
 			accent: string;
 			intro: string;
 			primary: string;
@@ -102,12 +105,15 @@
 			hero: {
 				status: 'Dallas, TX · Open to select work',
 				eyebrow: 'Elham "Eli" Aboutorabi',
-				title: "Hi, I'm Eli, an",
+				titleLead: "Hi, I'm",
+				titleName: 'Eli',
+				titleNameSuffix: ',',
+				titleTail: 'an',
 				accent: 'AI-enabled accountant',
 				intro:
 					'I care about clear books, useful systems, and calmer decisions. My work blends accounting, sales operations, data analysis, and practical AI automation.',
-				primary: 'View the Portfolio',
-				secondary: 'Read the Resume'
+				primary: 'Portfolio',
+				secondary: 'Resume'
 			},
 			about: {
 				kicker: '01 - About',
@@ -291,12 +297,15 @@
 			hero: {
 				status: 'دالاس، تگزاس · آماده همکاری منتخب',
 				eyebrow: 'الهام «الی» ابوترابی',
-				title: 'سلام، من الی هستم؛ یک',
+				titleLead: 'سلام، من',
+				titleName: 'الی',
+				titleNameSuffix: '',
+				titleTail: 'هستم؛ یک',
 				accent: 'حسابدار مجهز به هوش مصنوعی',
 				intro:
 					'کار من ترکیب حسابداری دقیق، تحلیل داده، تجربه فروش و اتوماسیون کاربردی با هوش مصنوعی است؛ برای تصمیم های شفاف تر و کارهای روزمره آرام تر.',
-				primary: 'مشاهده نمونه کارها',
-				secondary: 'خواندن رزومه'
+				primary: 'نمونه کارها',
+				secondary: 'رزومه'
 			},
 			about: {
 				kicker: '۰۱ - درباره',
@@ -541,13 +550,13 @@
 					onblur={() => (activeNavKey = null)}
 				>
 					{#if item.key === 'about'}
-						<UserRound size={15} strokeWidth={2.1} animate={activeNavKey === item.key} />
+						<UserRound size={17} strokeWidth={2.1} animate={activeNavKey === item.key} />
 					{:else if item.key === 'work'}
-						<BriefcaseBusiness size={15} strokeWidth={2.1} animate={activeNavKey === item.key} />
+						<BriefcaseBusiness size={17} strokeWidth={2.1} animate={activeNavKey === item.key} />
 					{:else if item.key === 'resume'}
-						<FileText size={15} strokeWidth={2.1} animate={activeNavKey === item.key} />
+						<FileText size={17} strokeWidth={2.1} animate={activeNavKey === item.key} />
 					{:else}
-						<SendHorizontal size={15} strokeWidth={2.1} animate={activeNavKey === item.key} />
+						<SmartphoneNfc size={17} strokeWidth={2.1} animate={activeNavKey === item.key} />
 					{/if}
 					<span>{item.label}</span>
 				</a>
@@ -585,24 +594,27 @@
 		<div class="hero-grid">
 			<div class="hero-copy reveal">
 				<h1>
-					{c.hero.title} <em dir="ltr">{c.hero.accent}</em><span class="terminal-mark">.</span>
+					{c.hero.titleLead} <span class="hero-name">{c.hero.titleName}</span>{c.hero
+						.titleNameSuffix}
+					{c.hero.titleTail}
+					<em dir="ltr">{c.hero.accent}</em><span class="terminal-mark">.</span>
 				</h1>
 				<p class="hero-intro">{c.hero.intro}</p>
 				<div class="button-row">
-					<a class="button button-primary" href="#work">{c.hero.primary}<span>-></span></a>
-					<a class="button button-secondary" href="#resume">{c.hero.secondary}<span>-></span></a>
+					<a class="button hero-button button-primary" href="#work">
+						<BriefcaseBusiness size={17} strokeWidth={2.1} animate={activeNavKey === 'work'} />
+						<span>{c.hero.primary}</span>
+					</a>
+					<a class="button hero-button button-secondary" href="#resume">
+						<FileText size={17} strokeWidth={2.1} animate={activeNavKey === 'resume'} />
+						<span>{c.hero.secondary}</span>
+					</a>
 				</div>
 			</div>
 
-			<div class="portrait-mark reveal" aria-label="Portrait placeholder">
-				<div class="portrait-ring"></div>
-				<div class="portrait-diamond"></div>
-				<div class="portrait-dot"></div>
-				<div class="portrait-inner">
-					<div class="portrait-pattern"></div>
-					<div>
-						<p>Eli</p>
-					</div>
+			<div class="portrait-mark reveal" aria-label="Portrait of Eli">
+				<div class="portrait-frame">
+					<img src="/hero_headshot.png" alt="Portrait of Eli" />
 				</div>
 			</div>
 		</div>
