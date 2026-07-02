@@ -324,9 +324,9 @@
 				eyebrow: 'الهام «الی» ابوترابی',
 				titleLead: 'سلام، من',
 				titleName: 'الی',
-				titleNameSuffix: '',
-				titleTail: 'هستم؛ یک',
-				accent: 'حسابدار مجهز به هوش مصنوعی',
+				titleNameSuffix: ' هستم',
+				titleTail: '',
+				accent: 'حسابداری با هوش مصنوعی',
 				intro:
 					'کار من ترکیب حسابداری دقیق، تحلیل داده، تجربه فروش و اتوماسیون کاربردی با هوش مصنوعی است؛ برای تصمیم های شفاف تر و کارهای روزمره آرام تر.',
 				primary: 'نمونه کارها',
@@ -569,7 +569,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link
-		href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+		href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap"
 		rel="stylesheet"
 	/>
 </svelte:head>
@@ -652,11 +652,13 @@
 				<h1>
 					<span class="hero-title-line">
 						{c.hero.titleLead} <span class="hero-name">{c.hero.titleName}</span>{c.hero
-							.titleNameSuffix}{currentLocale === 'fa' ? ` ${c.hero.titleTail}` : ''}
+							.titleNameSuffix}{currentLocale === 'fa' && c.hero.titleTail
+							? ` ${c.hero.titleTail}`
+							: ''}
 					</span>
 					<span class="hero-title-role">
 						{currentLocale === 'en' ? `${c.hero.titleTail} ` : ''}<em dir="ltr">{c.hero.accent}</em
-						><span class="terminal-mark">.</span>
+						>{#if currentLocale === 'en'}<span class="terminal-mark">.</span>{/if}
 					</span>
 				</h1>
 				<p class="hero-intro">{c.hero.intro}</p>
@@ -726,7 +728,13 @@
 		<div class="stats-grid">
 			{#each c.stats as stat (stat.label)}
 				<div class="stat-cell reveal">
-					<p>{stat.value}<span>{stat.suffix}</span></p>
+					<p>
+						{#if isFarsi}
+							<span>{stat.suffix}</span>{stat.value}
+						{:else}
+							{stat.value}<span>{stat.suffix}</span>
+						{/if}
+					</p>
 					<strong>{stat.label}</strong>
 				</div>
 			{/each}

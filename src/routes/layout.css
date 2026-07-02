@@ -63,6 +63,12 @@ a {
 
 .rtl {
 	direction: rtl;
+	font-family:
+		'Vazirmatn',
+		'Noto Sans Arabic',
+		ui-sans-serif,
+		system-ui,
+		sans-serif;
 }
 
 .rtl .site-nav,
@@ -88,6 +94,59 @@ a {
 .rtl .timeline-dot {
 	right: -34px;
 	left: auto;
+}
+
+.rtl .site-nav nav a,
+.rtl .language-link,
+.rtl .wordmark small,
+.rtl .section-kicker,
+.rtl .about-name,
+.rtl .stat-cell strong,
+.rtl .timeline h3,
+.rtl .side-card h3,
+.rtl .credential-card h3,
+.rtl .skill-group p,
+.rtl .timeline .job-place,
+.rtl .tile-copy small,
+.rtl .testimonial p,
+.rtl .contact-label,
+.rtl .footer-mark strong,
+.rtl .footer-mark small {
+	font-family: 'Vazirmatn', 'Noto Sans Arabic', sans-serif;
+	letter-spacing: 0;
+	text-transform: none;
+}
+
+.rtl .site-nav nav a {
+	align-items: center;
+	font-size: 16px;
+	font-weight: 800;
+	gap: 8px;
+	line-height: 1.1;
+}
+
+.rtl .language-link {
+	font-size: 13.5px;
+	font-weight: 800;
+	line-height: 1;
+}
+
+.rtl .wordmark small {
+	font-family: 'Lato', ui-sans-serif, system-ui, sans-serif;
+	font-size: 12px;
+	font-weight: 800;
+	letter-spacing: 0.11em;
+	line-height: 1.1;
+	text-transform: uppercase;
+}
+
+.rtl .site-nav nav a[target='_blank'] {
+	font-family: 'Lato', ui-sans-serif, system-ui, sans-serif;
+	font-size: 11.75px;
+	font-weight: 700;
+	letter-spacing: 0.18em;
+	line-height: 1.5;
+	text-transform: uppercase;
 }
 
 .site-nav {
@@ -155,14 +214,19 @@ a {
 
 .site-nav nav a > div,
 .theme-toggle > div {
-	display: grid;
-	place-items: center;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 	flex: none;
+	width: 18px;
+	height: 18px;
+	line-height: 1;
 }
 
 .site-nav nav a svg,
 .theme-toggle svg {
 	display: block;
+	flex: none;
 }
 
 .site-nav nav a:hover,
@@ -308,9 +372,45 @@ a {
 .rtl .hero-name {
 	font-family: inherit;
 	font-size: 1em;
-	font-weight: 700;
+	font-weight: 800;
 	line-height: inherit;
 	transform: none;
+}
+
+.rtl .hero-copy h1,
+.rtl .split-heading h2,
+.rtl .center-heading h2,
+.rtl .resume-heading h2,
+.rtl .contact-copy h2,
+.rtl .testimonial blockquote {
+	font-family: 'Vazirmatn', 'Noto Sans Arabic', sans-serif;
+	font-weight: 800;
+	line-height: 1.26;
+}
+
+.rtl .hero-copy h1 {
+	max-width: 860px;
+	font-size: clamp(38px, 4.8vw, 60px);
+	line-height: 1.28;
+}
+
+.rtl .hero-title-line {
+	white-space: nowrap;
+}
+
+.rtl .split-heading h2,
+.rtl .resume-heading h2 {
+	font-size: clamp(34px, 3.75vw, 54px);
+}
+
+.rtl .center-heading h2,
+.rtl .contact-copy h2 {
+	line-height: 1.28;
+}
+
+.rtl em {
+	font-style: normal;
+	font-weight: 800;
 }
 
 em {
@@ -556,6 +656,14 @@ em {
 	line-height: 1.9;
 }
 
+.rtl .hero-intro,
+.rtl .body-copy p,
+.rtl .center-heading > p:not(.section-kicker),
+.rtl .contact-copy > p:not(.section-kicker) {
+	font-size: 18px;
+	line-height: 2;
+}
+
 .body-copy p:last-child {
 	margin-bottom: 0;
 	color: var(--muted);
@@ -618,6 +726,28 @@ em {
 	font-size: 21px;
 }
 
+.rtl .value-card h3,
+.rtl .portfolio-tile h3,
+.rtl .timeline h4,
+.rtl .education-list h4 {
+	font-family: 'Vazirmatn', 'Noto Sans Arabic', sans-serif;
+	font-weight: 800;
+	line-height: 1.45;
+}
+
+.rtl .value-card h3,
+.rtl .timeline h4 {
+	font-size: 22px;
+}
+
+.rtl .value-card p,
+.rtl .timeline p,
+.rtl .credential-list-item,
+.rtl .credential-card-soft p {
+	font-size: 15.5px;
+	line-height: 1.9;
+}
+
 .value-card p {
 	margin: 0;
 	color: var(--muted);
@@ -670,6 +800,19 @@ em {
 	font-size: clamp(38px, 5vw, 58px);
 	font-weight: 600;
 	line-height: 1;
+}
+
+.rtl .stat-cell p {
+	direction: rtl;
+	font-family: 'Vazirmatn', 'Noto Sans Arabic', sans-serif;
+	font-weight: 800;
+	unicode-bidi: isolate;
+}
+
+.rtl .stat-cell strong {
+	font-size: 13px;
+	font-weight: 800;
+	line-height: 1.7;
 }
 
 .stat-cell span {
@@ -1493,7 +1636,12 @@ em {
 	}
 
 	.rtl .hero-copy h1 {
-		font-size: clamp(31px, 10vw, 42px);
+		font-size: clamp(32px, 8.6vw, 40px);
+		line-height: 1.32;
+	}
+
+	.rtl .hero-title-line {
+		white-space: normal;
 	}
 
 	.hero-intro {
