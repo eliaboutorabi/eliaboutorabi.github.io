@@ -3,6 +3,9 @@
 		BriefcaseBusiness,
 		CloudMoon,
 		FileText,
+		HandHeart,
+		MailCheck,
+		MapPinCheck,
 		SmartphoneNfc,
 		Sun,
 		UserRound
@@ -14,6 +17,7 @@
 
 	type Locale = 'en' | 'fa';
 	type NavKey = 'about' | 'work' | 'resume' | 'contact';
+	type ContactKey = 'email' | 'phone' | 'location' | 'linkedin' | 'github';
 
 	type Copy = {
 		nav: {
@@ -63,7 +67,6 @@
 			titleLead: string;
 			titleTail: string;
 			accent: string;
-			download: string;
 			experienceHeading: string;
 			experience: Array<{ role: string; period: string; place: string; text: string }>;
 			skillsHeading: string;
@@ -88,6 +91,7 @@
 			phone: string;
 			location: string;
 			linkedin: string;
+			github: string;
 			footer: string;
 		};
 	};
@@ -116,7 +120,7 @@
 				secondary: 'Resume'
 			},
 			about: {
-				kicker: '01 - About',
+				kicker: 'About',
 				name: 'Elham "Eli" Aboutorabi',
 				title: 'A decade of ledgers, now fluent in',
 				accent: 'machines',
@@ -149,7 +153,7 @@
 				{ value: '100', suffix: '+', label: 'Products Managed' }
 			],
 			work: {
-				kicker: '02 - Selected Work',
+				kicker: 'Selected Work',
 				title: 'The Portfolio',
 				intro:
 					'A gallery of projects where financial discipline and AI meet. Each tile opens a closer look, placeholders for now, ready for the real work to come.',
@@ -195,11 +199,10 @@
 				]
 			},
 			resume: {
-				kicker: '03 - The Resume',
+				kicker: 'The Resume',
 				titleLead: 'Experience,',
 				titleTail: 'in outcomes.',
 				accent: 'measured',
-				download: 'Download Resume',
 				experienceHeading: 'Professional Experience',
 				experience: [
 					{
@@ -273,7 +276,7 @@
 				byline: 'Operations Director'
 			},
 			contact: {
-				kicker: "04 - Let's Connect",
+				kicker: "Let's Connect",
 				title: "Let's build something",
 				accent: 'precise',
 				body: "Open to corporate and Big Four opportunities where accounting rigor and AI strategy meet. I'd love to hear what you're working on.",
@@ -282,6 +285,7 @@
 				phone: 'Phone',
 				location: 'Location',
 				linkedin: 'LinkedIn',
+				github: 'GitHub',
 				footer: 'AI-Enabled Accountant & Sales Expert'
 			}
 		},
@@ -308,7 +312,7 @@
 				secondary: 'رزومه'
 			},
 			about: {
-				kicker: '۰۱ - درباره',
+				kicker: 'درباره',
 				name: 'الهام «الی» ابوترابی',
 				title: 'یک دهه تجربه در دفترها، حالا مسلط به',
 				accent: 'ماشین ها',
@@ -341,7 +345,7 @@
 				{ value: '۱۰۰', suffix: '+', label: 'محصول مدیریت شده' }
 			],
 			work: {
-				kicker: '۰۲ - نمونه کارها',
+				kicker: 'نمونه کارها',
 				title: 'پورتفولیو',
 				intro:
 					'گالری پروژه هایی که در آن ها نظم مالی و هوش مصنوعی به هم می رسند. کاشی ها فعلا جایگزین هستند و برای نمونه های واقعی آماده اند.',
@@ -387,11 +391,10 @@
 				]
 			},
 			resume: {
-				kicker: '۰۳ - رزومه',
+				kicker: 'رزومه',
 				titleLead: 'تجربه ای که با',
 				titleTail: 'سنجیده می شود.',
 				accent: 'نتیجه',
-				download: 'دانلود رزومه',
 				experienceHeading: 'سوابق حرفه ای',
 				experience: [
 					{
@@ -462,7 +465,7 @@
 				byline: 'مدیر عملیات'
 			},
 			contact: {
-				kicker: '۰۴ - ارتباط',
+				kicker: 'ارتباط',
 				title: 'بیایید چیزی',
 				accent: 'دقیق',
 				body: 'آماده فرصت های شرکتی و Big Four؛ جایی که دقت حسابداری و استراتژی هوش مصنوعی به هم می رسند. خوشحال می شوم درباره کاری که می سازید بشنوم.',
@@ -471,6 +474,7 @@
 				phone: 'تلفن',
 				location: 'موقعیت',
 				linkedin: 'لینکدین',
+				github: 'گیت هاب',
 				footer: 'حسابدار و متخصص فروش مجهز به AI'
 			}
 		}
@@ -482,7 +486,6 @@
 	const homeHref = $derived(resolve(localizeHref('/', { locale: currentLocale }) as Pathname));
 	const pathWithoutLocale = $derived(page.url.pathname.replace(/^\/fa(?=\/|$)/, '') || '/');
 	const languageHref = $derived(getLanguageHref(pathWithoutLocale, isFarsi));
-	const resumeHref = resolve('/Elham_Aboutorabi_Resume.md' as Pathname);
 	const navItems = $derived<Array<{ key: NavKey; label: string; href: string }>>([
 		{ key: 'about', label: c.nav.about, href: '#about' },
 		{ key: 'work', label: c.nav.work, href: '#work' },
@@ -492,6 +495,8 @@
 	let theme = $state<'light' | 'dark'>('light');
 	let themeIconActive = $state(false);
 	let activeNavKey = $state<NavKey | null>(null);
+	let contactCtaActive = $state(false);
+	let activeContactKey = $state<ContactKey | null>(null);
 	const isDark = $derived(theme === 'dark');
 
 	function toggleTheme() {
@@ -516,6 +521,8 @@
 	const location = 'Dallas, TX';
 	const linkedin = '/in/elham-aboutorabi';
 	const linkedinUrl = 'https://www.linkedin.com/in/elham-aboutorabi/';
+	const github = '@eliaboutorabi';
+	const githubUrl = 'https://github.com/eliaboutorabi';
 </script>
 
 <svelte:head>
@@ -628,7 +635,10 @@
 		<div class="content-wrap">
 			<div class="split-heading">
 				<div class="reveal">
-					<p class="section-kicker">{c.about.kicker}</p>
+					<div class="section-kicker" aria-label={c.about.kicker}>
+						<UserRound size={18} strokeWidth={2.1} animate={false} />
+						<span>{c.about.kicker}</span>
+					</div>
 					<p class="about-name">{c.about.name}</p>
 					<h2>{c.about.title} <em>{c.about.accent}</em>.</h2>
 				</div>
@@ -682,7 +692,10 @@
 	<section id="work" class="band band-cream bordered-band">
 		<div class="wide-wrap">
 			<div class="center-heading reveal">
-				<p class="section-kicker">{c.work.kicker}</p>
+				<div class="section-kicker" aria-label={c.work.kicker}>
+					<BriefcaseBusiness size={18} strokeWidth={2.1} animate={false} />
+					<span>{c.work.kicker}</span>
+				</div>
 				<h2>{c.work.title}</h2>
 				<p>{c.work.intro}</p>
 				<div class="mini-ornament" aria-hidden="true"><span></span><i></i><span></span></div>
@@ -717,12 +730,12 @@
 		<div class="content-wrap">
 			<div class="resume-heading reveal">
 				<div>
-					<p class="section-kicker">{c.resume.kicker}</p>
+					<div class="section-kicker" aria-label={c.resume.kicker}>
+						<FileText size={18} strokeWidth={2.1} animate={false} />
+						<span>{c.resume.kicker}</span>
+					</div>
 					<h2>{c.resume.titleLead} <em>{c.resume.accent}</em><br />{c.resume.titleTail}</h2>
 				</div>
-				<a class="button button-primary" href={resumeHref} download>
-					{c.resume.download}<span>v</span>
-				</a>
 			</div>
 
 			<div class="resume-grid">
@@ -797,28 +810,118 @@
 	<section id="contact" class="contact-band">
 		<div class="contact-wrap">
 			<div class="contact-copy reveal">
-				<p class="section-kicker">{c.contact.kicker}</p>
+				<div class="section-kicker" aria-label={c.contact.kicker}>
+					<SmartphoneNfc size={18} strokeWidth={2.1} animate={false} />
+					<span>{c.contact.kicker}</span>
+				</div>
 				<h2>{c.contact.title}<br /><em>{c.contact.accent}</em>.</h2>
 				<p>{c.contact.body}</p>
-				<a class="button contact-button" href={`mailto:${email}`}>{c.contact.cta}<span>-></span></a>
+				<a
+					class="button contact-button"
+					href={`mailto:${email}`}
+					onmouseenter={() => (contactCtaActive = true)}
+					onmouseleave={() => (contactCtaActive = false)}
+					onfocus={() => (contactCtaActive = true)}
+					onblur={() => (contactCtaActive = false)}
+				>
+					<HandHeart size={17} strokeWidth={2.1} animate={contactCtaActive} />
+					<span>{c.contact.cta}</span>
+				</a>
 			</div>
 
 			<div class="contact-grid reveal">
-				<div>
-					<p>{c.contact.email}</p>
-					<a href={`mailto:${email}`}>{email}</a>
+				<div
+					class="contact-item"
+					role="group"
+					aria-label={c.contact.email}
+					onmouseenter={() => (activeContactKey = 'email')}
+					onmouseleave={() => (activeContactKey = null)}
+					onfocusin={() => (activeContactKey = 'email')}
+					onfocusout={() => (activeContactKey = null)}
+				>
+					<div>
+						<p class="contact-label">
+							<MailCheck size={14} strokeWidth={2.1} animate={activeContactKey === 'email'} />
+							<span>{c.contact.email}</span>
+						</p>
+						<a href={`mailto:${email}`}>{email}</a>
+					</div>
 				</div>
-				<div>
-					<p>{c.contact.phone}</p>
-					<span>{phone}</span>
+				<div
+					class="contact-item"
+					role="group"
+					aria-label={c.contact.phone}
+					onmouseenter={() => (activeContactKey = 'phone')}
+					onmouseleave={() => (activeContactKey = null)}
+					onfocusin={() => (activeContactKey = 'phone')}
+					onfocusout={() => (activeContactKey = null)}
+				>
+					<div>
+						<p class="contact-label">
+							<SmartphoneNfc size={14} strokeWidth={2.1} animate={activeContactKey === 'phone'} />
+							<span>{c.contact.phone}</span>
+						</p>
+						<a href={`tel:${phone.replace(/[^+\d]/g, '')}`}>{phone}</a>
+					</div>
 				</div>
-				<div>
-					<p>{c.contact.location}</p>
-					<span>{location}</span>
+				<div
+					class="contact-item"
+					role="group"
+					aria-label={c.contact.location}
+					onmouseenter={() => (activeContactKey = 'location')}
+					onmouseleave={() => (activeContactKey = null)}
+					onfocusin={() => (activeContactKey = 'location')}
+					onfocusout={() => (activeContactKey = null)}
+				>
+					<div>
+						<p class="contact-label">
+							<MapPinCheck size={14} strokeWidth={2.1} animate={activeContactKey === 'location'} />
+							<span>{c.contact.location}</span>
+						</p>
+						<span>{location}</span>
+					</div>
 				</div>
-				<div>
-					<p>{c.contact.linkedin}</p>
-					<a href={linkedinUrl} target="_blank" rel="noreferrer">{linkedin}</a>
+				<div
+					class="contact-item"
+					role="group"
+					aria-label={c.contact.linkedin}
+					onmouseenter={() => (activeContactKey = 'linkedin')}
+					onmouseleave={() => (activeContactKey = null)}
+					onfocusin={() => (activeContactKey = 'linkedin')}
+					onfocusout={() => (activeContactKey = null)}
+				>
+					<div>
+						<p class="contact-label">
+							<svg class="brand-icon linkedin-icon" viewBox="0 0 24 24" aria-hidden="true">
+								<path
+									d="M20.45 20.45h-3.56v-5.58c0-1.33-0.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.67H9.34V8.99h3.42v1.57h0.05c0.48-0.9 1.64-1.85 3.37-1.85 3.61 0 4.27 2.37 4.27 5.46v6.28zM5.32 7.43c-1.14 0-2.06-0.93-2.06-2.06s0.92-2.06 2.06-2.06 2.06 0.92 2.06 2.06-0.92 2.06-2.06 2.06zM7.1 20.45H3.54V8.99H7.1v11.46zM22.22 0H1.77C0.79 0 0 0.77 0 1.72v20.56C0 23.23 0.79 24 1.77 24h20.45c0.98 0 1.78-0.77 1.78-1.72V1.72C24 0.77 23.2 0 22.22 0z"
+								/>
+							</svg>
+							<span>{c.contact.linkedin}</span>
+						</p>
+						<a href={linkedinUrl} target="_blank" rel="noreferrer">{linkedin}</a>
+					</div>
+				</div>
+				<div
+					class="contact-item"
+					role="group"
+					aria-label={c.contact.github}
+					onmouseenter={() => (activeContactKey = 'github')}
+					onmouseleave={() => (activeContactKey = null)}
+					onfocusin={() => (activeContactKey = 'github')}
+					onfocusout={() => (activeContactKey = null)}
+				>
+					<div>
+						<p class="contact-label">
+							<svg class="brand-icon github-icon" viewBox="0 0 16 16" aria-hidden="true">
+								<path
+									d="M8 0.2C3.6 0.2 0 3.8 0 8.2c0 3.5 2.3 6.5 5.5 7.6 0.4 0.1 0.5-0.2 0.5-0.4v-1.4c-2.2 0.5-2.7-0.9-2.7-0.9-0.4-0.9-0.9-1.2-0.9-1.2-0.7-0.5 0.1-0.5 0.1-0.5 0.8 0.1 1.2 0.8 1.2 0.8 0.7 1.2 1.9 0.9 2.3 0.7 0.1-0.5 0.3-0.9 0.5-1.1-1.8-0.2-3.6-0.9-3.6-3.9 0-0.9 0.3-1.6 0.8-2.1-0.1-0.2-0.3-1 0.1-2.1 0 0 0.7-0.2 2.2 0.8 0.6-0.2 1.3-0.3 2-0.3s1.4 0.1 2 0.3c1.5-1 2.2-0.8 2.2-0.8 0.4 1.1 0.2 1.9 0.1 2.1 0.5 0.6 0.8 1.3 0.8 2.1 0 3-1.8 3.7-3.6 3.9 0.3 0.3 0.6 0.8 0.6 1.6v2.4c0 0.2 0.1 0.5 0.6 0.4 3.2-1.1 5.5-4.1 5.5-7.6C16 3.8 12.4 0.2 8 0.2z"
+								/>
+							</svg>
+							<span>{c.contact.github}</span>
+						</p>
+						<a href={githubUrl} target="_blank" rel="noreferrer">{github}</a>
+					</div>
 				</div>
 			</div>
 
