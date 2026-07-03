@@ -573,6 +573,7 @@
 
 	const email = 'Eli.abotorabi@gmail.com';
 	const phone = '+1 (469) 618-8462';
+	const phoneDisplay = $derived(isFarsi ? '+۱ (۴۶۹) ۶۱۸-۸۴۶۲' : phone);
 	const location = 'Dallas, TX';
 </script>
 
@@ -973,7 +974,13 @@
 							<SmartphoneNfc size={14} strokeWidth={2.1} animate={activeContactKey === 'phone'} />
 							<span>{c.contact.phone}</span>
 						</div>
-						<a href={`tel:${phone.replace(/[^+\d]/g, '')}`}>{phone}</a>
+						<a
+							class="phone-display"
+							dir={isFarsi ? 'ltr' : undefined}
+							href={`tel:${phone.replace(/[^+\d]/g, '')}`}
+						>
+							{phoneDisplay}
+						</a>
 					</div>
 				</div>
 				<div

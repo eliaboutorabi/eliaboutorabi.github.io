@@ -1764,6 +1764,15 @@ em {
 	transition: color 0.2s ease;
 }
 
+.phone-display {
+	display: inline-block;
+	unicode-bidi: isolate;
+}
+
+.rtl .phone-display {
+	font-family: 'Vazirmatn', 'Noto Sans Arabic', sans-serif;
+}
+
 .contact-grid a:hover {
 	color: var(--gold-light);
 }
@@ -1872,6 +1881,82 @@ em {
 
 	.featured-tile {
 		grid-column: span 2;
+	}
+}
+
+@media (max-width: 980px) and (min-width: 641px) {
+	.site-nav {
+		gap: clamp(8px, 1.4vw, 12px);
+		padding: 9px clamp(12px, 2vw, 18px);
+	}
+
+	.wordmark {
+		gap: 6px;
+	}
+
+	.wordmark span {
+		font-size: 34px;
+	}
+
+	.wordmark small {
+		display: none;
+	}
+
+	.site-nav nav {
+		min-width: 0;
+		gap: clamp(7px, 1.35vw, 12px);
+		overflow: visible;
+	}
+
+	.site-nav nav a,
+	.rtl .site-nav nav a[target='_blank'] {
+		gap: 5px;
+		font-size: 10.2px;
+		letter-spacing: 0.12em;
+		line-height: 1;
+	}
+
+	.rtl .site-nav nav a {
+		gap: 5px;
+		font-size: 13.25px;
+		line-height: 1;
+	}
+
+	.rtl .site-nav nav a[target='_blank'] {
+		font-size: 10.2px;
+	}
+
+	.rtl .site-nav nav a span {
+		transform: translateY(1px);
+	}
+
+	.site-nav nav a svg {
+		width: 16px;
+		height: 16px;
+	}
+
+	.nav-brand-icon {
+		width: 13px;
+		height: 13px;
+		flex-basis: 13px;
+	}
+
+	.nav-actions {
+		gap: 7px;
+	}
+
+	.language-link {
+		font-size: 10.2px;
+		letter-spacing: 0.1em;
+	}
+
+	.rtl .language-link {
+		font-size: 12px;
+	}
+
+	.theme-toggle {
+		width: 26px;
+		height: 26px;
 	}
 }
 
