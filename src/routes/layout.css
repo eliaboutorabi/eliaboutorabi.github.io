@@ -1836,6 +1836,10 @@ em {
 }
 
 @media (max-width: 1180px) and (min-width: 981px) {
+	.wordmark small {
+		display: none;
+	}
+
 	.hero-section {
 		padding-top: clamp(14px, 2vh, 22px);
 		padding-bottom: clamp(16px, 2.4vh, 28px);
