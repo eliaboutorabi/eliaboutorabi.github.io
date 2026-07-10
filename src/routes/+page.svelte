@@ -220,8 +220,8 @@
 					{
 						role: 'CEO',
 						period: '2026 - Present',
-						place: 'Ledgerling · Dallas, TX',
-						text: 'Started Ledgerling to revolutionize the way accounting is taught through AI. Accounting does not need to be boring anymore; it can be clear, practical and alive.'
+						place: 'Calqura.ai · Dallas, TX',
+						text: 'Started Calqura.ai to revolutionize the way accounting is taught through AI. Accounting does not need to be boring anymore; it can be clear, practical and alive.'
 					},
 					{
 						role: 'Sales Specialist',
@@ -429,8 +429,8 @@
 					{
 						role: 'مدیرعامل',
 						period: '۲۰۲۶ - اکنون',
-						place: 'Ledgerling · دالاس، تگزاس',
-						text: 'Ledgerling را شروع کردم تا روش آموزش حسابداری را با کمک هوش مصنوعی متحول کنم. حسابداری دیگر لازم نیست خسته کننده باشد؛ می تواند روشن، کاربردی و زنده باشد.'
+						place: 'Calqura.ai · دالاس، تگزاس',
+						text: 'Calqura.ai را شروع کردم تا روش آموزش حسابداری را با کمک هوش مصنوعی متحول کنم. حسابداری دیگر لازم نیست خسته کننده باشد؛ می تواند روشن، کاربردی و زنده باشد.'
 					},
 					{
 						role: 'متخصص فروش',
