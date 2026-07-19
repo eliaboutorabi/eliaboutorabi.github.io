@@ -291,7 +291,7 @@
 				],
 				alsoHeading: 'Additional Credentials',
 				also: [
-					'Professional baking',
+					'Professional baking and cooking',
 					'Karate brown belt',
 					'CPR & Basic Life Support',
 					'20 years of professional soccer playing experience, including four years leading Aboumoslem Soccer Club.'
@@ -497,7 +497,7 @@
 				],
 				alsoHeading: 'گواهی ها و تجربه های دیگر',
 				also: [
-					'شیرینی پزی حرفه ای',
+					'شیرینی پزی و آشپزی حرفه ای',
 					'کمربند قهوه ای کاراته',
 					'CPR و حمایت حیاتی پایه',
 					'۲۰ سال تجربه بازی فوتبال حرفه ای، از جمله ۴ سال هدایت باشگاه ابومسلم.'
