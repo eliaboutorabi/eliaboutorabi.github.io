@@ -36,6 +36,11 @@ export default defineConfig(
 	{
 		// Override or add rule settings here, such as:
 		// 'svelte/button-has-type': 'error'
-		rules: {}
+		rules: {
+			// Every dynamic href on this site is an absolute external URL (project demos,
+			// source repos, LinkedIn, GitHub) or the deliberate full-reload locale switch,
+			// so resolve() does not apply to them.
+			'svelte/no-navigation-without-resolve': ['error', { ignoreLinks: true }]
+		}
 	}
 );

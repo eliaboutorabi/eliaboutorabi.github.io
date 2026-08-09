@@ -13,7 +13,9 @@
 		MailCheck,
 		MapPinCheck,
 		SmartphoneNfc,
+		SquareArrowOutUpRight,
 		Sun,
+		Telescope,
 		UserRound
 	} from '@jis3r/icons';
 	import { page } from '$app/state';
@@ -25,6 +27,25 @@
 	type NavKey = 'about' | 'work' | 'resume' | 'contact';
 	type HeaderNavKey = NavKey | 'linkedin' | 'github';
 	type ContactKey = 'email' | 'phone' | 'location' | 'linkedin' | 'github';
+
+	type Project = {
+		id: string;
+		index: string;
+		meta: string;
+		title: string;
+		subtitle: string;
+		text: string;
+		points: string[];
+		figures: Array<{ value: string; label: string }>;
+		tags: string[];
+		liveUrl: string;
+		liveLabel: string;
+		sourceUrl: string;
+		sourceLabel: string;
+		host: string;
+		featured?: boolean;
+		media?: { video: string; poster: string; alt: string; open: string };
+	};
 
 	type Copy = {
 		nav: {
@@ -62,14 +83,10 @@
 			kicker: string;
 			title: string;
 			intro: string;
-			items: Array<{
-				label: string;
-				meta: string;
-				title: string;
-				text?: string;
-				theme: 'cream' | 'gold' | 'dark';
-				featured?: boolean;
-			}>;
+			upcoming: string;
+			pause: string;
+			play: string;
+			projects: Project[];
 		};
 		resume: {
 			kicker: string;
@@ -104,6 +121,20 @@
 			github: string;
 			footer: string;
 		};
+	};
+
+	// Locale-independent project facts, spread into each translation below.
+	const firmScope = {
+		id: 'firmscope',
+		index: '01',
+		liveUrl: 'https://eliaboutorabi.github.io/big4dash/',
+		sourceUrl: 'https://github.com/eliaboutorabi/big4dash',
+		host: 'eliaboutorabi.github.io/big4dash',
+		featured: true
+	};
+	const firmScopeMedia = {
+		video: '/media/big4dash.mp4',
+		poster: '/media/big4dash-poster.jpg'
 	};
 
 	const copy: Record<Locale, Copy> = {
@@ -168,45 +199,37 @@
 				kicker: 'Selected Work',
 				title: 'The Portfolio',
 				intro:
-					'A gallery of projects where financial discipline and AI meet. Each tile opens a closer look, placeholders for now, ready for the real work to come.',
-				items: [
+					'Projects where financial research and interaction design meet. Each one ships live, with its data pipeline and its sources in the open.',
+				upcoming:
+					'More in progress: a driver-based forecast engine, an agentic close workflow and an executive reporting suite.',
+				pause: 'Pause the preview',
+				play: 'Play the preview',
+				projects: [
 					{
-						label: '[ dashboard preview ]',
-						meta: 'Financial Modeling & Forecasting · Featured',
-						title: 'Dynamic Forecast Engine',
-						text: 'Driver-based models that turn assumptions into board-ready scenarios and clearer planning.',
-						theme: 'cream',
-						featured: true
-					},
-					{
-						label: '[ workflow diagram ]',
-						meta: 'AI & Automation',
-						title: 'Agentic Close Workflow',
-						theme: 'gold'
-					},
-					{
-						label: '[ kpi dashboard ]',
-						meta: 'Dashboards',
-						title: 'Live Sales Command Center',
-						theme: 'cream'
-					},
-					{
-						label: '[ report ]',
-						meta: 'Reporting',
-						title: 'Executive Reporting Suite',
-						theme: 'cream'
-					},
-					{
-						label: '[ system map ]',
-						meta: 'Process Design',
-						title: 'Ground-Up Ledger System',
-						theme: 'dark'
-					},
-					{
-						label: '[ playbook ]',
-						meta: 'Revenue Strategy',
-						title: 'UPT Optimization Playbook',
-						theme: 'gold'
+						...firmScope,
+						meta: 'Data Visualization · Research Product',
+						title: 'FirmScope',
+						subtitle: 'Big Four intelligence dashboard',
+						text: 'An evidence-first comparison of Deloitte, PwC, EY and KPMG across scale, growth, business mix, geography and workforce. Every number opens the observation behind it: source excerpt, reporting period and comparability score.',
+						points: [
+							'Fifteen-year indexed growth race, revenue-share ribbon and a transparent CAGR scenario studio.',
+							'Productivity frontier, service-line composition and a two-dimensional office atlas.',
+							'Searchable evidence ledger, disclosure-coverage matrix and restatement lineage.',
+							'Command palette, bookmarkable notebook with CSV export and shareable URL state.'
+						],
+						figures: [
+							{ value: '651', label: 'Structured observations' },
+							{ value: '71', label: 'Primary sources' },
+							{ value: '15', label: 'Years indexed' }
+						],
+						tags: ['Svelte 5', 'SvelteKit', 'TypeScript', 'Data pipeline'],
+						liveLabel: 'Open the dashboard',
+						sourceLabel: 'View the code',
+						media: {
+							...firmScopeMedia,
+							alt: 'Screen recording of the FirmScope dashboard comparing the Big Four firms',
+							open: 'Open the live FirmScope dashboard'
+						}
 					}
 				]
 			},
@@ -377,45 +400,37 @@
 				kicker: 'نمونه کارها',
 				title: 'پورتفولیو',
 				intro:
-					'گالری پروژه هایی که در آن ها نظم مالی و هوش مصنوعی به هم می رسند. کاشی ها فعلا جایگزین هستند و برای نمونه های واقعی آماده اند.',
-				items: [
+					'پروژه هایی که در آن ها پژوهش مالی و طراحی تعامل به هم می رسند. هر پروژه زنده منتشر شده است، همراه با خط داده و منابعش به صورت باز.',
+				upcoming:
+					'پروژه های بعدی در راه است: موتور پیش بینی محرک محور، فرایند بستن حساب با عامل هوشمند و مجموعه گزارش های مدیریتی.',
+				pause: 'توقف پیش نمایش',
+				play: 'پخش پیش نمایش',
+				projects: [
 					{
-						label: '[ پیش نمایش داشبورد ]',
-						meta: 'مدل سازی مالی و پیش بینی · ویژه',
-						title: 'موتور پیش بینی پویا',
-						text: 'مدل های محرک محور که فرضیه ها را به سناریوهای آماده ارائه و برنامه ریزی روشن تبدیل می کنند.',
-						theme: 'cream',
-						featured: true
-					},
-					{
-						label: '[ نمودار جریان کار ]',
-						meta: 'AI و اتوماسیون',
-						title: 'فرایند بستن حساب با عامل هوشمند',
-						theme: 'gold'
-					},
-					{
-						label: '[ داشبورد KPI ]',
-						meta: 'داشبوردها',
-						title: 'مرکز زنده فرمان فروش',
-						theme: 'cream'
-					},
-					{
-						label: '[ گزارش ]',
-						meta: 'گزارشگری',
-						title: 'مجموعه گزارش های مدیریتی',
-						theme: 'cream'
-					},
-					{
-						label: '[ نقشه سیستم ]',
-						meta: 'طراحی فرایند',
-						title: 'سیستم دفتر کل از پایه',
-						theme: 'dark'
-					},
-					{
-						label: '[ پلی بوک ]',
-						meta: 'استراتژی درآمد',
-						title: 'راهنمای بهینه سازی UPT',
-						theme: 'gold'
+						...firmScope,
+						meta: 'تجسم داده · محصول پژوهشی',
+						title: 'FirmScope',
+						subtitle: 'داشبورد تحلیلی بیگ فور',
+						text: 'مقایسه ای مبتنی بر شواهد از دلویت، PwC، EY و KPMG در مقیاس، رشد، ترکیب خدمات، جغرافیا و نیروی انسانی. هر عدد، مشاهده پشت خود را باز می کند: متن اصلی منبع، دوره گزارشگری و امتیاز قابلیت مقایسه.',
+						points: [
+							'مسابقه رشد شاخص شده پانزده ساله، نوار سهم درآمد و استودیوی شفاف سناریوی CAGR.',
+							'مرز بهره وری، ترکیب خطوط خدمات و اطلس دوبعدی دفاتر.',
+							'دفتر شواهد قابل جستجو، ماتریس پوشش افشا و ردیابی ارقام اصلاح شده.',
+							'پالت فرمان، دفترچه نشانه گذاری با خروجی CSV و اشتراک وضعیت از طریق نشانی صفحه.'
+						],
+						figures: [
+							{ value: '۶۵۱', label: 'مشاهده ثبت شده' },
+							{ value: '۷۱', label: 'منبع اصلی' },
+							{ value: '۱۵', label: 'سال داده' }
+						],
+						tags: ['Svelte 5', 'SvelteKit', 'TypeScript', 'خط داده'],
+						liveLabel: 'دیدن داشبورد',
+						sourceLabel: 'دیدن کد',
+						media: {
+							...firmScopeMedia,
+							alt: 'تصویر متحرک از داشبورد FirmScope در مقایسه چهار شرکت بزرگ',
+							open: 'باز کردن داشبورد زنده FirmScope'
+						}
 					}
 				]
 			},
@@ -554,6 +569,63 @@
 	let activeContactKey = $state<ContactKey | null>(null);
 	const isDark = $derived(theme === 'dark');
 
+	// The first flagged project gets the large showcase; everything else flows into
+	// a grid that reflows for any number of entries.
+	const featuredProject = $derived(c.work.projects.find((project) => project.featured));
+	const gridProjects = $derived(c.work.projects.filter((project) => project !== featuredProject));
+
+	let previewEl = $state<HTMLVideoElement | null>(null);
+	let previewPlaying = $state(false);
+	// Once the visitor uses the play/pause control, scrolling no longer overrides them.
+	let previewManual = $state(false);
+
+	// The preview only downloads once it scrolls into view, and never when the
+	// visitor asked for reduced motion.
+	$effect(() => {
+		const video = previewEl;
+
+		if (!video || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			return;
+		}
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				if (previewManual) {
+					return;
+				}
+
+				for (const entry of entries) {
+					if (entry.isIntersecting) {
+						void video.play().catch(() => {});
+					} else {
+						video.pause();
+					}
+				}
+			},
+			{ threshold: 0.3 }
+		);
+
+		observer.observe(video);
+
+		return () => observer.disconnect();
+	});
+
+	function togglePreview() {
+		const video = previewEl;
+
+		if (!video) {
+			return;
+		}
+
+		previewManual = true;
+
+		if (video.paused) {
+			void video.play().catch(() => {});
+		} else {
+			video.pause();
+		}
+	}
+
 	function toggleTheme() {
 		theme = isDark ? 'light' : 'dark';
 		themeIconActive = true;
@@ -590,6 +662,14 @@
 		rel="stylesheet"
 	/>
 </svelte:head>
+
+{#snippet githubMark(extraClass: string)}
+	<svg class="brand-icon {extraClass}" viewBox="0 0 16 16" aria-hidden="true">
+		<path
+			d="M8 0.2C3.6 0.2 0 3.8 0 8.2c0 3.5 2.3 6.5 5.5 7.6 0.4 0.1 0.5-0.2 0.5-0.4v-1.4c-2.2 0.5-2.7-0.9-2.7-0.9-0.4-0.9-0.9-1.2-0.9-1.2-0.7-0.5 0.1-0.5 0.1-0.5 0.8 0.1 1.2 0.8 1.2 0.8 0.7 1.2 1.9 0.9 2.3 0.7 0.1-0.5 0.3-0.9 0.5-1.1-1.8-0.2-3.6-0.9-3.6-3.9 0-0.9 0.3-1.6 0.8-2.1-0.1-0.2-0.3-1 0.1-2.1 0 0 0.7-0.2 2.2 0.8 0.6-0.2 1.3-0.3 2-0.3s1.4 0.1 2 0.3c1.5-1 2.2-0.8 2.2-0.8 0.4 1.1 0.2 1.9 0.1 2.1 0.5 0.6 0.8 1.3 0.8 2.1 0 3-1.8 3.7-3.6 3.9 0.3 0.3 0.6 0.8 0.6 1.6v2.4c0 0.2 0.1 0.5 0.6 0.4 3.2-1.1 5.5-4.1 5.5-7.6C16 3.8 12.4 0.2 8 0.2z"
+		/>
+	</svg>
+{/snippet}
 
 <main
 	class:rtl={isFarsi}
@@ -631,11 +711,7 @@
 							/>
 						</svg>
 					{:else}
-						<svg class="brand-icon nav-brand-icon" viewBox="0 0 16 16" aria-hidden="true">
-							<path
-								d="M8 0.2C3.6 0.2 0 3.8 0 8.2c0 3.5 2.3 6.5 5.5 7.6 0.4 0.1 0.5-0.2 0.5-0.4v-1.4c-2.2 0.5-2.7-0.9-2.7-0.9-0.4-0.9-0.9-1.2-0.9-1.2-0.7-0.5 0.1-0.5 0.1-0.5 0.8 0.1 1.2 0.8 1.2 0.8 0.7 1.2 1.9 0.9 2.3 0.7 0.1-0.5 0.3-0.9 0.5-1.1-1.8-0.2-3.6-0.9-3.6-3.9 0-0.9 0.3-1.6 0.8-2.1-0.1-0.2-0.3-1 0.1-2.1 0 0 0.7-0.2 2.2 0.8 0.6-0.2 1.3-0.3 2-0.3s1.4 0.1 2 0.3c1.5-1 2.2-0.8 2.2-0.8 0.4 1.1 0.2 1.9 0.1 2.1 0.5 0.6 0.8 1.3 0.8 2.1 0 3-1.8 3.7-3.6 3.9 0.3 0.3 0.6 0.8 0.6 1.6v2.4c0 0.2 0.1 0.5 0.6 0.4 3.2-1.1 5.5-4.1 5.5-7.6C16 3.8 12.4 0.2 8 0.2z"
-							/>
-						</svg>
+						{@render githubMark('nav-brand-icon')}
 					{/if}
 					<span>{item.label}</span>
 				</a>
@@ -759,7 +835,9 @@
 								class="stat-number">{stat.value}</span
 							>
 						{:else}
-							<span class="stat-number">{stat.value}</span><span class="stat-suffix">{stat.suffix}</span>
+							<span class="stat-number">{stat.value}</span><span class="stat-suffix"
+								>{stat.suffix}</span
+							>
 						{/if}
 					</p>
 					<strong>{stat.label}</strong>
@@ -780,27 +858,171 @@
 				<div class="mini-ornament" aria-hidden="true"><span></span><i></i><span></span></div>
 			</div>
 
-			<div class="portfolio-grid">
-				{#each c.work.items as item (item.title)}
-					<a
-						class:featured-tile={item.featured}
-						class:gold-tile={item.theme === 'gold'}
-						class:dark-tile={item.theme === 'dark'}
-						class="portfolio-tile reveal"
-						href="#work"
-					>
-						<span class="tile-label">{item.label}</span>
-						<div class="tile-scrim"></div>
-						<div class="tile-copy">
-							<small>{item.meta}</small>
-							<h3>{item.title}</h3>
-							{#if item.text}
-								<p>{item.text}</p>
-							{/if}
-							<strong>{item.featured ? 'View Project' : 'View'} <span>-></span></strong>
+			<div class="project-list">
+				{#if featuredProject}
+					{@const project = featuredProject}
+					<article class="project-card project-feature reveal">
+						{#if project.media}
+							<div class="feature-media">
+								<div class="media-chrome">
+									<span class="chrome-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+									<span class="chrome-url" dir="ltr">{project.host}</span>
+									<button
+										class="chrome-toggle"
+										type="button"
+										aria-label={previewPlaying ? c.work.pause : c.work.play}
+										onclick={togglePreview}
+									>
+										{#if previewPlaying}
+											<svg viewBox="0 0 24 24" aria-hidden="true">
+												<rect x="7" y="5" width="3.4" height="14" rx="1.2" />
+												<rect x="13.6" y="5" width="3.4" height="14" rx="1.2" />
+											</svg>
+										{:else}
+											<svg viewBox="0 0 24 24" aria-hidden="true">
+												<path d="M8 5.4 18.4 12 8 18.6Z" />
+											</svg>
+										{/if}
+									</button>
+								</div>
+
+								<div class="media-well">
+									<a
+										class="media-stage"
+										href={project.liveUrl}
+										target="_blank"
+										rel="noreferrer"
+										aria-label={project.media.open}
+									>
+										<video
+											bind:this={previewEl}
+											class="media-frame"
+											poster={project.media.poster}
+											aria-label={project.media.alt}
+											width="900"
+											height="516"
+											preload="none"
+											playsinline
+											muted
+											loop
+											onplay={() => (previewPlaying = true)}
+											onpause={() => (previewPlaying = false)}
+										>
+											<source src={project.media.video} type="video/mp4" />
+										</video>
+										<div class="media-hint">
+											<SquareArrowOutUpRight size={14} strokeWidth={2.1} animate={false} />
+											<span>{project.liveLabel}</span>
+										</div>
+									</a>
+								</div>
+
+								<div class="feature-figures">
+									{#each project.figures as figure (figure.label)}
+										<div>
+											<strong>{figure.value}</strong>
+											<span>{figure.label}</span>
+										</div>
+									{/each}
+								</div>
+							</div>
+						{/if}
+
+						<div class="feature-copy">
+							<div class="project-meta">
+								<span class="project-index" aria-hidden="true">{project.index}</span>
+								<small>{project.meta}</small>
+							</div>
+							<h3>{project.title}</h3>
+							<p class="project-subtitle">{project.subtitle}</p>
+							<p class="feature-lede">{project.text}</p>
+
+							<ul class="feature-points">
+								{#each project.points as point (point)}
+									<li>
+										<BadgeCheck size={16} strokeWidth={2.1} animate={false} />
+										<span>{point}</span>
+									</li>
+								{/each}
+							</ul>
+
+							<div class="project-tags">
+								{#each project.tags as tag (tag)}
+									<span>{tag}</span>
+								{/each}
+							</div>
+
+							<div class="project-actions">
+								<a
+									class="button project-button button-primary"
+									href={project.liveUrl}
+									target="_blank"
+									rel="noreferrer"
+								>
+									<SquareArrowOutUpRight size={16} strokeWidth={2.1} animate={false} />
+									<span>{project.liveLabel}</span>
+								</a>
+								<a
+									class="button project-button button-secondary"
+									href={project.sourceUrl}
+									target="_blank"
+									rel="noreferrer"
+								>
+									{@render githubMark('project-brand-icon')}
+									<span>{project.sourceLabel}</span>
+								</a>
+							</div>
 						</div>
-					</a>
-				{/each}
+					</article>
+				{/if}
+
+				{#if gridProjects.length}
+					<div class="project-grid">
+						{#each gridProjects as project (project.id)}
+							<article class="project-card project-tile reveal">
+								{#if project.media}
+									<a
+										class="tile-media"
+										href={project.liveUrl}
+										target="_blank"
+										rel="noreferrer"
+										aria-label={project.media.open}
+									>
+										<img src={project.media.poster} alt={project.media.alt} loading="lazy" />
+									</a>
+								{/if}
+								<div class="tile-copy">
+									<div class="project-meta">
+										<span class="project-index" aria-hidden="true">{project.index}</span>
+										<small>{project.meta}</small>
+									</div>
+									<h3>{project.title}</h3>
+									<p>{project.text}</p>
+									<div class="project-tags">
+										{#each project.tags as tag (tag)}
+											<span>{tag}</span>
+										{/each}
+									</div>
+									<div class="project-actions">
+										<a class="tile-link" href={project.liveUrl} target="_blank" rel="noreferrer">
+											<SquareArrowOutUpRight size={14} strokeWidth={2.1} animate={false} />
+											<span>{project.liveLabel}</span>
+										</a>
+										<a class="tile-link" href={project.sourceUrl} target="_blank" rel="noreferrer">
+											{@render githubMark('project-brand-icon')}
+											<span>{project.sourceLabel}</span>
+										</a>
+									</div>
+								</div>
+							</article>
+						{/each}
+					</div>
+				{/if}
+
+				<div class="project-upcoming">
+					<Telescope size={17} strokeWidth={2.1} animate={false} />
+					<span>{c.work.upcoming}</span>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -814,8 +1036,8 @@
 						<span>{c.resume.kicker}</span>
 					</div>
 					<h2>
-						{c.resume.titleLead}{#if c.resume.accent} <em>{c.resume.accent}</em>{/if}{#if c.resume
-							.titleTail}<br />{c.resume.titleTail}{/if}
+						{c.resume.titleLead}{#if c.resume.accent}
+							<em>{c.resume.accent}</em>{/if}{#if c.resume.titleTail}<br />{c.resume.titleTail}{/if}
 					</h2>
 				</div>
 			</div>
@@ -867,7 +1089,6 @@
 							{/each}
 						</div>
 					</section>
-
 				</aside>
 			</div>
 
@@ -1032,11 +1253,7 @@
 				>
 					<div>
 						<div class="contact-label">
-							<svg class="brand-icon github-icon" viewBox="0 0 16 16" aria-hidden="true">
-								<path
-									d="M8 0.2C3.6 0.2 0 3.8 0 8.2c0 3.5 2.3 6.5 5.5 7.6 0.4 0.1 0.5-0.2 0.5-0.4v-1.4c-2.2 0.5-2.7-0.9-2.7-0.9-0.4-0.9-0.9-1.2-0.9-1.2-0.7-0.5 0.1-0.5 0.1-0.5 0.8 0.1 1.2 0.8 1.2 0.8 0.7 1.2 1.9 0.9 2.3 0.7 0.1-0.5 0.3-0.9 0.5-1.1-1.8-0.2-3.6-0.9-3.6-3.9 0-0.9 0.3-1.6 0.8-2.1-0.1-0.2-0.3-1 0.1-2.1 0 0 0.7-0.2 2.2 0.8 0.6-0.2 1.3-0.3 2-0.3s1.4 0.1 2 0.3c1.5-1 2.2-0.8 2.2-0.8 0.4 1.1 0.2 1.9 0.1 2.1 0.5 0.6 0.8 1.3 0.8 2.1 0 3-1.8 3.7-3.6 3.9 0.3 0.3 0.6 0.8 0.6 1.6v2.4c0 0.2 0.1 0.5 0.6 0.4 3.2-1.1 5.5-4.1 5.5-7.6C16 3.8 12.4 0.2 8 0.2z"
-								/>
-							</svg>
+							{@render githubMark('github-icon')}
 							<span>{c.contact.github}</span>
 						</div>
 						<a href={githubUrl} target="_blank" rel="noreferrer">{github}</a>
@@ -1052,5 +1269,4 @@
 			</footer>
 		</div>
 	</section>
-
 </main>
