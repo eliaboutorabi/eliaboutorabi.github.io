@@ -13,7 +13,6 @@
 		MailCheck,
 		MapPinCheck,
 		SmartphoneNfc,
-		SquareArrowOutUpRight,
 		Sun,
 		Telescope,
 		UserRound
@@ -22,30 +21,14 @@
 	import type { Pathname } from '$app/types';
 	import { resolve } from '$app/paths';
 	import { getLocale, localizeHref } from '$lib/paraglide/runtime';
+	import GithubMark from '$lib/components/GithubMark.svelte';
+	import ProjectShowcase from '$lib/components/ProjectShowcase.svelte';
+	import type { Project } from '$lib/types/project';
 
 	type Locale = 'en' | 'fa';
 	type NavKey = 'about' | 'work' | 'resume' | 'contact';
 	type HeaderNavKey = NavKey | 'linkedin' | 'github';
 	type ContactKey = 'email' | 'phone' | 'location' | 'linkedin' | 'github';
-
-	type Project = {
-		id: string;
-		index: string;
-		meta: string;
-		title: string;
-		subtitle: string;
-		text: string;
-		points: string[];
-		figures: Array<{ value: string; label: string }>;
-		tags: string[];
-		liveUrl: string;
-		liveLabel: string;
-		sourceUrl: string;
-		sourceLabel: string;
-		host: string;
-		featured?: boolean;
-		media?: { video: string; poster: string; alt: string; open: string };
-	};
 
 	type Copy = {
 		nav: {
@@ -124,15 +107,28 @@
 	};
 
 	// Locale-independent project facts, spread into each translation below.
+	const rowbot = {
+		id: 'rowbot',
+		index: '01',
+		liveUrl: 'https://rowbot.sh',
+		sourceUrl: 'https://github.com/eliaboutorabi/rowbot'
+	};
+	const rowbotMedia = {
+		kind: 'youtube' as const,
+		label: 'youtube.com · Rowbot',
+		id: 'sFGWTywSG4c',
+		poster: '/media/rowbot-video-poster.jpg'
+	};
+
 	const firmScope = {
 		id: 'firmscope',
-		index: '01',
+		index: '02',
 		liveUrl: 'https://eliaboutorabi.github.io/big4dash/',
-		sourceUrl: 'https://github.com/eliaboutorabi/big4dash',
-		host: 'eliaboutorabi.github.io/big4dash',
-		featured: true
+		sourceUrl: 'https://github.com/eliaboutorabi/big4dash'
 	};
 	const firmScopeMedia = {
+		kind: 'video' as const,
+		label: 'eliaboutorabi.github.io/big4dash',
 		video: '/media/big4dash.mp4',
 		poster: '/media/big4dash-poster.jpg'
 	};
@@ -199,12 +195,40 @@
 				kicker: 'Selected Work',
 				title: 'The Portfolio',
 				intro:
-					'Projects where financial research and interaction design meet. Each one ships live, with its data pipeline and its sources in the open.',
+					'Projects where financial judgement and applied AI meet. Each one is live, and each one shows its working: the sources, the code and the checks.',
 				upcoming:
 					'More in progress: a driver-based forecast engine, an agentic close workflow and an executive reporting suite.',
 				pause: 'Pause the preview',
 				play: 'Play the preview',
 				projects: [
+					{
+						...rowbot,
+						meta: 'Agentic AI · Document Automation',
+						title: 'Rowbot',
+						subtitle: 'Agentic OCR that turns paper into spreadsheets',
+						text: 'A PDF, a photograph or a bad scan becomes a multi-sheet Excel workbook. Every figure stays traceable to the page it came from, and the totals are checked by running the arithmetic rather than predicting it.',
+						points: [
+							'Reading is deterministic and tested; only the judgement calls run as an agent you can watch, interrupt and correct mid-run.',
+							'Totals are verified by executing the sum in a sandbox. A figure that will not reconcile keeps the number the page printed and carries a flag.',
+							'Every cell remembers the text the page showed and how sure the reader was, surfaced in the grid and as comments in the exported file.',
+							'Runs are checkpointed to the database, so they outlive the request: close the tab, come back and change your mind.'
+						],
+						figures: [
+							{ value: 'GPT-5.6', label: 'Deep Agents harness' },
+							{ value: 'Mistral', label: 'Document AI OCR' },
+							{ value: '.xlsx', label: 'Typed, traceable export' }
+						],
+						tags: ['SvelteKit 2', 'TypeScript', 'Deep Agents', 'LangGraph', 'Turso', 'Vercel'],
+						liveLabel: 'Open Rowbot',
+						sourceLabel: 'View the code',
+						note: 'Rowbot runs on my own OpenAI and Mistral keys, so sign-up is invite-only. Message me on LinkedIn for a code.',
+						media: {
+							...rowbotMedia,
+							title: 'Rowbot: Agentic OCR that turns paper into spreadsheets',
+							play: 'Play the Rowbot walkthrough',
+							watch: 'Watch the Rowbot walkthrough on YouTube'
+						}
+					},
 					{
 						...firmScope,
 						meta: 'Data Visualization · Research Product',
@@ -400,12 +424,40 @@
 				kicker: 'نمونه کارها',
 				title: 'پورتفولیو',
 				intro:
-					'پروژه هایی که در آن ها پژوهش مالی و طراحی تعامل به هم می رسند. هر پروژه زنده منتشر شده است، همراه با خط داده و منابعش به صورت باز.',
+					'پروژه هایی که در آن ها قضاوت مالی و هوش مصنوعی کاربردی به هم می رسند. هر پروژه زنده است و کار خودش را نشان می دهد: منابع، کد و بررسی ها.',
 				upcoming:
 					'پروژه های بعدی در راه است: موتور پیش بینی محرک محور، فرایند بستن حساب با عامل هوشمند و مجموعه گزارش های مدیریتی.',
 				pause: 'توقف پیش نمایش',
 				play: 'پخش پیش نمایش',
 				projects: [
+					{
+						...rowbot,
+						meta: 'هوش مصنوعی عاملی · اتوماسیون اسناد',
+						title: 'Rowbot',
+						subtitle: 'OCR عاملی که کاغذ را به صفحه گسترده تبدیل می کند',
+						text: 'یک PDF، یک عکس یا یک اسکن بی کیفیت به یک فایل اکسل چند شیتی تبدیل می شود. هر عدد به صفحه ای که از آن آمده قابل ردیابی می ماند و جمع ها با اجرای واقعی محاسبه بررسی می شوند، نه با حدس زدن.',
+						points: [
+							'خواندن سند قطعی و آزمون شده است؛ فقط تصمیم های نیازمند قضاوت را عاملی انجام می دهد که می توانید تماشا، متوقف و اصلاحش کنید.',
+							'جمع ها با اجرای محاسبه در محیط ایزوله بررسی می شوند. عددی که نخواند، همان رقم چاپ شده سند را نگه می دارد و علامت گذاری می شود.',
+							'هر سلول متن اصلی صفحه و میزان اطمینان خواننده را به یاد دارد؛ هم در جدول و هم به شکل یادداشت در فایل خروجی.',
+							'اجراها در پایگاه داده نقطه ذخیره دارند و از عمر درخواست بیشتر زنده می مانند: می توانید صفحه را ببندید، برگردید و نظرتان را عوض کنید.'
+						],
+						figures: [
+							{ value: 'GPT-5.6', label: 'هسته عامل هوشمند' },
+							{ value: 'Mistral', label: 'خواندن سند با AI' },
+							{ value: '.xlsx', label: 'خروجی قابل ردیابی' }
+						],
+						tags: ['SvelteKit 2', 'TypeScript', 'Deep Agents', 'LangGraph', 'Turso', 'Vercel'],
+						liveLabel: 'باز کردن Rowbot',
+						sourceLabel: 'دیدن کد',
+						note: 'Rowbot با کلید های شخصی من روی OpenAI و Mistral کار می کند، به همین دلیل ثبت نام فقط با دعوت نامه است. برای دریافت کد در لینکدین پیام بدهید.',
+						media: {
+							...rowbotMedia,
+							title: 'Rowbot: OCR عاملی که کاغذ را به صفحه گسترده تبدیل می کند',
+							play: 'پخش ویدیوی معرفی Rowbot',
+							watch: 'تماشای ویدیوی Rowbot در یوتیوب'
+						}
+					},
 					{
 						...firmScope,
 						meta: 'تجسم داده · محصول پژوهشی',
@@ -569,62 +621,7 @@
 	let activeContactKey = $state<ContactKey | null>(null);
 	const isDark = $derived(theme === 'dark');
 
-	// The first flagged project gets the large showcase; everything else flows into
-	// a grid that reflows for any number of entries.
-	const featuredProject = $derived(c.work.projects.find((project) => project.featured));
-	const gridProjects = $derived(c.work.projects.filter((project) => project !== featuredProject));
-
-	let previewEl = $state<HTMLVideoElement | null>(null);
-	let previewPlaying = $state(false);
-	// Once the visitor uses the play/pause control, scrolling no longer overrides them.
-	let previewManual = $state(false);
-
-	// The preview only downloads once it scrolls into view, and never when the
-	// visitor asked for reduced motion.
-	$effect(() => {
-		const video = previewEl;
-
-		if (!video || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-			return;
-		}
-
-		const observer = new IntersectionObserver(
-			(entries) => {
-				if (previewManual) {
-					return;
-				}
-
-				for (const entry of entries) {
-					if (entry.isIntersecting) {
-						void video.play().catch(() => {});
-					} else {
-						video.pause();
-					}
-				}
-			},
-			{ threshold: 0.3 }
-		);
-
-		observer.observe(video);
-
-		return () => observer.disconnect();
-	});
-
-	function togglePreview() {
-		const video = previewEl;
-
-		if (!video) {
-			return;
-		}
-
-		previewManual = true;
-
-		if (video.paused) {
-			void video.play().catch(() => {});
-		} else {
-			video.pause();
-		}
-	}
+	const projects = $derived(c.work.projects);
 
 	function toggleTheme() {
 		theme = isDark ? 'light' : 'dark';
@@ -662,14 +659,6 @@
 		rel="stylesheet"
 	/>
 </svelte:head>
-
-{#snippet githubMark(extraClass: string)}
-	<svg class="brand-icon {extraClass}" viewBox="0 0 16 16" aria-hidden="true">
-		<path
-			d="M8 0.2C3.6 0.2 0 3.8 0 8.2c0 3.5 2.3 6.5 5.5 7.6 0.4 0.1 0.5-0.2 0.5-0.4v-1.4c-2.2 0.5-2.7-0.9-2.7-0.9-0.4-0.9-0.9-1.2-0.9-1.2-0.7-0.5 0.1-0.5 0.1-0.5 0.8 0.1 1.2 0.8 1.2 0.8 0.7 1.2 1.9 0.9 2.3 0.7 0.1-0.5 0.3-0.9 0.5-1.1-1.8-0.2-3.6-0.9-3.6-3.9 0-0.9 0.3-1.6 0.8-2.1-0.1-0.2-0.3-1 0.1-2.1 0 0 0.7-0.2 2.2 0.8 0.6-0.2 1.3-0.3 2-0.3s1.4 0.1 2 0.3c1.5-1 2.2-0.8 2.2-0.8 0.4 1.1 0.2 1.9 0.1 2.1 0.5 0.6 0.8 1.3 0.8 2.1 0 3-1.8 3.7-3.6 3.9 0.3 0.3 0.6 0.8 0.6 1.6v2.4c0 0.2 0.1 0.5 0.6 0.4 3.2-1.1 5.5-4.1 5.5-7.6C16 3.8 12.4 0.2 8 0.2z"
-		/>
-	</svg>
-{/snippet}
 
 <main
 	class:rtl={isFarsi}
@@ -711,7 +700,7 @@
 							/>
 						</svg>
 					{:else}
-						{@render githubMark('nav-brand-icon')}
+						<GithubMark class="nav-brand-icon" />
 					{/if}
 					<span>{item.label}</span>
 				</a>
@@ -859,165 +848,9 @@
 			</div>
 
 			<div class="project-list">
-				{#if featuredProject}
-					{@const project = featuredProject}
-					<article class="project-card project-feature reveal">
-						{#if project.media}
-							<div class="feature-media">
-								<div class="media-chrome">
-									<span class="chrome-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-									<span class="chrome-url" dir="ltr">{project.host}</span>
-									<button
-										class="chrome-toggle"
-										type="button"
-										aria-label={previewPlaying ? c.work.pause : c.work.play}
-										onclick={togglePreview}
-									>
-										{#if previewPlaying}
-											<svg viewBox="0 0 24 24" aria-hidden="true">
-												<rect x="7" y="5" width="3.4" height="14" rx="1.2" />
-												<rect x="13.6" y="5" width="3.4" height="14" rx="1.2" />
-											</svg>
-										{:else}
-											<svg viewBox="0 0 24 24" aria-hidden="true">
-												<path d="M8 5.4 18.4 12 8 18.6Z" />
-											</svg>
-										{/if}
-									</button>
-								</div>
-
-								<div class="media-well">
-									<a
-										class="media-stage"
-										href={project.liveUrl}
-										target="_blank"
-										rel="noreferrer"
-										aria-label={project.media.open}
-									>
-										<video
-											bind:this={previewEl}
-											class="media-frame"
-											poster={project.media.poster}
-											aria-label={project.media.alt}
-											width="900"
-											height="516"
-											preload="none"
-											playsinline
-											muted
-											loop
-											onplay={() => (previewPlaying = true)}
-											onpause={() => (previewPlaying = false)}
-										>
-											<source src={project.media.video} type="video/mp4" />
-										</video>
-										<div class="media-hint">
-											<SquareArrowOutUpRight size={14} strokeWidth={2.1} animate={false} />
-											<span>{project.liveLabel}</span>
-										</div>
-									</a>
-								</div>
-
-								<div class="feature-figures">
-									{#each project.figures as figure (figure.label)}
-										<div>
-											<strong>{figure.value}</strong>
-											<span>{figure.label}</span>
-										</div>
-									{/each}
-								</div>
-							</div>
-						{/if}
-
-						<div class="feature-copy">
-							<div class="project-meta">
-								<span class="project-index" aria-hidden="true">{project.index}</span>
-								<small>{project.meta}</small>
-							</div>
-							<h3>{project.title}</h3>
-							<p class="project-subtitle">{project.subtitle}</p>
-							<p class="feature-lede">{project.text}</p>
-
-							<ul class="feature-points">
-								{#each project.points as point (point)}
-									<li>
-										<BadgeCheck size={16} strokeWidth={2.1} animate={false} />
-										<span>{point}</span>
-									</li>
-								{/each}
-							</ul>
-
-							<div class="project-tags">
-								{#each project.tags as tag (tag)}
-									<span>{tag}</span>
-								{/each}
-							</div>
-
-							<div class="project-actions">
-								<a
-									class="button project-button button-primary"
-									href={project.liveUrl}
-									target="_blank"
-									rel="noreferrer"
-								>
-									<SquareArrowOutUpRight size={16} strokeWidth={2.1} animate={false} />
-									<span>{project.liveLabel}</span>
-								</a>
-								<a
-									class="button project-button button-secondary"
-									href={project.sourceUrl}
-									target="_blank"
-									rel="noreferrer"
-								>
-									{@render githubMark('project-brand-icon')}
-									<span>{project.sourceLabel}</span>
-								</a>
-							</div>
-						</div>
-					</article>
-				{/if}
-
-				{#if gridProjects.length}
-					<div class="project-grid">
-						{#each gridProjects as project (project.id)}
-							<article class="project-card project-tile reveal">
-								{#if project.media}
-									<a
-										class="tile-media"
-										href={project.liveUrl}
-										target="_blank"
-										rel="noreferrer"
-										aria-label={project.media.open}
-									>
-										<img src={project.media.poster} alt={project.media.alt} loading="lazy" />
-									</a>
-								{/if}
-								<div class="tile-copy">
-									<div class="project-meta">
-										<span class="project-index" aria-hidden="true">{project.index}</span>
-										<small>{project.meta}</small>
-									</div>
-									<h3>{project.title}</h3>
-									<p>{project.text}</p>
-									<div class="project-tags">
-										{#each project.tags as tag (tag)}
-											<span>{tag}</span>
-										{/each}
-									</div>
-									<div class="project-actions">
-										<a class="tile-link" href={project.liveUrl} target="_blank" rel="noreferrer">
-											<SquareArrowOutUpRight size={14} strokeWidth={2.1} animate={false} />
-											<span>{project.liveLabel}</span>
-										</a>
-										<a class="tile-link" href={project.sourceUrl} target="_blank" rel="noreferrer">
-											{@render githubMark('project-brand-icon')}
-											<span>{project.sourceLabel}</span>
-										</a>
-									</div>
-								</div>
-							</article>
-						{/each}
-					</div>
-				{/if}
+				{#each projects as project, index (project.id)}
+					<ProjectShowcase {project} labels={c.work} flipped={index % 2 === 1} />
+				{/each}
 
 				<div class="project-upcoming">
 					<Telescope size={17} strokeWidth={2.1} animate={false} />
@@ -1253,7 +1086,7 @@
 				>
 					<div>
 						<div class="contact-label">
-							{@render githubMark('github-icon')}
+							<GithubMark class="github-icon" />
 							<span>{c.contact.github}</span>
 						</div>
 						<a href={githubUrl} target="_blank" rel="noreferrer">{github}</a>
