@@ -277,7 +277,7 @@
 						text: 'KPI tracking, forecasting and UPT optimization across high-volume POS operations, turning single-item visits into multi-item sales.'
 					},
 					{
-						role: 'Senior Sales Operations Manager',
+						role: 'Senior Sales Operations Analyst',
 						period: '2018 - 2023',
 						place: 'Shoniz · Birjand, Iran',
 						text: 'Launched a regional branch and drove a 41% rise in monthly sales via automated performance dashboards, analyzing 88 routes across 11 cities for about 2,500 accounts.'
@@ -506,7 +506,7 @@
 						text: 'پیگیری KPI، پیش بینی و بهینه سازی UPT در عملیات فروش پرتراکنش، با تبدیل خریدهای تک محصولی به فروش چندمحصولی.'
 					},
 					{
-						role: 'مدیر ارشد عملیات فروش',
+						role: 'تحلیلگر ارشد عملیات فروش',
 						period: '۲۰۱۸ - ۲۰۲۳',
 						place: 'شونیز · بیرجند، ایران',
 						text: 'راه اندازی شعبه منطقه ای و افزایش ۴۱ درصدی فروش ماهانه با داشبوردهای خودکار، بر پایه تحلیل ۸۸ مسیر در ۱۱ شهر برای حدود ۲۵۰۰ حساب.'
