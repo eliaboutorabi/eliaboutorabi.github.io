@@ -67,8 +67,6 @@
 			title: string;
 			intro: string;
 			upcoming: string;
-			pause: string;
-			play: string;
 			projects: Project[];
 		};
 		resume: {
@@ -127,10 +125,10 @@
 		sourceUrl: 'https://github.com/eliaboutorabi/big4dash'
 	};
 	const firmScopeMedia = {
-		kind: 'video' as const,
-		label: 'eliaboutorabi.github.io/big4dash',
-		video: '/media/big4dash.mp4',
-		poster: '/media/big4dash-poster.jpg'
+		kind: 'youtube' as const,
+		label: 'youtube.com · FirmScope',
+		id: 'Ltra3naLB0Q',
+		poster: '/media/firmscope-video-poster.jpg'
 	};
 
 	const copy: Record<Locale, Copy> = {
@@ -198,8 +196,6 @@
 					'Projects where financial judgement and applied AI meet. Each one is live, and each one shows its working: the sources, the code and the checks.',
 				upcoming:
 					'More in progress: a driver-based forecast engine, an agentic close workflow and an executive reporting suite.',
-				pause: 'Pause the preview',
-				play: 'Play the preview',
 				projects: [
 					{
 						...rowbot,
@@ -233,26 +229,27 @@
 						...firmScope,
 						meta: 'Data Visualization · Research Product',
 						title: 'FirmScope',
-						subtitle: 'Big Four intelligence dashboard',
-						text: 'An evidence-first comparison of Deloitte, PwC, EY and KPMG across scale, growth, business mix, geography and workforce. Every number opens the observation behind it: source excerpt, reporting period and comparability score.',
+						subtitle: 'The Big Four dashboard that explains itself',
+						text: 'An evidence-first comparison of Deloitte, PwC, EY and KPMG across scale, growth, business mix, geography and workforce — narrated in a clone of my own voice, so the dashboard walks you through itself. Every number still opens the observation behind it: source excerpt, reporting period and comparability score.',
 						points: [
-							'Fifteen-year indexed growth race, revenue-share ribbon and a transparent CAGR scenario studio.',
-							'Productivity frontier, service-line composition and a two-dimensional office atlas.',
-							'Searchable evidence ledger, disclosure-coverage matrix and restatement lineage.',
-							'Command palette, bookmarkable notebook with CSV export and shareable URL state.'
+							'A twenty-six scene narrated tour drives the dashboard as it talks, opening each chart and the evidence underneath it, with captions and a transcript.',
+							'Branching service-line flows, connected rankings and share rings, read as one continuous story rather than a wall of tiles.',
+							'An office atlas that opens as a detailed globe and unfolds into a zoomable flat map.',
+							'Searchable evidence ledger, coverage matrix and original-to-revised lineage, with a notebook you can export.'
 						],
 						figures: [
-							{ value: '651', label: 'Structured observations' },
-							{ value: '71', label: 'Primary sources' },
-							{ value: '15', label: 'Years indexed' }
+							{ value: '651', label: 'Evidence records' },
+							{ value: '71', label: 'Official sources' },
+							{ value: '26', label: 'Narrated scenes' }
 						],
-						tags: ['Svelte 5', 'SvelteKit', 'TypeScript', 'Data pipeline'],
+						tags: ['Svelte 5', 'SvelteKit', 'TypeScript', 'D3', 'Three.js', 'ElevenLabs'],
 						liveLabel: 'Open the dashboard',
 						sourceLabel: 'View the code',
 						media: {
 							...firmScopeMedia,
-							alt: 'Screen recording of the FirmScope dashboard comparing the Big Four firms',
-							open: 'Open the live FirmScope dashboard'
+							title: 'FirmScope: Self-explaining dashboard, comparing the Big Four',
+							play: 'Play the FirmScope walkthrough',
+							watch: 'Watch the FirmScope walkthrough on YouTube'
 						}
 					}
 				]
@@ -265,10 +262,10 @@
 				experienceHeading: 'Professional Experience',
 				experience: [
 					{
-						role: 'CEO',
+						role: 'AI Builder & Self-Directed Learner',
 						period: '2026 - Present',
-						place: 'Calqura.ai · Dallas, TX',
-						text: 'Started Calqura.ai to revolutionize the way accounting is taught through AI. Accounting does not need to be boring anymore; it can be clear, practical and alive.'
+						place: 'Independent Projects · Dallas, TX',
+						text: 'Learning AI every day and enjoying the build: shipping Rowbot and FirmScope, and deepening agentic AI, prompt engineering and automation practice along the way.'
 					},
 					{
 						role: 'Sales Specialist',
@@ -334,7 +331,8 @@
 				certs: [
 					'The AI-Driven Accountant',
 					'Generative AI in Finance & Accounting',
-					'The Future of AI for Finance'
+					'The Future of AI for Finance',
+					'Microsoft Copilot: The Art of Prompt Writing'
 				],
 				alsoHeading: 'Additional Credentials',
 				also: [
@@ -427,8 +425,6 @@
 					'پروژه هایی که در آن ها قضاوت مالی و هوش مصنوعی کاربردی به هم می رسند. هر پروژه زنده است و کار خودش را نشان می دهد: منابع، کد و بررسی ها.',
 				upcoming:
 					'پروژه های بعدی در راه است: موتور پیش بینی محرک محور، فرایند بستن حساب با عامل هوشمند و مجموعه گزارش های مدیریتی.',
-				pause: 'توقف پیش نمایش',
-				play: 'پخش پیش نمایش',
 				projects: [
 					{
 						...rowbot,
@@ -462,26 +458,27 @@
 						...firmScope,
 						meta: 'تجسم داده · محصول پژوهشی',
 						title: 'FirmScope',
-						subtitle: 'داشبورد تحلیلی بیگ فور',
-						text: 'مقایسه ای مبتنی بر شواهد از دلویت، PwC، EY و KPMG در مقیاس، رشد، ترکیب خدمات، جغرافیا و نیروی انسانی. هر عدد، مشاهده پشت خود را باز می کند: متن اصلی منبع، دوره گزارشگری و امتیاز قابلیت مقایسه.',
+						subtitle: 'داشبورد بیگ فور که خودش را توضیح می دهد',
+						text: 'مقایسه ای مبتنی بر شواهد از دلویت، PwC، EY و KPMG در مقیاس، رشد، ترکیب خدمات، جغرافیا و نیروی انسانی؛ با روایتی به نسخه شبیه سازی شده صدای خودم، طوری که داشبورد شما را با خودش همراه می کند. هر عدد همچنان مشاهده پشت خود را باز می کند: متن اصلی منبع، دوره گزارشگری و امتیاز قابلیت مقایسه.',
 						points: [
-							'مسابقه رشد شاخص شده پانزده ساله، نوار سهم درآمد و استودیوی شفاف سناریوی CAGR.',
-							'مرز بهره وری، ترکیب خطوط خدمات و اطلس دوبعدی دفاتر.',
-							'دفتر شواهد قابل جستجو، ماتریس پوشش افشا و ردیابی ارقام اصلاح شده.',
-							'پالت فرمان، دفترچه نشانه گذاری با خروجی CSV و اشتراک وضعیت از طریق نشانی صفحه.'
+							'تور روایت شده در بیست و شش صحنه، خود داشبورد را پیش می برد؛ هر نمودار و شواهد زیر آن را باز می کند، همراه با زیرنویس و متن کامل.',
+							'جریان های شاخه ای خطوط خدمات، رتبه بندی های پیوسته و حلقه های سهم، به شکل یک روایت پیوسته و نه انبوهی از کاشی.',
+							'اطلس دفاتر که با یک کره دقیق باز می شود و به نقشه تخت و قابل بزرگنمایی تبدیل می شود.',
+							'دفتر شواهد قابل جستجو، ماتریس پوشش افشا و ردیابی ارقام اصلاح شده، همراه با دفترچه ای که می توانید خروجی بگیرید.'
 						],
 						figures: [
-							{ value: '۶۵۱', label: 'مشاهده ثبت شده' },
-							{ value: '۷۱', label: 'منبع اصلی' },
-							{ value: '۱۵', label: 'سال داده' }
+							{ value: '۶۵۱', label: 'سند شواهد' },
+							{ value: '۷۱', label: 'منبع رسمی' },
+							{ value: '۲۶', label: 'صحنه روایت شده' }
 						],
-						tags: ['Svelte 5', 'SvelteKit', 'TypeScript', 'خط داده'],
+						tags: ['Svelte 5', 'SvelteKit', 'TypeScript', 'D3', 'Three.js', 'ElevenLabs'],
 						liveLabel: 'دیدن داشبورد',
 						sourceLabel: 'دیدن کد',
 						media: {
 							...firmScopeMedia,
-							alt: 'تصویر متحرک از داشبورد FirmScope در مقایسه چهار شرکت بزرگ',
-							open: 'باز کردن داشبورد زنده FirmScope'
+							title: 'FirmScope: داشبوردی که خودش چهار شرکت بزرگ را توضیح می دهد',
+							play: 'پخش ویدیوی معرفی FirmScope',
+							watch: 'تماشای ویدیوی FirmScope در یوتیوب'
 						}
 					}
 				]
@@ -494,10 +491,10 @@
 				experienceHeading: 'سوابق حرفه ای',
 				experience: [
 					{
-						role: 'مدیرعامل',
+						role: 'سازنده هوش مصنوعی و یادگیرنده مستقل',
 						period: '۲۰۲۶ - اکنون',
-						place: 'Calqura.ai · دالاس، تگزاس',
-						text: 'Calqura.ai را شروع کردم تا روش آموزش حسابداری را با کمک هوش مصنوعی متحول کنم. حسابداری دیگر لازم نیست خسته کننده باشد؛ می تواند روشن، کاربردی و زنده باشد.'
+						place: 'پروژه های مستقل · دالاس، تگزاس',
+						text: 'یادگیری هر روزه هوش مصنوعی و لذت بردن از ساختن؛ انتشار Rowbot برای تبدیل اسناد به اکسل قابل ردیابی و FirmScope برای تحلیل Big Four، همراه با کد و شواهد باز.'
 					},
 					{
 						role: 'متخصص فروش',
@@ -560,7 +557,8 @@
 				certs: [
 					'The AI-Driven Accountant',
 					'Generative AI in Finance & Accounting',
-					'The Future of AI for Finance'
+					'The Future of AI for Finance',
+					'Microsoft Copilot: The Art of Prompt Writing'
 				],
 				alsoHeading: 'گواهی ها و تجربه های دیگر',
 				also: [
@@ -849,7 +847,7 @@
 
 			<div class="project-list">
 				{#each projects as project, index (project.id)}
-					<ProjectShowcase {project} labels={c.work} flipped={index % 2 === 1} />
+					<ProjectShowcase {project} flipped={index % 2 === 1} />
 				{/each}
 
 				<div class="project-upcoming">

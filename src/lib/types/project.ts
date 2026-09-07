@@ -1,22 +1,12 @@
 /** A portfolio project and the media that introduces it. */
 
-/** A self-hosted screen recording that plays inline once it scrolls into view. */
-export type VideoMedia = {
-	kind: 'video';
-	/** Shown in the frame's title bar, usually the host the recording was taken from. */
-	label: string;
-	video: string;
-	poster: string;
-	alt: string;
-	open: string;
-};
-
 /**
  * A YouTube video shown as a poster until the visitor asks for it, so nothing
  * is requested from YouTube unless they press play.
  */
-export type YouTubeMedia = {
+export type ProjectMedia = {
 	kind: 'youtube';
+	/** Shown in the frame's title bar. */
 	label: string;
 	id: string;
 	poster: string;
@@ -24,8 +14,6 @@ export type YouTubeMedia = {
 	play: string;
 	watch: string;
 };
-
-export type ProjectMedia = VideoMedia | YouTubeMedia;
 
 export type Project = {
 	id: string;
@@ -44,10 +32,4 @@ export type Project = {
 	/** Optional caveat shown under the actions, e.g. an invite-only sign-up. */
 	note?: string;
 	media?: ProjectMedia;
-};
-
-/** Translated labels for the showcase controls. */
-export type ProjectLabels = {
-	pause: string;
-	play: string;
 };
