@@ -32,11 +32,18 @@ Diploma in Accounting | Resalat Liberal Arts School | 2006 - 2008
 
 ## PROFESSIONAL EXPERIENCE
 
-### Dillard's | United States | Sales Specialist | Feb 2025 - Present
+### Independent Projects | Dallas, TX | AI Builder & Self-Directed Learner | Jun 2026 - Present
 
-- Proactively monitor daily and monthly sales metrics against individual and departmental revenue targets.
-- Drive strategic upselling and cross-selling initiatives, consistently increasing Units Per Transaction (UPT).
-- Execute high-volume daily transactions with strict adherence to cash handling, reconciliation, and compliance procedures.
+- Study agentic AI, prompt engineering, and applied automation daily, turning that learning into software that ships.
+- Built Rowbot, an agentic OCR application that turns PDFs, photographs, and scans into multi-sheet Excel workbooks with every figure traceable to its source page.
+- Built FirmScope, a Big Four intelligence dashboard drawing on 651 structured observations from 71 primary sources.
+- Publish each project openly with its source code, evidence, and checks, and genuinely enjoy the building.
+
+### Dillard's | United States | Sales Specialist | Feb 2025 - Jun 2026
+
+- Monitored daily and monthly sales metrics against individual and departmental revenue targets.
+- Drove strategic upselling and cross-selling initiatives, consistently increasing Units Per Transaction (UPT).
+- Executed high-volume daily transactions with strict adherence to cash handling, reconciliation, and compliance procedures.
 
 ### Shoniz | Birjand, Iran | Senior Sales Operations Analyst | 2018 - 2023
 
@@ -63,6 +70,7 @@ Diploma in Accounting | Resalat Liberal Arts School | 2006 - 2008
 - LinkedIn: The AI-Driven Accountant
 - LinkedIn: Leveraging Generative AI in Finance and Accounting
 - LinkedIn: The Future of AI for Finance and Accounting
+- LinkedIn: Microsoft Copilot: The Art of Prompt Writing
 
 ## LEADERSHIP & EXTRACURRICULAR EXPERIENCE
 
