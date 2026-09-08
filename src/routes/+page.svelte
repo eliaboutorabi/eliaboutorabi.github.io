@@ -118,6 +118,19 @@
 		poster: '/media/rowbot-video-poster.jpg'
 	};
 
+	const verity = {
+		id: 'verity',
+		index: '03',
+		liveUrl: 'https://eliaboutorabi.github.io/Verity/',
+		sourceUrl: 'https://github.com/eliaboutorabi/Verity'
+	};
+	const verityMedia = {
+		kind: 'youtube' as const,
+		label: 'youtube.com · Verity',
+		id: 'LBTob-cq140',
+		poster: '/media/verity-video-poster.jpg'
+	};
+
 	const firmScope = {
 		id: 'firmscope',
 		index: '02',
@@ -250,6 +263,34 @@
 							title: 'FirmScope: Self-explaining dashboard, comparing the Big Four',
 							play: 'Play the FirmScope walkthrough',
 							watch: 'Watch the FirmScope walkthrough on YouTube'
+						}
+					},
+					{
+						...verity,
+						meta: 'Voice AI · Regulatory Research',
+						title: 'Verity',
+						subtitle: 'A desk robot that reads the regulation before she answers',
+						text: 'A voice-first research assistant for accountants. Ask out loud and she searches the live Code of Federal Regulations, reads the section she found and cites what she read — with the sections on screen before she finishes the sentence.',
+						points: [
+							'Speech to speech over WebRTC, straight from the browser. Interrupting works, and her mouth is driven by the audio you are actually hearing.',
+							'Hand her a lease or an engagement letter and she names the passages a reviewer would stop at, then marks them on the page itself, colour-coded by severity.',
+							'She checks her own answer before you see it: every citation is matched against the lookups the turn really made, so an invented sub-paragraph gets caught.',
+							'She teaches, too — a rule as a lesson with a citation under every point, or exam-style questions with the answer held back until you ask for it.'
+						],
+						figures: [
+							{ value: 'Realtime', label: 'Speech-to-speech voice' },
+							{ value: '6', label: 'CFR titles indexed' },
+							{ value: 'Zero', label: 'Servers in the path' }
+						],
+						tags: ['Svelte 5', 'SvelteKit', 'TypeScript', 'GPT Realtime', 'Three.js', 'pdf.js'],
+						liveLabel: 'Open Verity',
+						sourceLabel: 'View the code',
+						note: 'Verity runs entirely in your browser on your own OpenAI key, which never passes through a server of mine. Research assistance, not a tax opinion.',
+						media: {
+							...verityMedia,
+							title: 'Verity: a talking robot that reads tax regulations for accountants',
+							play: 'Play the Verity walkthrough',
+							watch: 'Watch the Verity walkthrough on YouTube'
 						}
 					}
 				]
@@ -479,6 +520,34 @@
 							title: 'FirmScope: داشبوردی که خودش چهار شرکت بزرگ را توضیح می دهد',
 							play: 'پخش ویدیوی معرفی FirmScope',
 							watch: 'تماشای ویدیوی FirmScope در یوتیوب'
+						}
+					},
+					{
+						...verity,
+						meta: 'هوش مصنوعی صوتی · پژوهش مقرراتی',
+						title: 'Verity',
+						subtitle: 'رباتی که پیش از پاسخ دادن، خود مقرره را می خواند',
+						text: 'یک دستیار پژوهشی صدا محور برای حسابداران. با صدای بلند می پرسید و او در نسخه زنده مجموعه مقررات فدرال آمریکا جستجو می کند، بخشی را که یافته می خواند و همان را ارجاع می دهد؛ بخش ها پیش از تمام شدن جمله اش روی صفحه ظاهر می شوند.',
+						points: [
+							'گفتگوی صوتی دوطرفه روی WebRTC و مستقیم از مرورگر. می توانید میان حرفش بروید و حرکت دهانش از همان صدایی می آید که می شنوید.',
+							'یک قرارداد اجاره یا نامه پذیرش کار به او بدهید تا بندهایی را که یک بازبین روی آن ها می ایستد نام ببرد و همان ها را روی صفحه سند و بر اساس شدت، رنگ گذاری کند.',
+							'پیش از آنکه پاسخ به شما برسد خودش آن را بررسی می کند: هر ارجاع با جستجوهایی که واقعا در همان نوبت انجام شده مقایسه می شود، پس بند ساختگی گرفته می شود.',
+							'آموزش هم می دهد: یک قاعده را به شکل درس با ارجاع زیر هر نکته، یا پرسش های سبک آزمون که پاسخ تا زمان درخواست شما پنهان می ماند.'
+						],
+						figures: [
+							{ value: 'Realtime', label: 'گفتگوی صوتی دوطرفه' },
+							{ value: '۶', label: 'عنوان از مقررات فدرال' },
+							{ value: 'صفر', label: 'سرور در مسیر داده' }
+						],
+						tags: ['Svelte 5', 'SvelteKit', 'TypeScript', 'GPT Realtime', 'Three.js', 'pdf.js'],
+						liveLabel: 'باز کردن Verity',
+						sourceLabel: 'دیدن کد',
+						note: 'Verity کاملا در مرورگر شما و با کلید OpenAI خودتان کار می کند و از هیچ سروری از من عبور نمی کند. این ابزار کمک پژوهشی است، نه نظر مالیاتی.',
+						media: {
+							...verityMedia,
+							title: 'Verity: رباتی که مقررات مالیاتی را برای حسابداران می خواند',
+							play: 'پخش ویدیوی معرفی Verity',
+							watch: 'تماشای ویدیوی Verity در یوتیوب'
 						}
 					}
 				]

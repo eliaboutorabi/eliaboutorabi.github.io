@@ -1588,7 +1588,9 @@ em {
 	width: 22px;
 	height: 22px;
 	margin-inline-start: 4px;
+	/* Posters run from near-black to near-white, so the mark carries its own contrast. */
 	fill: var(--cream-soft);
+	filter: drop-shadow(0 1px 3px rgba(12, 8, 5, 0.55));
 }
 
 .facade-caption {
