@@ -24,7 +24,7 @@ Diploma in Accounting | Resalat Liberal Arts School | 2006 - 2008
 
 ## SKILLS
 
-- AI: Agentic and Prompt engineering, Agent design and evaluation, Copilot business and strategy planning, No-code/Low-code Automation tools, Visual Studio Code, Vibe coding, CI/CD, Frontend and Information Design.
+- AI: Agentic engineering, AI prompting and prompt engineering, Claude Code and OpenAI Codex agent harnesses, Agent design and evaluation, Copilot business and strategy planning, No-code/Low-code Automation tools, Visual Studio Code, Vibe coding, CI/CD, Frontend and Information Design.
 - Accounting & Finance: Full-Cycle Accounting, Accounts Payable/Receivable, General Ledger, Bank Reconciliation, Year-End Close, Tax Reporting, Cash Flow Monitoring, Payroll & Insurance Processing.
 - Data & Analytics: Large Dataset Management, Sales & Revenue Forecasting, Financial KPI Tracking, Business Intelligence Reporting, Variance Analysis.
 - Systems & Tools: Advanced Microsoft Excel and Copilot, POS Systems, ERP/Accounting Software Implementation.
