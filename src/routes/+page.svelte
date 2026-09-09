@@ -338,7 +338,9 @@
 					{
 						group: 'AI & Automation',
 						items: [
-							'Agentic & Prompt Engineering',
+							'Claude Code & OpenAI Codex Agent Harnesses',
+							'Agentic Engineering',
+							'AI Prompting & Prompt Engineering',
 							'Agent Design & Eval',
 							'No/Low-Code Automation',
 							'CI/CD'
@@ -594,7 +596,14 @@
 				skills: [
 					{
 						group: 'AI و اتوماسیون',
-						items: ['مهندسی عامل و پرامپت', 'طراحی و ارزیابی عامل', 'اتوماسیون کم کد', 'CI/CD']
+						items: [
+							'هارنس های عامل Claude Code و OpenAI Codex',
+							'مهندسی عامل محور',
+							'پرامپت نویسی هوش مصنوعی و مهندسی پرامپت',
+							'طراحی و ارزیابی عامل',
+							'اتوماسیون کم کد',
+							'CI/CD'
+						]
 					},
 					{
 						group: 'حسابداری و مالی',
