@@ -1,0 +1,1382 @@
+/*
+ * Presentation mode.
+ *
+ * Every slide is composed on a 1600 × 900 stage. The stage is scaled to the
+ * viewport (zoom, with a transform fallback), so all sizes below are stage
+ * pixels and the composition stays identical on any screen. The palette,
+ * type and ornaments are the site's own.
+ */
+
+.deck {
+	--deck-scale: 1;
+	--deck-ease: cubic-bezier(0.22, 1, 0.36, 1);
+	--deck-fg: var(--ink);
+	--deck-line: rgba(192, 141, 79, 0.3);
+	--deck-ui-bg: color-mix(in srgb, var(--cream-soft) 74%, transparent);
+	--deck-ui-shift: 6px;
+	position: fixed;
+	inset: 0;
+	z-index: 100;
+	display: grid;
+	/* clip, not hidden: nothing may ever scroll the deck, not even a focus() or scrollIntoView(). */
+	overflow: hidden;
+	overflow: clip;
+	place-items: center;
+	background:
+		linear-gradient(90deg, rgba(192, 141, 79, 0.045) 1px, transparent 1px),
+		linear-gradient(180deg, rgba(192, 141, 79, 0.04) 1px, transparent 1px), var(--cream);
+	background-size:
+		72px 72px,
+		72px 72px,
+		auto;
+	color: var(--deck-fg);
+	outline: none;
+	transition:
+		background-color 0.8s ease,
+		color 0.8s ease;
+}
+
+.deck.tone-ink {
+	--deck-fg: var(--warm);
+	--deck-line: rgba(228, 200, 166, 0.24);
+	--deck-ui-bg: color-mix(in srgb, var(--ink) 55%, transparent);
+	background-color: var(--ink);
+}
+
+.deck.is-idle {
+	cursor: none;
+}
+
+/* Two slow pools of light give the stage a little air without ever drawing the eye. */
+
+.deck::before,
+.deck::after {
+	content: '';
+	position: absolute;
+	z-index: 0;
+	border-radius: 50%;
+	pointer-events: none;
+}
+
+.deck::before {
+	top: -30vmax;
+	right: -18vmax;
+	width: 80vmax;
+	height: 80vmax;
+	background: radial-gradient(circle, rgba(192, 141, 79, 0.17) 0%, rgba(192, 141, 79, 0) 62%);
+	animation: deck-drift-a 32s ease-in-out infinite alternate;
+}
+
+.deck::after {
+	bottom: -36vmax;
+	left: -22vmax;
+	width: 72vmax;
+	height: 72vmax;
+	background: radial-gradient(circle, rgba(192, 141, 79, 0.11) 0%, rgba(192, 141, 79, 0) 60%);
+	animation: deck-drift-b 38s ease-in-out infinite alternate;
+}
+
+.deck.tone-ink::before {
+	opacity: 0.5;
+}
+
+.deck.tone-ink::after {
+	opacity: 0.35;
+}
+
+@keyframes deck-drift-a {
+	to {
+		transform: translate3d(-9vmax, 7vmax, 0);
+	}
+}
+
+@keyframes deck-drift-b {
+	to {
+		transform: translate3d(8vmax, -6vmax, 0);
+	}
+}
+
+/* Stage */
+
+.deck-stage {
+	position: relative;
+	z-index: 1;
+	width: 1600px;
+	height: 900px;
+	zoom: var(--deck-scale);
+}
+
+@supports not (zoom: 1) {
+	.deck-stage {
+		transform: scale(var(--deck-scale));
+	}
+}
+
+/* Slides: the active one settles in from the side it lives on, the rest wait
+   just off-centre, so moving forward and back both feel like turning a page. */
+
+.deck-slide {
+	--deck-shift: 0px;
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 96px 120px 112px;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transform: translate3d(var(--deck-shift), 0, 0) scale(0.985);
+	transition:
+		opacity 0.5s var(--deck-ease),
+		transform 0.5s var(--deck-ease),
+		visibility 0s linear 0.5s;
+}
+
+.deck-slide.is-past {
+	--deck-shift: -84px;
+}
+
+.deck-slide.is-future {
+	--deck-shift: 84px;
+}
+
+.rtl .deck-slide.is-past {
+	--deck-shift: 84px;
+}
+
+.rtl .deck-slide.is-future {
+	--deck-shift: -84px;
+}
+
+.deck-slide.is-active {
+	z-index: 2;
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+	transform: none;
+	transition:
+		opacity 0.85s var(--deck-ease) 0.08s,
+		transform 0.85s var(--deck-ease) 0.08s,
+		visibility 0s;
+}
+
+.deck-slide > * {
+	position: relative;
+	z-index: 1;
+}
+
+/* Inside a slide, elements arrive one after another. */
+
+.deck-slide.is-active .deck-rise {
+	animation: deck-rise 0.95s var(--deck-ease) both;
+	animation-delay: calc(160ms + var(--i, 0) * 75ms);
+}
+
+@keyframes deck-rise {
+	from {
+		opacity: 0;
+		transform: translate3d(0, 26px, 0);
+	}
+}
+
+/* A folio number, pressed faintly into the corner of each slide. */
+
+.deck-folio {
+	position: absolute;
+	right: 96px;
+	bottom: 36px;
+	z-index: 0;
+	color: var(--gold);
+	font-family: 'Playfair Display', Georgia, serif;
+	font-size: 240px;
+	font-weight: 500;
+	letter-spacing: -0.03em;
+	line-height: 1;
+	opacity: 0.075;
+	pointer-events: none;
+}
+
+.rtl .deck-folio {
+	right: auto;
+	left: 96px;
+	font-family: 'Vazirmatn', 'Noto Sans Arabic', sans-serif;
+	font-weight: 800;
+	letter-spacing: 0;
+}
+
+/* Type */
+
+.deck-title {
+	margin: 0;
+	color: var(--deck-fg);
+	font-family: 'Playfair Display', Georgia, serif;
+	font-size: 60px;
+	font-weight: 500;
+	letter-spacing: 0;
+	line-height: 1.1;
+}
+
+.deck-display {
+	font-size: 128px;
+	line-height: 1;
+}
+
+.deck-hero {
+	max-width: 840px;
+	margin: 0;
+	color: var(--deck-fg);
+	font-family: 'Playfair Display', Georgia, serif;
+	font-size: 84px;
+	font-weight: 500;
+	letter-spacing: 0;
+	line-height: 1.04;
+}
+
+.deck-hero-line,
+.deck-hero-role {
+	display: block;
+}
+
+.deck-hero-role {
+	margin-top: 0.1em;
+	font-size: 0.78em;
+	line-height: 1.08;
+}
+
+.deck-lede {
+	margin: 0;
+	color: var(--muted);
+	font-size: 23px;
+	line-height: 1.8;
+}
+
+.deck-label {
+	margin: 0 0 24px;
+	color: #9a7a55;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+}
+
+.deck .section-kicker {
+	gap: 11px;
+	margin-bottom: 22px;
+	font-size: 15px;
+}
+
+.deck .section-kicker > div {
+	width: 22px;
+	height: 22px;
+	flex-basis: 22px;
+}
+
+.deck .about-name {
+	margin: 0 0 14px;
+	font-size: 14px;
+}
+
+.deck-head {
+	margin-bottom: 44px;
+}
+
+.deck-head .deck-title {
+	margin-top: 4px;
+}
+
+.deck-head-center {
+	text-align: center;
+}
+
+.deck-center {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 1080px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.deck-center .deck-lede {
+	max-width: 880px;
+}
+
+.deck-center .mini-ornament {
+	width: 260px;
+	max-width: none;
+	margin-top: 36px;
+}
+
+/* Cover */
+
+.deck-cover {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 540px;
+	align-items: center;
+	gap: 64px;
+}
+
+.deck-cover .deck-lede {
+	max-width: 620px;
+	margin-top: 30px;
+}
+
+.deck-keys {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 26px;
+	margin-top: 46px;
+	color: var(--muted);
+	font-size: 12.5px;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.deck-keys span {
+	display: inline-flex;
+	align-items: center;
+	gap: 9px;
+}
+
+.deck-keys kbd {
+	display: inline-grid;
+	min-width: 30px;
+	height: 28px;
+	padding: 0 9px;
+	place-items: center;
+	border: 1px solid var(--deck-line);
+	border-bottom-width: 2px;
+	border-radius: 6px;
+	background: color-mix(in srgb, var(--cream-soft) 80%, transparent);
+	color: var(--gold);
+	font-family: 'Lato', ui-sans-serif, system-ui, sans-serif;
+	font-size: 11.5px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	line-height: 1;
+}
+
+.deck-portrait {
+	position: relative;
+	width: 540px;
+	margin: 0;
+	aspect-ratio: 880 / 965;
+}
+
+.deck-portrait-halo {
+	position: absolute;
+	inset: 4% 0 12%;
+	border-radius: 50%;
+	background: radial-gradient(circle, rgba(192, 141, 79, 0.22) 0%, rgba(192, 141, 79, 0) 68%);
+}
+
+.deck-portrait img {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	object-position: center bottom;
+	filter: saturate(0.96) contrast(1.02);
+	-webkit-mask-image: linear-gradient(
+		180deg,
+		#000 0%,
+		#000 72%,
+		rgba(0, 0, 0, 0.72) 83%,
+		rgba(0, 0, 0, 0.2) 94%,
+		transparent 100%
+	);
+	mask-image: linear-gradient(
+		180deg,
+		#000 0%,
+		#000 72%,
+		rgba(0, 0, 0, 0.72) 83%,
+		rgba(0, 0, 0, 0.2) 94%,
+		transparent 100%
+	);
+}
+
+.dark-theme .deck-portrait img {
+	filter: saturate(0.86) contrast(1.05) brightness(0.88);
+}
+
+/* About */
+
+.deck-split {
+	display: grid;
+	grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+	align-items: start;
+	gap: 84px;
+}
+
+.deck-body p {
+	margin: 0 0 26px;
+	color: var(--coffee);
+	font-size: 22px;
+	line-height: 1.85;
+}
+
+.deck-body p:last-child {
+	margin-bottom: 0;
+	color: var(--muted);
+}
+
+/* Values */
+
+.deck-values {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 28px;
+}
+
+.deck-value {
+	padding: 44px 40px 46px;
+	border: 1px solid rgba(192, 141, 79, 0.22);
+	border-radius: 12px;
+	background: var(--cream-soft);
+}
+
+.deck-value .icon-shell {
+	width: 66px;
+	height: 66px;
+	flex-basis: 66px;
+	margin-bottom: 28px;
+}
+
+.deck-value h3 {
+	margin: 0 0 14px;
+	color: var(--ink);
+	font-family: 'Playfair Display', Georgia, serif;
+	font-size: 30px;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.deck-value p {
+	margin: 0;
+	color: var(--muted);
+	font-size: 19px;
+	line-height: 1.75;
+}
+
+/* Numbers */
+
+.deck-stats {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	margin-top: 10px;
+}
+
+.deck-stat {
+	padding: 24px 20px;
+	border-inline-end: 1px solid rgba(192, 141, 79, 0.25);
+	text-align: center;
+}
+
+.deck-stat:last-child {
+	border: 0;
+}
+
+.deck .deck-stat .stat-value {
+	font-size: 124px;
+	font-variant-numeric: tabular-nums;
+}
+
+.deck-stat strong {
+	display: block;
+	margin-top: 24px;
+	color: var(--muted);
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 0.2em;
+	line-height: 1.5;
+	text-transform: uppercase;
+}
+
+.deck .deck-slide-numbers .ornament {
+	max-width: 420px;
+	margin-top: 64px;
+	padding: 0;
+}
+
+/* Portfolio */
+
+.deck-index {
+	display: flex;
+	margin: 42px 0 0;
+	padding: 0;
+	gap: 22px;
+	list-style: none;
+}
+
+.deck-index li {
+	display: flex;
+	min-width: 270px;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 6px;
+	padding: 22px 26px;
+	border: 1px solid rgba(192, 141, 79, 0.24);
+	border-radius: 10px;
+	background: color-mix(in srgb, var(--cream-soft) 72%, transparent);
+	text-align: start;
+}
+
+.deck-index strong {
+	color: var(--ink);
+	font-family: 'Playfair Display', Georgia, serif;
+	font-size: 25px;
+	font-weight: 600;
+	line-height: 1.15;
+}
+
+.deck-index small {
+	color: #a6753c;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+}
+
+.deck-upcoming {
+	display: inline-flex;
+	align-items: center;
+	gap: 11px;
+	margin: 40px 0 0;
+	color: var(--muted);
+	font-size: 15.5px;
+}
+
+.deck-upcoming > div {
+	display: inline-flex;
+	flex: 0 0 auto;
+	color: var(--gold);
+}
+
+/* Project */
+
+.deck-slide-project {
+	padding: 72px 100px 100px;
+}
+
+.deck-project {
+	display: grid;
+	grid-template-columns: 760px minmax(0, 1fr);
+	align-items: center;
+	gap: 56px;
+}
+
+.deck-plate {
+	overflow: hidden;
+	border: 1px solid rgba(192, 141, 79, 0.28);
+	border-radius: 12px;
+	background:
+		repeating-linear-gradient(135deg, rgba(192, 141, 79, 0.07) 0 2px, transparent 2px 16px),
+		var(--warm);
+	box-shadow: 0 44px 90px -44px rgba(43, 31, 23, 0.5);
+}
+
+.deck-media-well {
+	padding: 22px;
+}
+
+.deck .deck-plate .feature-figures {
+	gap: 36px;
+	padding: 18px 26px 20px;
+}
+
+.deck-project-copy {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.deck-meta {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	color: #a6753c;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+}
+
+.deck-project-title {
+	margin: 0;
+	color: var(--ink);
+	font-family: 'Playfair Display', Georgia, serif;
+	font-size: 56px;
+	font-weight: 600;
+	line-height: 1.05;
+}
+
+.deck-project-subtitle {
+	margin: -6px 0 0;
+	color: var(--muted);
+	font-size: 18px;
+	letter-spacing: 0.02em;
+}
+
+.deck-project-lede {
+	margin: 0;
+	color: var(--coffee);
+	font-size: 17px;
+	line-height: 1.75;
+}
+
+.deck .deck-points {
+	gap: 9px;
+}
+
+.deck .deck-points li {
+	font-size: 14.5px;
+	line-height: 1.6;
+}
+
+.deck-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-top: 4px;
+}
+
+.deck-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 9px;
+	padding: 11px 17px;
+	border: 1px solid rgba(192, 141, 79, 0.5);
+	border-radius: 6px;
+	color: #9a6f37;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition:
+		background 0.25s ease,
+		border-color 0.25s ease,
+		transform 0.25s ease;
+}
+
+.deck-link:hover {
+	border-color: var(--gold);
+	background: var(--sand);
+	transform: translateY(-2px);
+}
+
+.deck-link-primary {
+	border-color: transparent;
+	background: linear-gradient(135deg, var(--gold), #cd9c5e);
+	color: var(--cream-soft);
+	box-shadow: 0 14px 30px -14px rgba(192, 141, 79, 0.95);
+}
+
+.deck-link-primary:hover {
+	border-color: transparent;
+	background: linear-gradient(135deg, var(--gold), #cd9c5e);
+}
+
+.deck-link > div {
+	display: inline-flex;
+}
+
+.deck-link-icon {
+	width: 14px;
+	height: 14px;
+	flex: 0 0 14px;
+}
+
+/* Experience: the timeline turns on its side and reads across the slide. */
+
+.deck-timeline {
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	margin: 26px 0 0;
+	padding: 0;
+	gap: 32px;
+	list-style: none;
+}
+
+.deck-timeline::before {
+	position: absolute;
+	top: 6px;
+	right: 0;
+	left: 0;
+	height: 1px;
+	content: '';
+	background: linear-gradient(90deg, var(--gold), rgba(192, 141, 79, 0.2));
+}
+
+.rtl .deck-timeline::before {
+	background: linear-gradient(270deg, var(--gold), rgba(192, 141, 79, 0.2));
+}
+
+.deck-timeline li {
+	position: relative;
+	padding-top: 38px;
+}
+
+.deck-timeline-dot {
+	position: absolute;
+	top: 0;
+	inset-inline-start: 2px;
+	width: 13px;
+	height: 13px;
+	background: var(--gold);
+	box-shadow: 0 0 0 5px var(--cream);
+	transform: rotate(45deg);
+}
+
+.deck-timeline time {
+	display: block;
+	color: var(--gold);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.deck-timeline h4 {
+	margin: 12px 0 0;
+	color: var(--ink);
+	font-family: 'Playfair Display', Georgia, serif;
+	font-size: 23px;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.deck-timeline p {
+	margin: 0;
+	color: var(--muted);
+	font-size: 15px;
+	line-height: 1.7;
+}
+
+.deck-timeline .deck-place {
+	margin: 9px 0 12px;
+	color: #9a7a55;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+/* Skills & education */
+
+.deck-columns {
+	display: grid;
+	grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+	align-items: start;
+	gap: 76px;
+}
+
+.deck .deck-skill-group {
+	margin-bottom: 28px;
+}
+
+.deck .deck-skill-group:last-child {
+	margin-bottom: 0;
+}
+
+.deck .deck-skill-group p {
+	margin-bottom: 12px;
+	font-size: 13px;
+}
+
+.deck .deck-skill-group div {
+	gap: 10px;
+}
+
+.deck .deck-skill-group span {
+	padding: 9px 16px;
+	font-size: 15px;
+}
+
+.deck .deck-education {
+	gap: 24px;
+}
+
+.deck .deck-education article {
+	gap: 16px;
+}
+
+.deck .deck-education article > span {
+	width: 10px;
+	height: 10px;
+	margin-top: 11px;
+}
+
+.deck .deck-education h4 {
+	font-size: 24px;
+	line-height: 1.25;
+}
+
+.deck .deck-education p {
+	margin-top: 6px;
+	font-size: 15px;
+}
+
+/* Credentials */
+
+.deck-credentials {
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+	gap: 48px;
+}
+
+.deck .credential-heading {
+	margin-bottom: 22px;
+}
+
+.deck .credential-heading h3 {
+	margin: 0;
+	color: #9a7a55;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+}
+
+.deck-cred-list {
+	display: grid;
+	gap: 14px;
+}
+
+.deck .credential-list-item {
+	padding: 18px 20px;
+	border-radius: 10px;
+	font-size: 16.5px;
+	line-height: 1.55;
+}
+
+/* Testimonial */
+
+.deck-quote {
+	max-width: 1120px;
+}
+
+.deck-quote-mark {
+	display: inline-flex;
+	width: 78px;
+	height: 78px;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 30px;
+	border: 1px solid rgba(192, 141, 79, 0.3);
+	border-radius: 50%;
+	background: var(--sand);
+	color: #a6753c;
+}
+
+.deck-quote-mark > div {
+	display: inline-flex;
+}
+
+.deck-quote blockquote {
+	margin: 0;
+	color: var(--ink);
+	font-family: 'Playfair Display', Georgia, serif;
+	font-size: 44px;
+	font-style: italic;
+	font-weight: 400;
+	line-height: 1.5;
+}
+
+.deck-byline {
+	margin: 24px 0 0;
+	color: #9a7a55;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.24em;
+	text-transform: uppercase;
+}
+
+/* Contact: the closing slide takes the site's ink band, and the whole
+   viewport follows it. */
+
+.deck-slide-contact {
+	padding-top: 84px;
+	padding-bottom: 92px;
+}
+
+.deck-contact {
+	display: flex;
+	flex-direction: column;
+}
+
+.deck-contact .deck-center {
+	max-width: 900px;
+}
+
+.deck .deck-contact .section-kicker {
+	color: var(--gold-light);
+}
+
+.dark-theme .deck .deck-contact .section-kicker {
+	color: #9b6f37;
+}
+
+.deck-contact .deck-title {
+	color: var(--cream-soft);
+	font-size: 62px;
+	line-height: 1.08;
+}
+
+.deck-contact .deck-lede {
+	margin-top: 22px;
+	color: #d8c4ae;
+}
+
+.dark-theme .deck-contact .deck-lede {
+	color: #6f5740;
+}
+
+.deck .deck-cta {
+	margin-top: 38px;
+}
+
+.deck-contact-grid {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	margin-top: 60px;
+	padding-top: 40px;
+	gap: 28px;
+	border-top: 1px solid rgba(228, 200, 166, 0.18);
+}
+
+.deck-contact-grid > div {
+	min-width: 0;
+}
+
+.deck .deck-contact-grid .contact-label {
+	margin-bottom: 10px;
+	font-size: 11.5px;
+}
+
+.deck-contact-grid > div > a,
+.deck-contact-grid > div > span {
+	color: var(--sand);
+	font-size: 16.5px;
+	overflow-wrap: anywhere;
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.deck-contact-grid > div > a:hover {
+	color: var(--gold-light);
+}
+
+.deck-footer {
+	margin-top: 54px;
+	text-align: center;
+}
+
+.deck-script {
+	margin: 0;
+	color: var(--gold);
+	font-family: 'Pinyon Script', cursive;
+	font-size: 64px;
+	line-height: 0.78;
+}
+
+.deck-footer strong {
+	display: block;
+	margin-top: 12px;
+	color: #9a7a55;
+	font-size: 11.5px;
+	font-weight: 700;
+	letter-spacing: 0.26em;
+	text-transform: uppercase;
+}
+
+/* Chrome: the controls live at the edges of the screen, outside the stage,
+   and step back once the presenter's hand leaves the mouse. */
+
+.deck-ui {
+	position: absolute;
+	right: 0;
+	left: 0;
+	z-index: 5;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 22px 30px;
+	cursor: auto;
+	transition:
+		opacity 0.5s ease,
+		transform 0.5s ease;
+}
+
+.deck-chrome {
+	--deck-ui-shift: -6px;
+	top: 0;
+}
+
+.deck-bar {
+	bottom: 0;
+	padding-bottom: 24px;
+}
+
+.deck.is-idle .deck-ui:not(:hover):not(:focus-within) {
+	opacity: 0;
+	transform: translateY(var(--deck-ui-shift));
+}
+
+.deck-mark {
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.deck-mark span {
+	color: var(--gold);
+	font-family: 'Pinyon Script', cursive;
+	font-size: 40px;
+	line-height: 0.78;
+}
+
+.deck-mark small {
+	color: #8a7158;
+	font-size: 10.5px;
+	font-weight: 700;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+}
+
+.deck.tone-ink .deck-mark small {
+	color: #9a7a55;
+}
+
+.deck-btn {
+	display: inline-flex;
+	height: 38px;
+	min-width: 38px;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 0;
+	border: 1px solid var(--deck-line);
+	border-radius: 999px;
+	background: var(--deck-ui-bg);
+	color: var(--gold);
+	cursor: pointer;
+	backdrop-filter: blur(10px);
+	transition:
+		background 0.2s ease,
+		border-color 0.2s ease,
+		transform 0.2s ease,
+		opacity 0.2s ease;
+}
+
+.deck-btn:hover {
+	border-color: var(--gold);
+	transform: translateY(-1px);
+}
+
+.deck-btn:focus-visible {
+	outline: 2px solid var(--gold);
+	outline-offset: 2px;
+}
+
+.deck-btn:disabled {
+	opacity: 0.3;
+	cursor: default;
+	transform: none;
+}
+
+.deck-btn > div {
+	display: inline-flex;
+}
+
+.deck-close {
+	padding: 0 14px 0 12px;
+}
+
+.rtl .deck-close {
+	padding: 0 12px 0 14px;
+}
+
+.deck-close kbd {
+	color: var(--muted);
+	font-family: 'Lato', ui-sans-serif, system-ui, sans-serif;
+	font-size: 10.5px;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+.deck.tone-ink .deck-close kbd {
+	color: #b39a80;
+}
+
+.deck-actions {
+	display: inline-flex;
+	gap: 10px;
+}
+
+.deck-counter {
+	min-width: 124px;
+	color: var(--gold);
+	font-family: 'Courier New', monospace;
+	font-size: 12.5px;
+	font-weight: 700;
+	letter-spacing: 0.22em;
+}
+
+.deck-dots {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.deck-dots button {
+	position: relative;
+	width: 7px;
+	height: 7px;
+	padding: 0;
+	border: 0;
+	border-radius: 999px;
+	background: rgba(192, 141, 79, 0.36);
+	cursor: pointer;
+	transition:
+		width 0.45s var(--deck-ease),
+		background 0.3s ease,
+		transform 0.3s ease;
+}
+
+.deck-dots button::before {
+	position: absolute;
+	inset: -9px -6px;
+	content: '';
+}
+
+.deck-dots button:hover {
+	background: var(--gold);
+	transform: scale(1.35);
+}
+
+.deck-dots button.is-current {
+	width: 24px;
+	background: var(--gold);
+	transform: none;
+}
+
+.deck-dots button:focus-visible {
+	outline: 2px solid var(--gold);
+	outline-offset: 4px;
+}
+
+.deck-progress {
+	position: absolute;
+	bottom: 0;
+	inset-inline-start: 0;
+	z-index: 6;
+	width: var(--deck-progress, 0%);
+	height: 2px;
+	background: linear-gradient(90deg, var(--gold-light), var(--gold));
+	transition: width 0.8s var(--deck-ease);
+}
+
+/* Farsi: the site's display face and its looser rhythm. */
+
+.rtl .deck-title,
+.rtl .deck-hero,
+.rtl .deck-project-title,
+.rtl .deck-quote blockquote,
+.rtl .deck-value h3,
+.rtl .deck-timeline h4,
+.rtl .deck .deck-education h4,
+.rtl .deck-index strong {
+	font-family: var(--fa-display-font), 'Vazirmatn', 'Noto Sans Arabic', sans-serif;
+	font-weight: 700;
+	font-feature-settings:
+		'locl' 1,
+		'calt' 1,
+		'liga' 1;
+	font-language-override: 'FAR';
+}
+
+.rtl .deck-hero {
+	max-width: 900px;
+	font-size: 62px;
+	line-height: 1.85;
+}
+
+.rtl .deck-hero-line {
+	white-space: nowrap;
+}
+
+.rtl .deck-hero-role {
+	margin-top: 0.2em;
+	font-size: 0.56em;
+	line-height: 2;
+}
+
+.rtl .deck-title {
+	font-size: 50px;
+	line-height: 1.85;
+}
+
+.rtl .deck-display {
+	font-size: 100px;
+	line-height: 1.5;
+}
+
+.rtl .deck-head .deck-title {
+	margin-top: 0;
+}
+
+.rtl .deck-project-title {
+	font-size: 44px;
+	line-height: 1.7;
+}
+
+.rtl .deck-value h3 {
+	font-size: 27px;
+	line-height: 1.7;
+}
+
+.rtl .deck-timeline h4 {
+	font-size: 21px;
+	line-height: 1.7;
+}
+
+.rtl .deck .deck-education h4 {
+	font-size: 22px;
+	line-height: 1.7;
+}
+
+.rtl .deck-index strong {
+	font-size: 24px;
+	line-height: 1.7;
+}
+
+.rtl .deck-quote blockquote {
+	font-size: 38px;
+	font-style: normal;
+	line-height: 2;
+}
+
+.rtl .deck-lede,
+.rtl .deck-body p {
+	font-size: 22px;
+	line-height: 2;
+}
+
+.rtl .deck-value p {
+	font-size: 19px;
+	line-height: 1.9;
+}
+
+.rtl .deck-project-lede {
+	font-size: 17px;
+	line-height: 1.9;
+}
+
+.rtl .deck .deck-points li {
+	font-size: 15px;
+	line-height: 1.8;
+}
+
+.rtl .deck-timeline p,
+.rtl .deck .credential-list-item {
+	font-size: 15.5px;
+	line-height: 1.9;
+}
+
+.rtl .deck-keys,
+.rtl .deck-label,
+.rtl .deck-meta,
+.rtl .deck-stat strong,
+.rtl .deck-byline,
+.rtl .deck-timeline time,
+.rtl .deck-timeline .deck-place,
+.rtl .deck-index small,
+.rtl .deck-link,
+.rtl .deck-mark small,
+.rtl .deck-footer strong,
+.rtl .deck .credential-heading h3,
+.rtl .deck-project-subtitle,
+.rtl .deck-upcoming {
+	font-family: 'Vazirmatn', 'Noto Sans Arabic', sans-serif;
+	letter-spacing: 0;
+	text-transform: none;
+}
+
+.rtl .deck-keys {
+	font-size: 14px;
+}
+
+.rtl .deck-label,
+.rtl .deck .credential-heading h3,
+.rtl .deck-byline {
+	font-size: 15px;
+}
+
+.rtl .deck-meta,
+.rtl .deck-index small {
+	font-size: 13px;
+}
+
+.rtl .deck-stat strong {
+	font-size: 15px;
+}
+
+.rtl .deck-timeline time {
+	font-size: 14px;
+}
+
+.rtl .deck-timeline .deck-place {
+	font-size: 13.5px;
+}
+
+.rtl .deck-link {
+	font-size: 13px;
+}
+
+.rtl .deck .deck-stat .stat-value {
+	font-size: 108px;
+}
+
+.rtl .deck-counter {
+	font-family: 'Vazirmatn', 'Noto Sans Arabic', sans-serif;
+	letter-spacing: 0.08em;
+}
+
+.rtl .deck-mark small {
+	font-size: 12.5px;
+}
+
+/* Motion is decoration here; without it, everything simply appears. */
+
+@media (prefers-reduced-motion: reduce) {
+	.deck::before,
+	.deck::after {
+		animation: none;
+	}
+
+	.deck-slide,
+	.deck-slide.is-active {
+		transform: none;
+		transition:
+			opacity 0.2s ease,
+			visibility 0s;
+	}
+
+	.deck-slide.is-active .deck-rise {
+		animation: none;
+	}
+
+	.deck-progress,
+	.deck-dots button,
+	.deck-ui,
+	.deck-btn,
+	.deck-link {
+		transition: none;
+	}
+}

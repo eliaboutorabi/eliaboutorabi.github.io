@@ -434,6 +434,48 @@ a {
 	transform: translateY(-1px);
 }
 
+.present-toggle {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	height: 30px;
+	padding: 0 13px 0 11px;
+	border: 1px solid rgba(192, 141, 79, 0.35);
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--cream-soft) 78%, transparent);
+	color: var(--gold);
+	cursor: pointer;
+	font-family: 'Lato', ui-sans-serif, system-ui, sans-serif;
+	font-size: 10.5px;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	line-height: 1;
+	text-transform: uppercase;
+	white-space: nowrap;
+	transition:
+		background 0.2s ease,
+		border-color 0.2s ease,
+		transform 0.2s ease;
+}
+
+.present-toggle:hover {
+	border-color: var(--gold);
+	background: var(--sand);
+	transform: translateY(-1px);
+}
+
+.present-toggle > div {
+	display: inline-flex;
+}
+
+.rtl .present-toggle {
+	padding: 0 11px 0 13px;
+	font-family: 'Vazirmatn', 'Noto Sans Arabic', sans-serif;
+	font-size: 12.5px;
+	letter-spacing: 0;
+	text-transform: none;
+}
+
 .hero-section {
 	position: relative;
 	padding: clamp(30px, 4vh, 52px) clamp(22px, 5vw, 52px) clamp(44px, 5vh, 72px);
@@ -2186,6 +2228,23 @@ em {
 	.site-nav {
 		grid-template-columns: auto minmax(0, 1fr) auto;
 		gap: clamp(12px, 2vw, 20px);
+	}
+
+	.present-toggle,
+	.rtl .present-toggle {
+		width: 26px;
+		height: 26px;
+		padding: 0;
+		justify-content: center;
+	}
+
+	.present-toggle span {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		white-space: nowrap;
 	}
 
 	.split-heading,

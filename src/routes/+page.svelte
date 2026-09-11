@@ -12,6 +12,7 @@
 		HandHeart,
 		MailCheck,
 		MapPinCheck,
+		Play,
 		SmartphoneNfc,
 		Sun,
 		Telescope,
@@ -22,87 +23,13 @@
 	import { resolve } from '$app/paths';
 	import { getLocale, localizeHref } from '$lib/paraglide/runtime';
 	import GithubMark from '$lib/components/GithubMark.svelte';
+	import Presentation from '$lib/components/Presentation.svelte';
 	import ProjectShowcase from '$lib/components/ProjectShowcase.svelte';
-	import type { Project } from '$lib/types/project';
+	import type { Copy, Locale } from '$lib/types/copy';
 
-	type Locale = 'en' | 'fa';
 	type NavKey = 'about' | 'work' | 'resume' | 'contact';
 	type HeaderNavKey = NavKey | 'linkedin' | 'github';
 	type ContactKey = 'email' | 'phone' | 'location' | 'linkedin' | 'github';
-
-	type Copy = {
-		nav: {
-			about: string;
-			work: string;
-			resume: string;
-			contact: string;
-			linkedin: string;
-			github: string;
-			language: string;
-			languageHref: string;
-		};
-		hero: {
-			status: string;
-			eyebrow: string;
-			titleLead: string;
-			titleName: string;
-			titleNameSuffix: string;
-			titleTail: string;
-			accent: string;
-			intro: string;
-			primary: string;
-			secondary: string;
-		};
-		about: {
-			kicker: string;
-			name: string;
-			title: string;
-			accent: string;
-			body: string[];
-			cards: Array<{ title: string; text: string; icon: 'decisions' | 'ai' | 'growth' }>;
-		};
-		stats: Array<{ value: string; suffix: string; label: string }>;
-		work: {
-			kicker: string;
-			title: string;
-			intro: string;
-			upcoming: string;
-			projects: Project[];
-		};
-		resume: {
-			kicker: string;
-			titleLead: string;
-			titleTail: string;
-			accent: string;
-			experienceHeading: string;
-			experience: Array<{ role: string; period: string; place: string; text: string }>;
-			skillsHeading: string;
-			skills: Array<{ group: string; items: string[] }>;
-			educationHeading: string;
-			education: Array<{ degree: string; school: string }>;
-			certsHeading: string;
-			certs: string[];
-			alsoHeading: string;
-			also: string[];
-		};
-		testimonial: {
-			quote: string;
-			byline: string;
-		};
-		contact: {
-			kicker: string;
-			title: string;
-			accent: string;
-			body: string;
-			cta: string;
-			email: string;
-			phone: string;
-			location: string;
-			linkedin: string;
-			github: string;
-			footer: string;
-		};
-	};
 
 	// Locale-independent project facts, spread into each translation below.
 	const rowbot = {
@@ -402,6 +329,22 @@
 				linkedin: 'LinkedIn',
 				github: 'GitHub',
 				footer: 'AI-Enabled Accountant & Sales Expert'
+			},
+			deck: {
+				open: 'Present',
+				label: 'Presentation',
+				close: 'Exit presentation',
+				exit: 'Exit',
+				next: 'Next slide',
+				previous: 'Previous slide',
+				fullscreen: 'Fullscreen',
+				exitFullscreen: 'Exit fullscreen',
+				highlights: 'Career highlights',
+				principles: 'What I bring',
+				principlesTitle: 'Three things I bring to every team',
+				toolkit: 'The toolkit',
+				credentials: 'Credentials and more',
+				testimonial: 'Testimonial'
 			}
 		},
 		fa: {
@@ -663,6 +606,22 @@
 				linkedin: 'لینکدین',
 				github: 'گیت هاب',
 				footer: 'حسابدار و متخصص فروش مجهز به AI'
+			},
+			deck: {
+				open: 'ارائه',
+				label: 'ارائه',
+				close: 'خروج از ارائه',
+				exit: 'خروج',
+				next: 'اسلاید بعد',
+				previous: 'اسلاید قبل',
+				fullscreen: 'تمام صفحه',
+				exitFullscreen: 'خروج از تمام صفحه',
+				highlights: 'نقاط برجسته',
+				principles: 'آنچه با خود می آورم',
+				principlesTitle: 'سه چیزی که به هر تیم می آورم',
+				toolkit: 'جعبه ابزار',
+				credentials: 'گواهی ها و بیشتر',
+				testimonial: 'توصیه نامه'
 			}
 		}
 	};
@@ -696,8 +655,21 @@
 	let contactCtaActive = $state(false);
 	let activeContactKey = $state<ContactKey | null>(null);
 	const isDark = $derived(theme === 'dark');
+	let presenting = $state(false);
+	let presentIconActive = $state(false);
+	let presentButton = $state<HTMLButtonElement>();
 
 	const projects = $derived(c.work.projects);
+
+	function openDeck() {
+		presenting = true;
+	}
+
+	function closeDeck() {
+		presenting = false;
+		// Hand focus back to where the deck was opened from.
+		presentButton?.focus({ preventScroll: true });
+	}
 
 	function toggleTheme() {
 		theme = isDark ? 'light' : 'dark';
@@ -784,6 +756,21 @@
 		</nav>
 
 		<div class="nav-actions">
+			<button
+				class="present-toggle"
+				type="button"
+				aria-label={c.deck.open}
+				title={c.deck.open}
+				bind:this={presentButton}
+				onclick={openDeck}
+				onmouseenter={() => (presentIconActive = true)}
+				onmouseleave={() => (presentIconActive = false)}
+				onfocus={() => (presentIconActive = true)}
+				onblur={() => (presentIconActive = false)}
+			>
+				<Play size={13} strokeWidth={2.3} animate={presentIconActive} />
+				<span>{c.deck.open}</span>
+			</button>
 			<a
 				class="language-link"
 				href={languageHref}
@@ -809,6 +796,22 @@
 			</button>
 		</div>
 	</header>
+
+	{#if presenting}
+		<Presentation
+			copy={c}
+			{isFarsi}
+			{email}
+			{phone}
+			{phoneDisplay}
+			{location}
+			{linkedin}
+			{linkedinUrl}
+			{github}
+			{githubUrl}
+			onclose={closeDeck}
+		/>
+	{/if}
 
 	<section class="hero-section">
 		<div class="hero-grid">
