@@ -45,7 +45,7 @@ Diploma in Accounting | Resalat Liberal Arts School | 2006 - 2008
 - Drove strategic upselling and cross-selling initiatives, consistently increasing Units Per Transaction (UPT).
 - Executed high-volume daily transactions with strict adherence to cash handling, reconciliation, and compliance procedures.
 
-### Shoniz | Birjand, Iran | Senior Sales Operations Analyst | 2018 - 2023
+### Shoniz | Birjand, Iran | Senior Sales Operations Analyst | 2019 - 2024
 
 - Played a pivotal role in establishing the regional branch during its inaugural year.
 - Engineered daily automated performance dashboards for a 15-person sales team, driving a 41% increase in monthly sales volume over a two-year period.
