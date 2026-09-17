@@ -243,7 +243,7 @@
 					},
 					{
 						role: 'Senior Sales Operations Analyst',
-						period: '2018 - 2023',
+						period: '2019 - 2024',
 						place: 'Shoniz · Birjand, Iran',
 						text: 'Launched a regional branch and drove a 41% rise in monthly sales via automated performance dashboards, analyzing 88 routes across 11 cities for about 2,500 accounts.'
 					},
@@ -518,7 +518,7 @@
 					},
 					{
 						role: 'تحلیلگر ارشد عملیات فروش',
-						period: '۲۰۱۸ - ۲۰۲۳',
+						period: '۲۰۱۹ - ۲۰۲۴',
 						place: 'شونیز · بیرجند، ایران',
 						text: 'راه اندازی شعبه منطقه ای و افزایش ۴۱ درصدی فروش ماهانه با داشبوردهای خودکار، بر پایه تحلیل ۸۸ مسیر در ۱۱ شهر برای حدود ۲۵۰۰ حساب.'
 					},
