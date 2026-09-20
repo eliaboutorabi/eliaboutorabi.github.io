@@ -44,6 +44,7 @@ export type Copy = {
 	};
 	resume: {
 		kicker: string;
+		download: string;
 		titleLead: string;
 		titleTail: string;
 		accent: string;

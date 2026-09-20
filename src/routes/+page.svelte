@@ -84,26 +84,26 @@
 				languageHref: '/fa'
 			},
 			hero: {
-				status: 'Dallas, TX · Open to select work',
+				status: 'Dallas, TX · Open to local and remote roles',
 				eyebrow: 'Elham "Eli" Aboutorabi',
 				titleLead: "Hi, I'm",
 				titleName: 'Eli',
 				titleNameSuffix: ',',
 				titleTail: 'an',
-				accent: 'AI-enabled accounting specialist',
+				accent: 'accountant and full-stack AI builder',
 				intro:
-					'I care about clear books, useful systems, and calmer decisions. My work blends accounting, sales operations, data analysis, and practical AI automation.',
+					'I combine end-to-end accounting ownership and enterprise analysis with full-stack AI applications that I design, build and deploy.',
 				primary: 'Portfolio',
-				secondary: 'Resume'
+				secondary: 'Download resume'
 			},
 			about: {
 				kicker: 'About',
 				name: 'Elham "Eli" Aboutorabi',
-				title: 'A decade across accounting and sales',
-				accent: "AI systems built for today's needs",
+				title: 'From accounting systems to full-stack AI',
+				accent: 'Business experience behind every build',
 				body: [
-					"Results-driven and tech-forward, I hold a Master's in Accounting and more than ten years across financial reporting, data analysis and full-cycle operations. I've built accounting infrastructures from the ground up and engineered the dashboards that grew revenue.",
-					'Today I merge that traditional rigor with agentic AI, prompt engineering and no-code automation, solving intricate problems and bringing financial innovation to corporate and Big Four environments.'
+					"I hold a Master's in Accounting and bring more than ten years across small businesses and enterprise operations. I can independently run a small business's accounting function, from system setup to reporting and close. At Shoniz, I reviewed and reconciled 100+ daily invoices, mostly sales invoices, and automated approximately 90% of Excel performance reporting for 15 sales representatives.",
+					'I also build and deploy full-stack AI applications: document-to-Excel automation, research dashboards and real-time voice agents. My projects combine agent orchestration, data pipelines and custom UI/UX. I use advanced Excel in practice and have hands-on academic experience with Power BI and QuickBooks.'
 				],
 				cards: [
 					{
@@ -125,9 +125,9 @@
 			},
 			stats: [
 				{ value: '10', suffix: '+', label: 'Years of Experience' },
-				{ value: '41', suffix: '%', label: 'Sales Growth Achieved' },
-				{ value: '2,500', suffix: '+', label: 'Accounts Served' },
-				{ value: '100', suffix: '+', label: 'Products Managed' }
+				{ value: '41', suffix: '%', label: 'Year-over-year sales growth at Shoniz' },
+				{ value: '2,500', suffix: '', label: 'Approx. active accounts analyzed' },
+				{ value: '100', suffix: '', label: 'Approx. products in sales portfolio' }
 			],
 			work: {
 				kicker: 'Selected Work',
@@ -142,12 +142,12 @@
 						meta: 'Agentic AI · Document Automation',
 						title: 'Rowbot',
 						subtitle: 'Agentic OCR that turns paper into spreadsheets',
-						text: 'A PDF, a photograph or a bad scan becomes a multi-sheet Excel workbook. Every figure stays traceable to the page it came from, and the totals are checked by running the arithmetic rather than predicting it.',
+						text: 'I built and deployed this full-stack application on Vercel, integrating Mistral OCR, OpenAI models, a SvelteKit/TypeScript interface and a persistent database. PDFs, photos and scans become multi-sheet Excel workbooks with source-linked figures and verified arithmetic.',
 						points: [
-							'Reading is deterministic and tested; only the judgement calls run as an agent you can watch, interrupt and correct mid-run.',
-							'Totals are verified by executing the sum in a sandbox. A figure that will not reconcile keeps the number the page printed and carries a flag.',
+							'LangGraph/Deep Agents workflows plan the task, execute tools, delegate sheet audits and pause for human input when a decision needs review.',
+							'Tested parsers preserve table structure; code checks totals and runs custom calculations. Figures that do not reconcile retain the source value and carry a flag.',
 							'Every cell remembers the text the page showed and how sure the reader was, surfaced in the grid and as comments in the exported file.',
-							'Runs are checkpointed to the database, so they outlive the request: close the tab, come back and change your mind.'
+							'Database checkpoints preserve resumable runs; authentication, invite codes and usage allowances support the deployed application.'
 						],
 						figures: [
 							{ value: 'GPT-5.6', label: 'Deep Agents harness' },
@@ -170,12 +170,12 @@
 						meta: 'Data Visualization · Research Product',
 						title: 'FirmScope',
 						subtitle: 'The Big Four dashboard that explains itself',
-						text: 'An evidence-first comparison of Deloitte, PwC, EY and KPMG across scale, growth, business mix, geography and workforce — narrated in a clone of my own voice, so the dashboard walks you through itself. Every number still opens the observation behind it: source excerpt, reporting period and comparability score.',
+						text: 'I orchestrated AI-assisted search, extraction and data analysis to assemble 651 observations from 71 primary sources. I then designed a custom interactive dashboard comparing the Big Four across scale, growth, business mix, geography and workforce, with every figure linked to its evidence.',
 						points: [
-							'A twenty-six scene narrated tour drives the dashboard as it talks, opening each chart and the evidence underneath it, with captions and a transcript.',
+							'A 26-scene tour narrated in a clone of my own voice drives the dashboard, opening charts and evidence with synchronized captions and a transcript.',
 							'Branching service-line flows, connected rankings and share rings, read as one continuous story rather than a wall of tiles.',
 							'An office atlas that opens as a detailed globe and unfolds into a zoomable flat map.',
-							'Searchable evidence ledger, coverage matrix and original-to-revised lineage, with a notebook you can export.'
+							'Validated data pipeline and searchable evidence ledger preserve source excerpts, reporting periods, comparability scores and revision history; a research notebook supports exports.'
 						],
 						figures: [
 							{ value: '651', label: 'Evidence records' },
@@ -197,9 +197,9 @@
 						meta: 'Voice AI · Regulatory Research',
 						title: 'Verity',
 						subtitle: 'A desk robot that reads the regulation before she answers',
-						text: 'A voice-first research assistant for accountants. Ask out loud and she searches the live Code of Federal Regulations, reads the section she found and cites what she read — with the sections on screen before she finishes the sentence.',
+						text: 'I built a custom TypeScript agent harness connecting OpenAI Realtime voice over WebRTC to regulatory research tools. It executes searches, retrieves federal regulations and checks citations, with tool results appearing on screen during the conversation.',
 						points: [
-							'Speech to speech over WebRTC, straight from the browser. Interrupting works, and her mouth is driven by the audio you are actually hearing.',
+							'Voice and text share tool execution and conversation state. Real-time speech supports interruptions, with an animated character driven by the audio you hear.',
 							'Hand her a lease or an engagement letter and she names the passages a reviewer would stop at, then marks them on the page itself, colour-coded by severity.',
 							'She checks her own answer before you see it: every citation is matched against the lookups the turn really made, so an invented sub-paragraph gets caught.',
 							'She teaches, too — a rule as a lesson with a citation under every point, or exam-style questions with the answer held back until you ask for it.'
@@ -224,92 +224,112 @@
 			},
 			resume: {
 				kicker: 'The Resume',
-				titleLead: 'Experience measured by results.',
+				titleLead: 'Accounting. Analysis. Automation.',
 				titleTail: '',
 				accent: '',
+				download: 'Download resume (PDF)',
 				experienceHeading: 'Professional Experience',
 				experience: [
 					{
-						role: 'AI Builder & Self-Directed Learner',
-						period: '2026 - Present',
+						role: 'Independent Full-Stack AI Developer',
+						period: 'Jun 2026 - Present',
 						place: 'Independent Projects · Dallas, TX',
-						text: 'Learning AI every day and enjoying the build: shipping Rowbot and FirmScope, and deepening agentic AI, prompt engineering and automation practice along the way.'
+						text: 'Build and deploy full-stack AI applications: Rowbot on Vercel with OCR and human-reviewed agents; FirmScope with AI-assisted research and custom visualizations; Verity with a custom real-time voice agent harness.'
 					},
 					{
 						role: 'Sales Specialist',
-						period: '2025 - 2026',
+						period: 'Feb 2025 - Jun 2026',
 						place: "Dillard's · United States",
-						text: 'KPI tracking, forecasting and UPT optimization across high-volume POS operations, turning single-item visits into multi-item sales.'
+						text: "Recognized for typically exceeding $2,000 in daily sales against a $1,800 target. Completed Dillard's Home Style Academy training in home and decor sales. Increased units per transaction and served dozens of customers daily; handled POS transactions, cash, reconciliation and compliance."
 					},
 					{
 						role: 'Senior Sales Operations Analyst',
 						period: '2019 - 2024',
 						place: 'Shoniz · Birjand, Iran',
-						text: 'Launched a regional branch and drove a 41% rise in monthly sales via automated performance dashboards, analyzing 88 routes across 11 cities for about 2,500 accounts.'
+						text: 'Helped launch the branch; reviewed and reconciled 100+ invoices daily, mostly sales invoices. Automated approximately 90% of Excel performance reporting for 15 sales representatives, with linear rewards based on targets, average product sales and selling difficulty. Analyzed customer histories, coordinated factory replenishment and reported directly to headquarters across 88 routes, 11 cities, about 100 products and 2,500 accounts during 41% year-over-year sales growth.'
 					},
 					{
 						role: 'Senior Accountant',
 						period: '2015 - 2019',
-						place: 'Esalat Food Distribution · Birjand, Iran',
-						text: 'Full-cycle accounting, financial reporting, payroll, reconciliations and audits for an 11-city distribution network of about 1,000 customers.'
+						place: 'Esalat Food Distribution Company · Birjand, Iran',
+						text: 'Led financial reporting, quarterly tax filings, year-end close and warehouse financial audits. Managed 20-30 daily invoices, A/P, A/R, the general ledger, payroll, insurance and bank reconciliations; built automated sales commission tracking models.'
 					},
 					{
 						role: 'Accountant & Systems Implementer',
 						period: '2010 - 2015',
 						place: 'Palaz Carpet Store · Birjand, Iran',
-						text: "Architected the company's first accounting system from the ground up, standardizing product coding, inventory and zero-discrepancy reconciliation."
+						text: "Designed and implemented the store's entire accounting system from the ground up. Managed cash, installment and check-based A/P and A/R, payroll, insurance compliance, benefits and operating expenses."
 					}
 				],
 				skillsHeading: 'Core Skills',
 				skills: [
 					{
-						group: 'AI & Automation',
+						group: 'Accounting & Systems',
 						items: [
-							'Claude Code & OpenAI Codex Agent Harnesses',
-							'Agentic Engineering',
-							'AI Prompting & Prompt Engineering',
-							'Agent Design & Eval',
-							'No/Low-Code Automation',
-							'CI/CD'
+							'Full-cycle accounting',
+							'A/P & A/R',
+							'Year-end close & tax reporting',
+							'Holu & Sepidar',
+							'Custom ERP systems'
 						]
 					},
 					{
-						group: 'Accounting & Finance',
-						items: ['Full-Cycle Accounting', 'A/P & A/R', 'Year-End Close', 'Tax Reporting']
+						group: 'Excel & Financial Analysis',
+						items: [
+							'PivotTables',
+							'VLOOKUP & SUMIF',
+							'Automated reports & incentives',
+							'Forecasting & KPI reporting'
+						]
 					},
 					{
-						group: 'Data & Systems',
-						items: ['Forecasting', 'BI Reporting', 'Advanced Excel & Copilot', 'ERP Implementation']
+						group: 'AI & Automation',
+						items: [
+							'Claude Code & OpenAI Codex',
+							'Prompt engineering',
+							'Agent orchestration & human review',
+							'Full-stack AI applications',
+							'SvelteKit, TypeScript & Vercel'
+						]
+					},
+					{
+						group: 'Hands-on Coursework & Academic Use',
+						items: ['Power BI', 'QuickBooks']
 					}
 				],
 				educationHeading: 'Education',
 				education: [
 					{
-						degree: 'M.S., Accounting',
-						school: 'Islamic Azad University, Science and Research Branch · 2013-2017'
+						degree: "Master's Degree in Accounting",
+						school: 'Islamic Azad University, Tehran Science and Research Branch · 2013-2017'
 					},
 					{
-						degree: 'B.S., Applied Accounting',
-						school: 'Islamic Azad University, Birjand · 2010-2013'
+						degree: "Bachelor's Degree in Applied Scientific Accounting",
+						school: 'Islamic Azad University of Birjand · 2010-2013'
 					},
 					{
-						degree: 'Associate, Business Accounting',
+						degree: 'Associate Degree in Business Accounting',
 						school: 'Birjand Technical School · 2008-2010'
+					},
+					{
+						degree: 'Diploma in Accounting',
+						school: 'Resalat Liberal Arts School · 2006-2008'
 					}
 				],
-				certsHeading: 'Online Certifications',
+
+				certsHeading: 'LinkedIn Learning Certificates',
 				certs: [
 					'The AI-Driven Accountant',
-					'Generative AI in Finance & Accounting',
-					'The Future of AI for Finance',
+					'Leveraging Generative AI in Finance and Accounting',
+					'The Future of AI for Finance and Accounting',
 					'Microsoft Copilot: The Art of Prompt Writing'
 				],
-				alsoHeading: 'Additional Credentials',
+				alsoHeading: 'Additional Qualifications',
 				also: [
-					'Professional baking and cooking',
-					'Karate brown belt',
-					'CPR & Basic Life Support',
-					'20 years of professional soccer playing experience, including four years leading Aboumoslem Soccer Club.'
+					'Professional Baking Certificate',
+					'Karate Brown Belt',
+					'Certified CPR and Basic Life Support',
+					'Aboumoslem Soccer Club, 2004-2024: player, certified coach and official, with four years of club leadership.'
 				]
 			},
 			testimonial: {
@@ -321,14 +341,14 @@
 				kicker: "Let's Connect",
 				title: 'Reimagining accounting through the lens of AI',
 				accent: '',
-				body: "Open to corporate and Big Four opportunities where accounting rigor and AI strategy meet. I'd love to hear what you're working on.",
+				body: 'Open to local and remote roles in accounting, financial analysis and AI automation. I bring end-to-end accounting ownership, enterprise reporting experience and deployed full-stack AI applications.',
 				cta: 'Work With Eli',
 				email: 'Email',
 				phone: 'Phone',
 				location: 'Location',
 				linkedin: 'LinkedIn',
 				github: 'GitHub',
-				footer: 'AI-Enabled Accountant & Sales Expert'
+				footer: 'Accounting | Financial Analysis | AI Automation'
 			},
 			deck: {
 				open: 'Present',
@@ -359,26 +379,26 @@
 				languageHref: '/'
 			},
 			hero: {
-				status: 'دالاس، تگزاس · آماده همکاری منتخب',
+				status: 'دالاس، تگزاس · آماده همکاری حضوری و دورکاری',
 				eyebrow: 'الهام «الی» ابوترابی',
 				titleLead: 'سلام، من',
 				titleName: 'الی',
 				titleNameSuffix: ' هستم',
 				titleTail: '',
-				accent: 'متخصص حسابداری با هوش مصنوعی',
+				accent: 'حسابدار و سازنده برنامه های هوش مصنوعی فول استک',
 				intro:
-					'کار من ترکیب حسابداری دقیق، تحلیل داده، تجربه فروش و اتوماسیون کاربردی با هوش مصنوعی است؛ برای تصمیم های شفاف تر و کارهای روزمره آرام تر.',
+					'مدیریت کامل حسابداری و تحلیل در شرکت های بزرگ را با برنامه های هوش مصنوعی فول استک که طراحی، توسعه و منتشر می کنم ترکیب می کنم.',
 				primary: 'نمونه کارها',
-				secondary: 'رزومه'
+				secondary: 'دریافت رزومه'
 			},
 			about: {
 				kicker: 'درباره',
 				name: 'الهام «الی» ابوترابی',
-				title: 'یک دهه تجربه در حسابداری و فروش',
-				accent: 'پیاده سازی سیستم های هوش مصنوعی برای نیاز های امروز',
+				title: 'از سیستم های حسابداری تا برنامه های هوش مصنوعی فول استک',
+				accent: 'تجربه کسب وکار پشت هر برنامه',
 				body: [
-					'من یک متخصص حسابداری نتیجه محور و علاقه مند به فناوری هستم، با کارشناسی ارشد حسابداری و بیش از ده سال تجربه در گزارشگری مالی، تحلیل داده و عملیات کامل حسابداری.',
-					'امروز این دقت سنتی را با هوش مصنوعی عاملی، مهندسی پرامپت و اتوماسیون کم کد ترکیب می کنم تا مسائل پیچیده را حل کنم و نوآوری مالی را وارد محیط های شرکتی و Big Four کنم.'
+					'کارشناسی ارشد حسابداری و بیش از ده سال تجربه در کسب وکارهای کوچک و شرکت های بزرگ دارم. می توانم تمام امور حسابداری یک کسب وکار کوچک را از راه اندازی سیستم تا گزارشگری و بستن حساب ها مستقل مدیریت کنم. در شونیز روزانه بیش از ۱۰۰ فاکتور، عمدتا فروش، را بررسی و تطبیق می دادم و حدود ۹۰ درصد گزارشگری عملکرد در اکسل را برای ۱۵ نماینده فروش خودکار کردم.',
+					'برنامه های کامل هوش مصنوعی را توسعه می دهم و منتشر می کنم: تبدیل سند به اکسل، داشبورد پژوهشی و عامل صوتی بلادرنگ. پروژه هایم هماهنگی عامل ها، پردازش داده و طراحی رابط کاربری اختصاصی را ترکیب می کنند. در اکسل تجربه پیشرفته عملی و در Power BI و QuickBooks تجربه عملی در دوره ها و محیط آموزشی دارم.'
 				],
 				cards: [
 					{
@@ -400,9 +420,9 @@
 			},
 			stats: [
 				{ value: '۱۰', suffix: '+', label: 'سال تجربه' },
-				{ value: '۴۱', suffix: '%', label: 'رشد فروش' },
-				{ value: '۲,۵۰۰', suffix: '+', label: 'حساب فعال' },
-				{ value: '۱۰۰', suffix: '+', label: 'محصول مدیریت شده' }
+				{ value: '۴۱', suffix: '%', label: 'رشد فروش شونیز نسبت به سال قبل' },
+				{ value: '۲,۵۰۰', suffix: '', label: 'حدود حساب فعال در تحلیل فروش' },
+				{ value: '۱۰۰', suffix: '', label: 'حدود محصول در سبد فروش' }
 			],
 			work: {
 				kicker: 'نمونه کارها',
@@ -417,12 +437,12 @@
 						meta: 'هوش مصنوعی عاملی · اتوماسیون اسناد',
 						title: 'Rowbot',
 						subtitle: 'OCR عاملی که کاغذ را به صفحه گسترده تبدیل می کند',
-						text: 'یک PDF، یک عکس یا یک اسکن بی کیفیت به یک فایل اکسل چند شیتی تبدیل می شود. هر عدد به صفحه ای که از آن آمده قابل ردیابی می ماند و جمع ها با اجرای واقعی محاسبه بررسی می شوند، نه با حدس زدن.',
+						text: 'این برنامه فول استک را با رابط SvelteKit/TypeScript، پایگاه داده پایدار، OCR میسترال و مدل های OpenAI ساختم و روی Vercel منتشر کردم. PDF، عکس و اسکن به فایل اکسل چند شیتی با اعداد قابل ردیابی تا منبع و محاسبات بررسی شده تبدیل می شوند.',
 						points: [
-							'خواندن سند قطعی و آزمون شده است؛ فقط تصمیم های نیازمند قضاوت را عاملی انجام می دهد که می توانید تماشا، متوقف و اصلاحش کنید.',
-							'جمع ها با اجرای محاسبه در محیط ایزوله بررسی می شوند. عددی که نخواند، همان رقم چاپ شده سند را نگه می دارد و علامت گذاری می شود.',
+							'عامل های LangGraph/Deep Agents برنامه ریزی و اجرای ابزارها را انجام می دهند، بررسی شیت را به عامل دیگر می سپارند و برای تصمیم های نیازمند بازبینی، منتظر نظر انسان می مانند.',
+							'پارسرهای آزمون شده ساختار جدول را حفظ می کنند و کد، جمع ها و محاسبات سفارشی را بررسی می کند. اعداد ناسازگار با حفظ مقدار منبع علامت گذاری می شوند.',
 							'هر سلول متن اصلی صفحه و میزان اطمینان خواننده را به یاد دارد؛ هم در جدول و هم به شکل یادداشت در فایل خروجی.',
-							'اجراها در پایگاه داده نقطه ذخیره دارند و از عمر درخواست بیشتر زنده می مانند: می توانید صفحه را ببندید، برگردید و نظرتان را عوض کنید.'
+							'نقطه های ذخیره در پایگاه داده امکان ادامه اجرا را فراهم می کنند؛ احراز هویت، کد دعوت و سهمیه مصرف از برنامه منتشرشده پشتیبانی می کنند.'
 						],
 						figures: [
 							{ value: 'GPT-5.6', label: 'هسته عامل هوشمند' },
@@ -445,12 +465,12 @@
 						meta: 'تجسم داده · محصول پژوهشی',
 						title: 'FirmScope',
 						subtitle: 'داشبورد بیگ فور که خودش را توضیح می دهد',
-						text: 'مقایسه ای مبتنی بر شواهد از دلویت، PwC، EY و KPMG در مقیاس، رشد، ترکیب خدمات، جغرافیا و نیروی انسانی؛ با روایتی به نسخه شبیه سازی شده صدای خودم، طوری که داشبورد شما را با خودش همراه می کند. هر عدد همچنان مشاهده پشت خود را باز می کند: متن اصلی منبع، دوره گزارشگری و امتیاز قابلیت مقایسه.',
+						text: 'با هدایت جستجو، استخراج و تحلیل داده به کمک هوش مصنوعی، ۶۵۱ مشاهده از ۷۱ منبع دست اول گردآوری کردم. سپس داشبوردی تعاملی با طراحی اختصاصی برای مقایسه مقیاس، رشد، خدمات، جغرافیا و نیروی انسانی Big Four ساختم که هر عدد آن به شواهد مرتبط است.',
 						points: [
-							'تور روایت شده در بیست و شش صحنه، خود داشبورد را پیش می برد؛ هر نمودار و شواهد زیر آن را باز می کند، همراه با زیرنویس و متن کامل.',
+							'تور ۲۶ صحنه ای با نسخه شبیه سازی شده صدای خودم، داشبورد را هدایت می کند و نمودارها و شواهد را همراه با زیرنویس هماهنگ و متن روایت باز می کند.',
 							'جریان های شاخه ای خطوط خدمات، رتبه بندی های پیوسته و حلقه های سهم، به شکل یک روایت پیوسته و نه انبوهی از کاشی.',
 							'اطلس دفاتر که با یک کره دقیق باز می شود و به نقشه تخت و قابل بزرگنمایی تبدیل می شود.',
-							'دفتر شواهد قابل جستجو، ماتریس پوشش افشا و ردیابی ارقام اصلاح شده، همراه با دفترچه ای که می توانید خروجی بگیرید.'
+							'فرایند پردازش و اعتبارسنجی داده و دفتر شواهد قابل جستجو، متن منبع، دوره گزارشگری، امتیاز قابلیت مقایسه و سابقه اصلاح ارقام را حفظ می کنند؛ دفترچه پژوهش خروجی قابل دریافت دارد.'
 						],
 						figures: [
 							{ value: '۶۵۱', label: 'سند شواهد' },
@@ -472,9 +492,9 @@
 						meta: 'هوش مصنوعی صوتی · پژوهش مقرراتی',
 						title: 'Verity',
 						subtitle: 'رباتی که پیش از پاسخ دادن، خود مقرره را می خواند',
-						text: 'یک دستیار پژوهشی صدا محور برای حسابداران. با صدای بلند می پرسید و او در نسخه زنده مجموعه مقررات فدرال آمریکا جستجو می کند، بخشی را که یافته می خواند و همان را ارجاع می دهد؛ بخش ها پیش از تمام شدن جمله اش روی صفحه ظاهر می شوند.',
+						text: 'یک چارچوب عامل اختصاصی با TypeScript ساختم که صدای بلادرنگ OpenAI را از طریق WebRTC به ابزارهای پژوهش مقررات وصل می کند. عامل، جستجو و بازیابی مقررات فدرال و بررسی ارجاع ها را انجام می دهد و نتیجه ابزارها حین گفتگو روی صفحه ظاهر می شود.',
 						points: [
-							'گفتگوی صوتی دوطرفه روی WebRTC و مستقیم از مرورگر. می توانید میان حرفش بروید و حرکت دهانش از همان صدایی می آید که می شنوید.',
+							'صدا و متن از ابزارها و وضعیت مشترک گفتگو استفاده می کنند. مکالمه بلادرنگ امکان قطع صحبت را دارد و حرکت شخصیت متحرک با صدایی که می شنوید هماهنگ است.',
 							'یک قرارداد اجاره یا نامه پذیرش کار به او بدهید تا بندهایی را که یک بازبین روی آن ها می ایستد نام ببرد و همان ها را روی صفحه سند و بر اساس شدت، رنگ گذاری کند.',
 							'پیش از آنکه پاسخ به شما برسد خودش آن را بررسی می کند: هر ارجاع با جستجوهایی که واقعا در همان نوبت انجام شده مقایسه می شود، پس بند ساختگی گرفته می شود.',
 							'آموزش هم می دهد: یک قاعده را به شکل درس با ارجاع زیر هر نکته، یا پرسش های سبک آزمون که پاسخ تا زمان درخواست شما پنهان می ماند.'
@@ -499,67 +519,77 @@
 			},
 			resume: {
 				kicker: 'رزومه',
-				titleLead: 'تجربه ای که با نتایج سنجیده می شود.',
+				titleLead: 'حسابداری، تحلیل مالی، اتوماسیون',
 				titleTail: '',
 				accent: '',
+				download: 'دریافت رزومه (PDF انگلیسی)',
 				experienceHeading: 'سوابق حرفه ای',
 				experience: [
 					{
-						role: 'سازنده هوش مصنوعی و یادگیرنده مستقل',
-						period: '۲۰۲۶ - اکنون',
+						role: 'توسعه دهنده مستقل هوش مصنوعی فول استک',
+						period: 'ژوئن ۲۰۲۶ - اکنون',
 						place: 'پروژه های مستقل · دالاس، تگزاس',
-						text: 'یادگیری هر روزه هوش مصنوعی و لذت بردن از ساختن؛ انتشار Rowbot برای تبدیل اسناد به اکسل قابل ردیابی و FirmScope برای تحلیل Big Four، همراه با کد و شواهد باز.'
+						text: 'ساخت و انتشار برنامه های هوش مصنوعی: Rowbot روی Vercel با OCR و عامل های قابل بازبینی توسط انسان؛ FirmScope با پژوهش به کمک AI و نمودارهای اختصاصی؛ Verity با چارچوب عامل صوتی بلادرنگ.'
 					},
 					{
 						role: 'متخصص فروش',
-						period: '۲۰۲۵ - ۲۰۲۶',
+						period: 'فوریه ۲۰۲۵ - ژوئن ۲۰۲۶',
 						place: "Dillard's · ایالات متحده",
-						text: 'پیگیری KPI، پیش بینی و بهینه سازی UPT در عملیات فروش پرتراکنش، با تبدیل خریدهای تک محصولی به فروش چندمحصولی.'
+						text: "تقدیر بابت فروش معمول روزانه بیش از ۲۰۰۰ دلار در برابر هدف ۱۸۰۰ دلاری. اتمام آموزش فروش خانه و دکور Home Style Academy در Dillard's. افزایش اقلام هر تراکنش و خدمت رسانی به ده ها مشتری روزانه؛ انجام تراکنش های POS، دریافت وجه، مغایرت گیری و رعایت رویه ها."
 					},
 					{
 						role: 'تحلیلگر ارشد عملیات فروش',
 						period: '۲۰۱۹ - ۲۰۲۴',
 						place: 'شونیز · بیرجند، ایران',
-						text: 'راه اندازی شعبه منطقه ای و افزایش ۴۱ درصدی فروش ماهانه با داشبوردهای خودکار، بر پایه تحلیل ۸۸ مسیر در ۱۱ شهر برای حدود ۲۵۰۰ حساب.'
+						text: 'مشارکت در راه اندازی شعبه؛ بررسی و تطبیق بیش از ۱۰۰ فاکتور روزانه، عمدتا فروش. خودکارسازی حدود ۹۰ درصد گزارش عملکرد در اکسل برای ۱۵ نماینده فروش و محاسبه خطی پاداش براساس تحقق هدف، متوسط فروش محصول و دشواری فروش. تحلیل سابقه مشتری، هماهنگی تامین موجودی با کارخانه و گزارش مستقیم به ستاد در ۸۸ مسیر، ۱۱ شهر، حدود ۱۰۰ محصول و ۲۵۰۰ حساب، در دوره رشد ۴۱ درصدی فروش نسبت به سال قبل.'
 					},
 					{
 						role: 'حسابدار ارشد',
 						period: '۲۰۱۵ - ۲۰۱۹',
-						place: 'پخش مواد غذایی اصالت · بیرجند، ایران',
-						text: 'حسابداری کامل، گزارشگری مالی، حقوق و دستمزد، مغایرت گیری و حسابرسی برای شبکه توزیع ۱۱ شهری با حدود ۱۰۰۰ مشتری.'
+						place: 'شرکت پخش مواد غذایی اصالت · بیرجند، ایران',
+						text: 'مدیریت گزارشگری مالی، اظهارنامه های فصلی، بستن سال و حسابرسی مالی انبار. رسیدگی به ۲۰ تا ۳۰ فاکتور روزانه، پرداختنی و دریافتنی، دفتر کل، حقوق و دستمزد، بیمه و مغایرت گیری بانکی؛ ساخت مدل های خودکار محاسبه پورسانت فروش.'
 					},
 					{
 						role: 'حسابدار و پیاده ساز سیستم',
 						period: '۲۰۱۰ - ۲۰۱۵',
 						place: 'فروشگاه فرش پالاز · بیرجند، ایران',
-						text: 'طراحی نخستین سیستم حسابداری شرکت از پایه، با استانداردسازی کدینگ محصولات، موجودی و مغایرت گیری بدون اختلاف.'
+						text: 'طراحی و پیاده سازی تمام سیستم حسابداری فروشگاه از صفر. مدیریت دریافتنی و پرداختنی نقدی، اقساطی و چکی، حقوق و دستمزد، الزامات بیمه، مزایا و هزینه های عملیاتی.'
 					}
 				],
 				skillsHeading: 'مهارت های اصلی',
 				skills: [
 					{
-						group: 'AI و اتوماسیون',
-						items: [
-							'هارنس های عامل Claude Code و OpenAI Codex',
-							'مهندسی عامل محور',
-							'پرامپت نویسی هوش مصنوعی و مهندسی پرامپت',
-							'طراحی و ارزیابی عامل',
-							'اتوماسیون کم کد',
-							'CI/CD'
-						]
-					},
-					{
-						group: 'حسابداری و مالی',
+						group: 'حسابداری و سیستم ها',
 						items: [
 							'حسابداری کامل',
-							'حساب های پرداختنی و دریافتنی',
-							'بستن سال مالی',
-							'گزارش مالیاتی'
+							'پرداختنی و دریافتنی',
+							'بستن سال و گزارش مالیاتی',
+							'هلو و سپیدار',
+							'ERP اختصاصی'
 						]
 					},
 					{
-						group: 'داده و سیستم',
-						items: ['پیش بینی', 'گزارشگری BI', 'اکسل پیشرفته و Copilot', 'پیاده سازی ERP']
+						group: 'اکسل و تحلیل مالی',
+						items: [
+							'PivotTables',
+							'VLOOKUP و SUMIF',
+							'گزارش و محاسبه پاداش خودکار',
+							'پیش بینی و گزارش KPI'
+						]
+					},
+					{
+						group: 'هوش مصنوعی و اتوماسیون',
+						items: [
+							'Claude Code و OpenAI Codex',
+							'مهندسی پرامپت',
+							'هماهنگی عامل ها و بازبینی انسانی',
+							'برنامه های هوش مصنوعی فول استک',
+							'SvelteKit, TypeScript & Vercel'
+						]
+					},
+					{
+						group: 'کاربرد عملی در دوره ها و محیط آموزشی',
+						items: ['Power BI', 'QuickBooks']
 					}
 				],
 				educationHeading: 'تحصیلات',
@@ -569,24 +599,32 @@
 						school: 'دانشگاه آزاد اسلامی، واحد علوم و تحقیقات تهران · ۲۰۱۳-۲۰۱۷'
 					},
 					{
-						degree: 'کارشناسی حسابداری کاربردی',
-						school: 'دانشگاه آزاد اسلامی، بیرجند · ۲۰۱۰-۲۰۱۳'
+						degree: 'کارشناسی حسابداری علمی کاربردی',
+						school: 'دانشگاه آزاد اسلامی بیرجند · ۲۰۱۰-۲۰۱۳'
 					},
-					{ degree: 'کاردانی حسابداری بازرگانی', school: 'آموزشکده فنی بیرجند · ۲۰۰۸-۲۰۱۰' }
+					{
+						degree: 'کاردانی حسابداری بازرگانی',
+						school: 'آموزشکده فنی بیرجند · ۲۰۰۸-۲۰۱۰'
+					},
+					{
+						degree: 'دیپلم حسابداری',
+						school: 'دبیرستان رسالت · ۲۰۰۶-۲۰۰۸'
+					}
 				],
-				certsHeading: 'گواهی های آنلاین',
+
+				certsHeading: 'گواهی های LinkedIn Learning',
 				certs: [
 					'The AI-Driven Accountant',
-					'Generative AI in Finance & Accounting',
-					'The Future of AI for Finance',
+					'Leveraging Generative AI in Finance and Accounting',
+					'The Future of AI for Finance and Accounting',
 					'Microsoft Copilot: The Art of Prompt Writing'
 				],
-				alsoHeading: 'گواهی ها و تجربه های دیگر',
+				alsoHeading: 'مدارک و تجربه های تکمیلی',
 				also: [
-					'شیرینی پزی و آشپزی حرفه ای',
+					'گواهی حرفه ای شیرینی پزی',
 					'کمربند قهوه ای کاراته',
-					'CPR و حمایت حیاتی پایه',
-					'۲۰ سال تجربه بازی فوتبال حرفه ای، از جمله ۴ سال هدایت باشگاه ابومسلم.'
+					'گواهی CPR و حمایت حیاتی پایه',
+					'باشگاه ابومسلم، ۲۰۰۴ تا ۲۰۲۴: بازیکن، مربی و داور دارای گواهی، با چهار سال مدیریت باشگاه.'
 				]
 			},
 			testimonial: {
@@ -598,14 +636,14 @@
 				kicker: 'ارتباط',
 				title: 'تصور دوباره حساب داری از روزنه ی هوش مصنوعی',
 				accent: '',
-				body: 'آماده فرصت های شرکتی و Big Four؛ جایی که دقت حسابداری و استراتژی هوش مصنوعی به هم می رسند. خوشحال می شوم درباره کاری که می سازید بشنوم.',
+				body: 'آماده همکاری حضوری و دورکاری در حسابداری، تحلیل مالی و اتوماسیون با هوش مصنوعی هستم. مدیریت کامل حسابداری، تجربه گزارشگری در شرکت بزرگ و برنامه های فول استک منتشرشده را به تیم های مالی می آورم.',
 				cta: 'همکاری با الی',
 				email: 'ایمیل',
 				phone: 'تلفن',
 				location: 'موقعیت',
 				linkedin: 'لینکدین',
 				github: 'گیت هاب',
-				footer: 'حسابدار و متخصص فروش مجهز به AI'
+				footer: 'حسابداری | تحلیل مالی | اتوماسیون با هوش مصنوعی'
 			},
 			deck: {
 				open: 'ارائه',
@@ -695,10 +733,10 @@
 </script>
 
 <svelte:head>
-	<title>Elham "Eli" Aboutorabi | AI-Enabled Accountant</title>
+	<title>Elham "Eli" Aboutorabi | Accounting, Financial Analysis &amp; AI Automation</title>
 	<meta
 		name="description"
-		content="Elham Aboutorabi is an AI-enabled accounting professional in Dallas, TX, blending full-cycle accounting, sales operations, data analysis and automation."
+		content="Elham Aboutorabi: full-cycle accounting, financial analysis and deployed full-stack AI applications. Dallas, TX; open to local and remote roles. Download her resume."
 	/>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
@@ -834,7 +872,11 @@
 						<BriefcaseBusiness size={17} strokeWidth={2.1} animate={activeNavKey === 'work'} />
 						<span>{c.hero.primary}</span>
 					</a>
-					<a class="button hero-button button-secondary" href="#resume">
+					<a
+						class="button hero-button button-secondary"
+						href="/Elham_Aboutorabi_Resume.pdf"
+						download
+					>
 						<FileText size={17} strokeWidth={2.1} animate={activeNavKey === 'resume'} />
 						<span>{c.hero.secondary}</span>
 					</a>
@@ -952,6 +994,11 @@
 							<em>{c.resume.accent}</em>{/if}{#if c.resume.titleTail}<br />{c.resume.titleTail}{/if}
 					</h2>
 				</div>
+				<a
+					class="button button-secondary resume-download"
+					href="/Elham_Aboutorabi_Resume.pdf"
+					download>{c.resume.download}</a
+				>
 			</div>
 
 			<div class="resume-grid">

@@ -1727,6 +1727,10 @@ em {
 	gap: clamp(40px, 5vw, 72px);
 }
 
+.resume-download {
+	flex-shrink: 0;
+}
+
 .timeline h3,
 .side-card h3,
 .credential-card h3 {

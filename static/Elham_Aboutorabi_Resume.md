@@ -1,87 +1,102 @@
-# ELHAM ABOUTORABI
+# Elham Aboutorabi
 
-Phone: +1 (469) 618-8462 | Email: Eli.abotorabi@gmail.com | Location: Dallas, TX
+Accounting | Financial Analysis | AI Automation | Full-cycle accounting / Financial reporting / Dallas, TX / Local and remote roles
 
-LinkedIn: https://www.linkedin.com/in/elham-aboutorabi/
+[eliaboutorabi.github.io](https://eliaboutorabi.github.io/) | [eliaboutorabi](https://github.com/eliaboutorabi) | [Eli.abotorabi@gmail.com](mailto:Eli.abotorabi@gmail.com) | [(469) 618-8462](tel:+14696188462) | [elham-aboutorabi](https://www.linkedin.com/in/elham-aboutorabi/)
 
-## PROFESSIONAL SUMMARY
+Accounting professional and full-stack AI builder with a master's degree and 10+ years across small-business accounting and enterprise operations. Independently run the full accounting function of a small business; built accounting systems from scratch, automated reporting and incentives for 15 sales representatives, and reviewed and reconciled 100+ daily invoices. Develop and deploy complete AI applications.
 
-Results-driven and tech-forward Accounting Professional with a Master's degree in Accounting and extensive experience in financial reporting, data analysis, and AI-driven automation. Highly adept at transforming complex data into actionable financial insights, leveraging deep expertise in agentic AI, prompt engineering, and no-code automation to solve intricate business problems. Proven ability to build accounting infrastructures from the ground up and optimize full-cycle processes. Passionate about merging traditional accounting rigor with cutting-edge AI strategies to drive operational efficiency and financial innovation in corporate or Big Four environments.
+## Core skills
 
-## EDUCATION
+- **Accounting:** Full-cycle accounting, accounts payable/receivable (A/P, A/R), general ledger (GL), bank reconciliation, year-end close, tax reporting
+- **Financial operations:** Cash flow monitoring, payroll and insurance processing, inventory variance analysis
+- **Excel & reporting:** PivotTables, VLOOKUP, SUMIF, formula-driven reporting, performance scorecards, incentive calculations, Copilot
+- **Financial analysis:** Sales and revenue forecasting, KPI and variance analysis, customer purchase trends, route/product analysis
+- **Accounting systems:** Holu, Sepidar, custom ERP/accounting systems, chart of accounts and customer setup, ERP implementation, POS
+- **Applied coursework:** Power BI and QuickBooks: hands-on coursework and academic use
+- **AI & automation:** Agent orchestration, tool calling, human-in-the-loop workflows, prompt engineering, Claude Code, OpenAI Codex
+- **Development:** AI-assisted full-stack development, SvelteKit, TypeScript, API integration, databases, Vercel, CI/CD, UI/UX
+- **Languages:** English (fluent), Persian (native), Arabic (basic)
 
-Master's Degree in Accounting | Islamic Azad University, Tehran Science and Research Branch | 2013 - 2017
 
-Thesis: Investigating the Relationship Between Board Composition and Corporate Debt Levels.
+## Professional experience
 
-Bachelor's Degree in Applied Scientific Accounting | Islamic Azad University of Birjand | 2010 - 2013
+### Independent Projects | Dallas, TX | Jun 2026 - Present
 
-Thesis: How accounting evolves in the age of e-commerce
+#### Independent Full-Stack AI Developer | Jun 2026 - Present
 
-Associate Degree in Business Accounting | Birjand Technical School | 2008 - 2010
-
-Diploma in Accounting | Resalat Liberal Arts School | 2006 - 2008
-
-## SKILLS
-
-- AI: Agentic engineering, AI prompting and prompt engineering, Claude Code and OpenAI Codex agent harnesses, Agent design and evaluation, Copilot business and strategy planning, No-code/Low-code Automation tools, Visual Studio Code, Vibe coding, CI/CD, Frontend and Information Design.
-- Accounting & Finance: Full-Cycle Accounting, Accounts Payable/Receivable, General Ledger, Bank Reconciliation, Year-End Close, Tax Reporting, Cash Flow Monitoring, Payroll & Insurance Processing.
-- Data & Analytics: Large Dataset Management, Sales & Revenue Forecasting, Financial KPI Tracking, Business Intelligence Reporting, Variance Analysis.
-- Systems & Tools: Advanced Microsoft Excel and Copilot, POS Systems, ERP/Accounting Software Implementation.
-- Language: English (Fluent), Persian (Native), Arabic (Basic)
-
-## PROFESSIONAL EXPERIENCE
-
-### Independent Projects | Dallas, TX | AI Builder & Self-Directed Learner | Jun 2026 - Present
-
-- Study agentic AI, prompt engineering, and applied automation daily, turning that learning into software that ships.
-- Built Rowbot, an agentic OCR application that turns PDFs, photographs, and scans into multi-sheet Excel workbooks with every figure traceable to its source page.
-- Built FirmScope, a Big Four intelligence dashboard drawing on 651 structured observations from 71 primary sources.
-- Publish each project openly with its source code, evidence, and checks, and genuinely enjoy the building.
+- [Rowbot](https://rowbot.sh): Built and deployed a full-stack document-to-Excel app on Vercel with SvelteKit/TypeScript, Mistral OCR and OpenAI models. Added LangGraph/Deep Agents planning, tools, audit subagents, human review and persistent state, with source-linked multi-sheet exports and arithmetic checks.
+- [FirmScope](https://eliaboutorabi.github.io/big4dash/): Orchestrated AI-assisted research and data processing to assemble 651 observations from 71 primary sources. Designed custom interactive visualizations, linked evidence, a 3D office atlas and a 26-scene narrated tour for Big Four analysis.
+- [Verity](https://eliaboutorabi.github.io/Verity/): Built a custom agent harness with real-time voice over WebRTC, integrating OpenAI models, tool execution, federal-regulation retrieval, citation verification and document highlighting.
+- Apply daily self-directed AI study to deployed applications; publish [source code](https://github.com/eliaboutorabi), evidence and checks.
 
 ### Dillard's | United States | Sales Specialist | Feb 2025 - Jun 2026
 
-- Monitored daily and monthly sales metrics against individual and departmental revenue targets.
-- Drove strategic upselling and cross-selling initiatives, consistently increasing Units Per Transaction (UPT).
-- Executed high-volume daily transactions with strict adherence to cash handling, reconciliation, and compliance procedures.
+- Earned recognition for typically exceeding $2,000 in daily sales against a $1,800 target; increased units per transaction through upselling and cross-selling.
+- Completed Dillard's Home Style Academy training in home and decor sales.
+- Served dozens of customers daily; handled high-volume POS transactions, cash handling, reconciliation and compliance.
 
 ### Shoniz | Birjand, Iran | Senior Sales Operations Analyst | 2019 - 2024
 
-- Played a pivotal role in establishing the regional branch during its inaugural year.
-- Engineered daily automated performance dashboards for a 15-person sales team, driving a 41% increase in monthly sales volume over a two-year period.
-- Analyzed datasets across 88 routes in 11 cities for a roughly 100-product portfolio serving about 2,500 active wholesale and retail accounts.
-- Prepared executive-level reports on route analysis, inventory risk, and market intelligence.
+- Reviewed and reconciled 100+ invoices daily, primarily sales invoices, in the company's custom ERP; helped launch the regional branch.
+- Automated approximately 90% of Excel performance reporting for 15 sales representatives from pasted data. Calculated target-triggered linear rewards using product sales averages and difficulty-weighted coefficients.
+- Analyzed customer purchases, interactions and activity over time to inform sales representatives.
+- Coordinated inventory replenishment with the factory; reported stock availability and shortage risks to sales representatives.
+- Reported route, city and product performance directly to headquarters leaders, alongside market intelligence, across 88 routes, 11 cities, approximately 100 products and 2,500 active accounts during 41% year-over-year sales growth.
 
 ### Esalat Food Distribution Company | Birjand, Iran | Senior Accountant | 2015 - 2019
 
-- Managed daily accounting operations, including A/P, A/R, vendor invoicing, and general ledger maintenance.
-- Led financial reporting, quarterly tax filings, year-end closing entries, payroll, and insurance operations.
-- Executed bank reconciliations, tracked inventory variances, and led warehouse financial audits.
-- Developed automated commission tracking models for the sales team.
+- Managed A/P, A/R and the general ledger, handling 20-30 vendor and other invoices daily.
+- Led financial reporting, quarterly tax filings and year-end close; managed payroll and insurance.
+- Reconciled bank accounts, analyzed inventory variances and led warehouse financial audits.
+- Developed automated sales commission tracking models.
 
 ### Palaz Carpet Store | Birjand, Iran | Accountant & Systems Implementer | 2010 - 2015
 
-- Architected and deployed the company's foundational accounting system from the ground up.
-- Managed cash, installment, and check-based accounts receivable/payable.
-- Administered payroll processing, insurance compliance, benefits, and operational expenditure tracking.
+- Designed and implemented the store's entire accounting system from the ground up.
+- Managed cash, installment and check-based accounts receivable and payable.
+- Administered payroll, insurance compliance, benefits and operating expense tracking.
 
-## ONLINE CERTIFICATES
+## Education
 
-- LinkedIn: The AI-Driven Accountant
-- LinkedIn: Leveraging Generative AI in Finance and Accounting
-- LinkedIn: The Future of AI for Finance and Accounting
-- LinkedIn: Microsoft Copilot: The Art of Prompt Writing
+### Islamic Azad University, Tehran Science and Research Branch
 
-## LEADERSHIP & EXTRACURRICULAR EXPERIENCE
+Master's Degree in Accounting | 2013 - 2017
 
-Aboumoslem Soccer Club - Club Operations Manager, Certified Coach & Player | 2004 - 2024
+Thesis: Investigating the Relationship Between Board Composition and Corporate Debt Levels.
 
-- Directed daily operations, logistics, scheduling, team communications, and resource allocation.
-- Earned official certifications in coaching and officiating.
-- Competed extensively at the city and state levels.
+Advanced accounting coursework in undergraduate and graduate studies.
 
-Professional Baking Certificate
+### Islamic Azad University of Birjand
 
-Karate Brown Belt
+Bachelor's Degree in Applied Scientific Accounting | 2010 - 2013
 
-Certified CPR and Basic Life Support
+Thesis: How accounting evolves in the age of e-commerce.
+
+### Birjand Technical School
+
+Associate Degree in Business Accounting | 2008 - 2010
+
+### Resalat Liberal Arts School
+
+Diploma in Accounting | 2006 - 2008
+
+## LinkedIn Learning Certificates
+
+- **The AI-Driven Accountant**
+- **Leveraging Generative AI in Finance and Accounting**
+- **The Future of AI for Finance and Accounting**
+- **Microsoft Copilot: The Art of Prompt Writing**
+
+## Leadership & extracurricular experience
+
+### Aboumoslem Soccer Club | Club Operations Manager, Certified Coach & Player | 2004 - 2024
+
+- Led daily club operations, logistics, scheduling, team communications, and resource allocation for four years.
+- Earned official coaching and officiating certifications; competed at city and state levels.
+
+## Additional qualifications
+
+- Professional Baking Certificate
+- Karate Brown Belt
+- Certified CPR and Basic Life Support

@@ -32,4 +32,27 @@ npm run check
 npm run build
 ```
 
+## Resume source and downloads
+
+The authoritative resume content lives in `../JobApply/elham.resume.json`.
+The Quiet Engineering builder in that repository is the only PDF authoring entry point.
+The homepage keeps concise English and Persian summaries in `src/routes/+page.svelte`,
+which also feed presentation mode.
+
+After editing the resume, rebuild and synchronize its validated PDF and matching Markdown:
+
+```sh
+npm run resume:pdf
+# Or, when the resume repository is elsewhere:
+npm run resume:pdf -- /path/to/JobApply
+npm run check
+npm run build
+```
+
+The resume repository needs its `.venv` and Poppler installed as described in its README.
+`resume:pdf` copies the generated files into `static/Elham_Aboutorabi_Resume.pdf` and
+`static/Elham_Aboutorabi_Resume.md`. Do not independently edit these copies.
+The site build includes both downloads; the deployment workflow refreshes the root copies.
+Building and reviewing locally does not publish the site.
+
 Paraglide output is generated during `prepare` and `check`; the generated `src/lib/paraglide` directory is intentionally ignored.
