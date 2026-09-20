@@ -94,7 +94,7 @@
 				intro:
 					'I combine end-to-end accounting ownership and enterprise analysis with full-stack AI applications that I design, build and deploy.',
 				primary: 'Portfolio',
-				secondary: 'Download resume'
+				secondary: 'Resume'
 			},
 			about: {
 				kicker: 'About',
@@ -389,7 +389,7 @@
 				intro:
 					'مدیریت کامل حسابداری و تحلیل در شرکت های بزرگ را با برنامه های هوش مصنوعی فول استک که طراحی، توسعه و منتشر می کنم ترکیب می کنم.',
 				primary: 'نمونه کارها',
-				secondary: 'دریافت رزومه'
+				secondary: 'رزومه'
 			},
 			about: {
 				kicker: 'درباره',
