@@ -889,10 +889,20 @@
 .deck-byline {
 	margin: 24px 0 0;
 	color: #9a7a55;
-	font-size: 13px;
+	font-size: 17px;
 	font-weight: 700;
-	letter-spacing: 0.24em;
-	text-transform: uppercase;
+	line-height: 1.6;
+}
+
+.deck-quote-role {
+	margin: 6px 0 0;
+	color: var(--muted);
+	font-size: 16px;
+	line-height: 1.6;
+}
+
+.deck-quote .testimonial-source {
+	font-size: 15px;
 }
 
 /* Contact: the closing slide takes the site's ink band, and the whole

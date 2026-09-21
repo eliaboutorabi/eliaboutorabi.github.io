@@ -62,6 +62,8 @@ export type Copy = {
 	testimonial: {
 		quote: string;
 		byline: string;
+		role: string;
+		sourceLabel: string;
 	};
 	contact: {
 		kicker: string;

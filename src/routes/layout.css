@@ -2006,13 +2006,33 @@ em {
 	font-style: normal;
 }
 
-.testimonial p {
+.testimonial-byline {
 	margin: 20px 0 0;
 	color: #9a7a55;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: 700;
-	letter-spacing: 0.22em;
-	text-transform: uppercase;
+	line-height: 1.6;
+}
+
+.testimonial-role {
+	margin: 6px 0 0;
+	color: var(--muted);
+	font-size: 13px;
+	line-height: 1.7;
+}
+
+.testimonial-source {
+	display: inline-block;
+	margin-top: 16px;
+	color: var(--ink);
+	font-size: 13px;
+	line-height: 1.6;
+	text-underline-offset: 4px;
+	text-decoration: underline;
+}
+
+.testimonial-source:hover {
+	color: var(--muted);
 }
 
 .contact-band {

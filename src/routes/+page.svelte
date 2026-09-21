@@ -334,8 +334,10 @@
 			},
 			testimonial: {
 				quote:
-					"Eli's analytical mindset and attention to detail transformed our financial processes, and gave us the clarity we needed to scale with confidence.",
-				byline: 'Operations Director'
+					'She was always willing to take on new challenges, learn quickly, and bring fresh ideas to the team. She didn’t just focus on completing her tasks; she often looked for better and more practical ways to get things done.',
+				byline: 'Farzad Adelzadeh Sadabadi, PhD',
+				role: 'University Professor · Strategic Planning Manager, Shoniz',
+				sourceLabel: 'Read the recommendation on LinkedIn'
 			},
 			contact: {
 				kicker: "Let's Connect",
@@ -629,8 +631,10 @@
 			},
 			testimonial: {
 				quote:
-					'ذهنیت تحلیلی و توجه الی به جزئیات، فرایندهای مالی ما را متحول کرد و شفافیتی ساخت که برای رشد با اطمینان لازم داشتیم.',
-				byline: 'مدیر عملیات'
+					'او همیشه آماده بود چالش های تازه را بپذیرد، سریع یاد بگیرد و ایده های نو به تیم بیاورد. او فقط به انجام وظایفش بسنده نمی کرد؛ اغلب به دنبال راه های بهتر و عملی تری برای انجام کارها بود.',
+				byline: 'Farzad Adelzadeh Sadabadi, PhD',
+				role: 'استاد دانشگاه · مدیر برنامه ریزی استراتژیک شونیز',
+				sourceLabel: 'متن اصلی توصیه نامه در لینکدین (انگلیسی)'
 			},
 			contact: {
 				kicker: 'ارتباط',
@@ -1092,9 +1096,13 @@
 	<section class="testimonial-band">
 		<div class="testimonial reveal">
 			<div aria-hidden="true">"</div>
-			<blockquote>{c.testimonial.quote}</blockquote>
+			<blockquote cite={linkedinUrl}>{c.testimonial.quote}</blockquote>
 			<div class="mini-ornament" aria-hidden="true"><span></span><i></i><span></span></div>
-			<p>{c.testimonial.byline}</p>
+			<p class="testimonial-byline" dir="auto">{c.testimonial.byline}</p>
+			<p class="testimonial-role">{c.testimonial.role}</p>
+			<a class="testimonial-source" href={linkedinUrl} target="_blank" rel="noreferrer">
+				{c.testimonial.sourceLabel}
+			</a>
 		</div>
 	</section>
 

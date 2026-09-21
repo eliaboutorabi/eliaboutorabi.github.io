@@ -699,11 +699,23 @@
 						<div class="deck-quote-mark deck-rise" style="--i: 0" aria-hidden="true">
 							<MessageSquareQuote size={44} strokeWidth={1.6} animate={false} />
 						</div>
-						<blockquote class="deck-rise" style="--i: 1">{c.testimonial.quote}</blockquote>
+						<blockquote class="deck-rise" style="--i: 1" cite={linkedinUrl}>
+							{c.testimonial.quote}
+						</blockquote>
 						<div class="mini-ornament deck-rise" style="--i: 2" aria-hidden="true">
 							<span></span><i></i><span></span>
 						</div>
-						<p class="deck-byline deck-rise" style="--i: 3">{c.testimonial.byline}</p>
+						<p class="deck-byline deck-rise" style="--i: 3" dir="auto">
+							{c.testimonial.byline}
+						</p>
+						<p class="deck-quote-role deck-rise" style="--i: 4">{c.testimonial.role}</p>
+						<a
+							class="testimonial-source deck-rise"
+							style="--i: 5"
+							href={linkedinUrl}
+							target="_blank"
+							rel="noreferrer">{c.testimonial.sourceLabel}</a
+						>
 					</div>
 				{:else if slide.kind === 'contact'}
 					<div class="deck-contact">
