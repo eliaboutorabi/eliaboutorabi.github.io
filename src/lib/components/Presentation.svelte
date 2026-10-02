@@ -5,10 +5,7 @@
 		Award,
 		BadgeCheck,
 		BookOpenCheck,
-		BrainCog,
 		BriefcaseBusiness,
-		ChartColumnIncreasing,
-		ChartNoAxesCombined,
 		ChevronLeft,
 		ChevronRight,
 		FileText,
@@ -16,12 +13,10 @@
 		MailCheck,
 		MapPinCheck,
 		Maximize,
-		MessageSquareQuote,
 		Minimize,
 		SmartphoneNfc,
 		SquareArrowOutUpRight,
 		Telescope,
-		UserRound,
 		X
 	} from '@jis3r/icons';
 	import GithubMark from './GithubMark.svelte';
@@ -33,17 +28,7 @@
 	type Slide =
 		| {
 				id: string;
-				kind:
-					| 'cover'
-					| 'about'
-					| 'values'
-					| 'numbers'
-					| 'work'
-					| 'experience'
-					| 'skills'
-					| 'credentials'
-					| 'testimonial'
-					| 'contact';
+				kind: 'cover' | 'work' | 'experience' | 'skills' | 'credentials' | 'contact';
 				label: string;
 		  }
 		| { id: string; kind: 'project'; label: string; project: Project };
@@ -92,9 +77,9 @@
 
 	const slides = $derived<Slide[]>([
 		{ id: 'cover', kind: 'cover', label: c.hero.eyebrow },
-		{ id: 'about', kind: 'about', label: c.about.kicker },
-		{ id: 'values', kind: 'values', label: c.deck.principles },
-		{ id: 'numbers', kind: 'numbers', label: c.deck.highlights },
+		{ id: 'experience', kind: 'experience', label: c.resume.experienceHeading },
+		{ id: 'skills', kind: 'skills', label: c.deck.toolkit },
+		{ id: 'credentials', kind: 'credentials', label: c.deck.credentials },
 		{ id: 'work', kind: 'work', label: c.work.title },
 		...c.work.projects.map((project) => ({
 			id: `project-${project.id}`,
@@ -102,10 +87,6 @@
 			label: project.title,
 			project
 		})),
-		{ id: 'experience', kind: 'experience', label: c.resume.experienceHeading },
-		{ id: 'skills', kind: 'skills', label: c.deck.toolkit },
-		{ id: 'credentials', kind: 'credentials', label: c.deck.credentials },
-		{ id: 'testimonial', kind: 'testimonial', label: c.deck.testimonial },
 		{ id: 'contact', kind: 'contact', label: c.contact.kicker }
 	]);
 	const count = $derived(slides.length);
@@ -118,7 +99,6 @@
 	let fullscreenAvailable = $state(false);
 	let playing = $state<string | null>(null);
 	let hovered = $state<string | null>(null);
-	let statValues = $state<string[]>([]);
 	let deckEl = $state<HTMLDivElement>();
 
 	let idleTimer: ReturnType<typeof setTimeout> | undefined;
@@ -267,45 +247,6 @@
 		else previous();
 	}
 
-	function parseStat(value: string) {
-		const latin = value.replace(/[۰-۹]/g, (d) => String(PERSIAN_DIGITS.indexOf(d)));
-		return Number(latin.replace(/\D/g, '')) || 0;
-	}
-
-	function formatStat(n: number, like: string) {
-		const grouped = like.includes(',') ? n.toLocaleString('en-US') : String(n);
-		return /[۰-۹]/.test(like) ? grouped.replace(/\d/g, (d) => PERSIAN_DIGITS[Number(d)]) : grouped;
-	}
-
-	// The figures count up each time the numbers slide arrives.
-	$effect(() => {
-		const stats = c.stats;
-		if (current.kind !== 'numbers') {
-			statValues = stats.map((stat) => formatStat(0, stat.value));
-			return;
-		}
-		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-			statValues = stats.map((stat) => stat.value);
-			return;
-		}
-		const targets = stats.map((stat) => parseStat(stat.value));
-		const duration = 1600;
-		let start = 0;
-		let frame = 0;
-		const tick = (now: number) => {
-			if (!start) start = now;
-			const t = Math.min(1, (now - start) / duration);
-			const eased = 1 - Math.pow(1 - t, 4);
-			statValues = stats.map((stat, i) => formatStat(Math.round(targets[i] * eased), stat.value));
-			if (t < 1) frame = requestAnimationFrame(tick);
-		};
-		const timer = setTimeout(() => (frame = requestAnimationFrame(tick)), 420);
-		return () => {
-			clearTimeout(timer);
-			cancelAnimationFrame(frame);
-		};
-	});
-
 	onMount(() => {
 		const el = deckEl;
 		if (!el) return;
@@ -402,77 +343,6 @@
 							<span class="deck-portrait-halo" aria-hidden="true"></span>
 							<img src="/hero_headshot.png" alt={c.hero.eyebrow} />
 						</figure>
-					</div>
-				{:else if slide.kind === 'about'}
-					<div class="deck-head deck-rise" style="--i: 0">
-						<div class="section-kicker">
-							<UserRound size={20} strokeWidth={2.1} animate={false} />
-							<span>{c.about.kicker}</span>
-						</div>
-						<p class="about-name">{c.about.name}</p>
-					</div>
-					<div class="deck-split">
-						<h2 class="deck-title deck-rise" style="--i: 1">
-							{c.about.title}<br /><em>{c.about.accent}</em>
-						</h2>
-						<div class="deck-body">
-							{#each c.about.body as paragraph, j (paragraph)}
-								<p class="deck-rise" style="--i: {j + 2}">{paragraph}</p>
-							{/each}
-						</div>
-					</div>
-				{:else if slide.kind === 'values'}
-					<div class="deck-head deck-rise" style="--i: 0">
-						<div class="section-kicker">
-							<UserRound size={20} strokeWidth={2.1} animate={false} />
-							<span>{c.deck.principles}</span>
-						</div>
-						<h2 class="deck-title">{c.deck.principlesTitle}</h2>
-					</div>
-					<div class="deck-values">
-						{#each c.about.cards as card, j (card.title)}
-							<article class="deck-value deck-rise" style="--i: {j + 1}">
-								<div class="icon-shell">
-									{#if card.icon === 'decisions'}
-										<ChartNoAxesCombined size={30} strokeWidth={1.8} animate={false} />
-									{:else if card.icon === 'ai'}
-										<BrainCog size={30} strokeWidth={1.8} animate={false} />
-									{:else}
-										<ChartColumnIncreasing size={30} strokeWidth={1.8} animate={false} />
-									{/if}
-								</div>
-								<h3>{card.title}</h3>
-								<p>{card.text}</p>
-							</article>
-						{/each}
-					</div>
-				{:else if slide.kind === 'numbers'}
-					<div class="deck-head deck-head-center deck-rise" style="--i: 0">
-						<div class="section-kicker">
-							<ChartColumnIncreasing size={20} strokeWidth={2.1} animate={false} />
-							<span>{c.deck.highlights}</span>
-						</div>
-					</div>
-					<div class="deck-stats">
-						{#each c.stats as stat, j (stat.label)}
-							<div class="deck-stat deck-rise" style="--i: {j + 1}">
-								<p class="stat-value">
-									{#if isFarsi}
-										<span class="stat-suffix">{stat.suffix === '%' ? '٪' : stat.suffix}</span><span
-											class="stat-number">{statValues[j] ?? stat.value}</span
-										>
-									{:else}
-										<span class="stat-number">{statValues[j] ?? stat.value}</span><span
-											class="stat-suffix">{stat.suffix}</span
-										>
-									{/if}
-								</p>
-								<strong>{stat.label}</strong>
-							</div>
-						{/each}
-					</div>
-					<div class="ornament deck-rise" style="--i: 5" aria-hidden="true">
-						<span></span><i></i><b></b><i></i><span></span>
 					</div>
 				{:else if slide.kind === 'work'}
 					<div class="deck-center">
@@ -693,29 +563,6 @@
 								{/each}
 							</div>
 						</section>
-					</div>
-				{:else if slide.kind === 'testimonial'}
-					<div class="deck-center deck-quote">
-						<div class="deck-quote-mark deck-rise" style="--i: 0" aria-hidden="true">
-							<MessageSquareQuote size={44} strokeWidth={1.6} animate={false} />
-						</div>
-						<blockquote class="deck-rise" style="--i: 1" cite={linkedinUrl}>
-							{c.testimonial.quote}
-						</blockquote>
-						<div class="mini-ornament deck-rise" style="--i: 2" aria-hidden="true">
-							<span></span><i></i><span></span>
-						</div>
-						<p class="deck-byline deck-rise" style="--i: 3" dir="auto">
-							{c.testimonial.byline}
-						</p>
-						<p class="deck-quote-role deck-rise" style="--i: 4">{c.testimonial.role}</p>
-						<a
-							class="testimonial-source deck-rise"
-							style="--i: 5"
-							href={linkedinUrl}
-							target="_blank"
-							rel="noreferrer">{c.testimonial.sourceLabel}</a
-						>
 					</div>
 				{:else if slide.kind === 'contact'}
 					<div class="deck-contact">

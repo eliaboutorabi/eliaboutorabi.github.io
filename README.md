@@ -4,7 +4,7 @@ Personal GitHub Pages site for Elham "Eli" Aboutorabi, built with SvelteKit, Tai
 
 ## Presentation mode
 
-The **Present** button in the navbar turns the site into a full-screen slide deck built from the page's own content: cover, about, principles, career highlights, the portfolio and each of its projects, experience, toolkit, credentials, testimonial and contact. Slides are composed on a fixed 16:9 stage that scales to the screen, so they look the same on a laptop and a projector. It works in both languages and both themes; the Farsi deck reads right to left, and the arrow keys follow the reading direction.
+The **Present** button in the navbar turns the site into a full-screen slide deck built from the page's own content: cover, the resume (experience, toolkit, credentials), the portfolio and each of its projects, and contact. Slides are composed on a fixed 16:9 stage that scales to the screen, so they look the same on a laptop and a projector. It works in both languages and both themes; the Farsi deck reads right to left, and the arrow keys follow the reading direction.
 
 | Key                                             | Action                          |
 | ----------------------------------------------- | ------------------------------- |
