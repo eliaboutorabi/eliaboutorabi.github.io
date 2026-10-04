@@ -25,8 +25,11 @@ export type Project = {
 	points: string[];
 	figures: Array<{ value: string; label: string }>;
 	tags: string[];
-	liveUrl: string;
-	liveLabel: string;
+	liveUrl?: string;
+	liveLabel?: string;
+	/** Setup instructions for projects that run locally. */
+	setupUrl?: string;
+	setupLabel?: string;
 	sourceUrl: string;
 	sourceLabel: string;
 	/** Optional caveat shown under the actions, e.g. an invite-only sign-up. */

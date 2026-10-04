@@ -101,12 +101,12 @@
 		<div class="project-actions">
 			<a
 				class="button project-button button-primary"
-				href={project.liveUrl}
+				href={project.liveUrl ?? project.setupUrl}
 				target="_blank"
 				rel="noreferrer"
 			>
 				<SquareArrowOutUpRight size={16} strokeWidth={2.1} animate={false} />
-				<span>{project.liveLabel}</span>
+				<span>{project.liveLabel ?? project.setupLabel}</span>
 			</a>
 			<a
 				class="button project-button button-secondary"

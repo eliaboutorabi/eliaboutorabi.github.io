@@ -450,7 +450,7 @@
 							<div class="deck-links deck-rise" style="--i: 9">
 								<a
 									class="deck-link deck-link-primary"
-									href={project.liveUrl}
+									href={project.liveUrl ?? project.setupUrl}
 									target="_blank"
 									rel="noreferrer"
 									onmouseenter={() => (hovered = `${project.id}-live`)}
@@ -461,13 +461,16 @@
 										strokeWidth={2.1}
 										animate={hovered === `${project.id}-live`}
 									/>
-									<span>{project.liveLabel}</span>
+									<span>{project.liveLabel ?? project.setupLabel}</span>
 								</a>
 								<a class="deck-link" href={project.sourceUrl} target="_blank" rel="noreferrer">
 									<GithubMark class="deck-link-icon" />
 									<span>{project.sourceLabel}</span>
 								</a>
 							</div>
+							{#if project.setupUrl && project.note}
+								<p class="project-note deck-rise" style="--i: 10">{project.note}</p>
+							{/if}
 						</div>
 					</div>
 				{:else if slide.kind === 'experience'}

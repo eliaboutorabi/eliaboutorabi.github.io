@@ -71,6 +71,19 @@
 		poster: '/media/firmscope-video-poster.jpg'
 	};
 
+	const prompt2column = {
+		id: 'prompt2column',
+		index: '04',
+		setupUrl: 'https://github.com/eliaboutorabi/prompt2column#quick-start',
+		sourceUrl: 'https://github.com/eliaboutorabi/prompt2column'
+	};
+	const prompt2columnMedia = {
+		kind: 'youtube' as const,
+		label: 'youtube.com · Prompt2Column',
+		id: 'iMaHNs7y6EQ',
+		poster: '/media/prompt2column-video-poster.jpg'
+	};
+
 	const copy: Record<Locale, Copy> = {
 		en: {
 			nav: {
@@ -133,7 +146,7 @@
 				kicker: 'Selected Work',
 				title: 'The Portfolio',
 				intro:
-					'Projects where financial judgement and applied AI meet. Each one is live, and each one shows its working: the sources, the code and the checks.',
+					'Projects where financial judgement and applied AI meet. Explore the walkthroughs and source code, then open a live app or follow the local setup instructions.',
 				upcoming:
 					'More in progress: a driver-based forecast engine, an agentic close workflow and an executive reporting suite.',
 				projects: [
@@ -218,6 +231,33 @@
 							title: 'Verity: a talking robot that reads tax regulations for accountants',
 							play: 'Play the Verity walkthrough',
 							watch: 'Watch the Verity walkthrough on YouTube'
+						}
+					},
+					{
+						...prompt2column,
+						meta: 'Local AI · Spreadsheet Automation',
+						title: 'Prompt2Column',
+						subtitle: 'Turn spreadsheet rows into answers with one prompt',
+						text: 'I built a local SvelteKit app that imports CSV files and uses Ollama models to fill a new column with labels, decisions, scores or summaries. Projects and results save in the browser; completed sheets export as CSV or JSON.',
+						points: [
+							'Reference columns in a prompt, choose an answer format and test one row before running a batch.',
+							'Run selected rows or a range; pause, resume and retry failed rows as answers arrive.',
+							'Use local models or Ollama Cloud through your local Ollama connection.'
+						],
+						figures: [
+							{ value: '4', label: 'Answer formats' },
+							{ value: '3', label: 'Sample projects' },
+							{ value: 'CSV / JSON', label: 'Export formats' }
+						],
+						tags: ['Svelte 5', 'SvelteKit', 'TypeScript', 'Ollama', 'Papa Parse'],
+						setupLabel: 'Run locally',
+						sourceLabel: 'View the code',
+						note: 'Local app: clone the repo and run it on your machine with Node.js and Ollama. No hosted version is available yet.',
+						media: {
+							...prompt2columnMedia,
+							title: 'Prompt2Column: Classify, review and summarize spreadsheets with AI',
+							play: 'Play the Prompt2Column walkthrough',
+							watch: 'Watch the Prompt2Column walkthrough on YouTube'
 						}
 					}
 				]
@@ -430,7 +470,7 @@
 				kicker: 'نمونه کارها',
 				title: 'پورتفولیو',
 				intro:
-					'پروژه هایی که در آن ها قضاوت مالی و هوش مصنوعی کاربردی به هم می رسند. هر پروژه زنده است و کار خودش را نشان می دهد: منابع، کد و بررسی ها.',
+					'پروژه هایی که در آن ها قضاوت مالی و هوش مصنوعی کاربردی به هم می رسند. ویدیوهای معرفی و کد را ببینید، سپس برنامه آنلاین را باز کنید یا راهنمای اجرای محلی را دنبال کنید.',
 				upcoming:
 					'پروژه های بعدی در راه است: موتور پیش بینی محرک محور، فرایند بستن حساب با عامل هوشمند و مجموعه گزارش های مدیریتی.',
 				projects: [
@@ -515,6 +555,33 @@
 							title: 'Verity: رباتی که مقررات مالیاتی را برای حسابداران می خواند',
 							play: 'پخش ویدیوی معرفی Verity',
 							watch: 'تماشای ویدیوی Verity در یوتیوب'
+						}
+					},
+					{
+						...prompt2column,
+						meta: 'هوش مصنوعی محلی · اتوماسیون صفحه گسترده',
+						title: 'Prompt2Column',
+						subtitle: 'تبدیل ردیف های صفحه گسترده به پاسخ با یک پرامپت',
+						text: 'یک برنامه محلی با SvelteKit ساختم که فایل CSV را وارد می کند و با مدل های Ollama، ستون جدیدی از برچسب، تصمیم، امتیاز یا خلاصه می سازد. پروژه ها و نتیجه ها در مرورگر ذخیره می شوند و جدول نهایی به CSV یا JSON خروجی می دهد.',
+						points: [
+							'ستون ها را در پرامپت ارجاع دهید، قالب پاسخ را انتخاب کنید و پیش از اجرای گروهی، یک ردیف را آزمایش کنید.',
+							'ردیف های انتخابی یا یک بازه را اجرا کنید؛ اجرا را متوقف و ادامه دهید و ردیف های ناموفق را دوباره امتحان کنید.',
+							'از مدل های محلی یا Ollama Cloud از طریق اتصال محلی Ollama استفاده کنید.'
+						],
+						figures: [
+							{ value: '۴', label: 'قالب پاسخ' },
+							{ value: '۳', label: 'پروژه نمونه' },
+							{ value: 'CSV / JSON', label: 'قالب خروجی' }
+						],
+						tags: ['Svelte 5', 'SvelteKit', 'TypeScript', 'Ollama', 'Papa Parse'],
+						setupLabel: 'راهنمای اجرای محلی',
+						sourceLabel: 'دیدن کد',
+						note: 'برنامه محلی است: مخزن را کلون کنید و با Node.js و Ollama روی رایانه خود اجرا کنید. هنوز نسخه آنلاین ندارد.',
+						media: {
+							...prompt2columnMedia,
+							title: 'Prompt2Column: دسته بندی، بررسی و خلاصه سازی صفحه گسترده با هوش مصنوعی',
+							play: 'پخش ویدیوی معرفی Prompt2Column',
+							watch: 'تماشای ویدیوی Prompt2Column در یوتیوب'
 						}
 					}
 				]
