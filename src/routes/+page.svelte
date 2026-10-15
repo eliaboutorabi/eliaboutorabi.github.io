@@ -292,7 +292,7 @@
 						role: 'Senior Accountant',
 						period: '2015 - 2019',
 						place: 'Esalat Food Distribution Company · Birjand, Iran',
-						text: 'Led financial reporting, quarterly tax filings, year-end close and warehouse financial audits. Managed 20-30 daily invoices, A/P, A/R, the general ledger, payroll, insurance and bank reconciliations; built automated sales commission tracking models.'
+						text: 'Prepared accrual-basis financial statements with revenue and expense recognition; led quarterly tax filings, year-end close and warehouse financial audits. Managed 20-30 daily invoices, A/P, A/R, the general ledger, payroll, insurance and bank reconciliations; built automated sales commission tracking models.'
 					},
 					{
 						role: 'Accountant & Systems Implementer',
@@ -307,6 +307,9 @@
 						group: 'Accounting & Systems',
 						items: [
 							'Full-cycle accounting',
+							'Financial statements & accrual basis',
+							'Revenue & expense recognition',
+							'US GAAP & IFRS principles',
 							'A/P & A/R',
 							'Year-end close & tax reporting',
 							'Holu & Sepidar',
@@ -616,7 +619,7 @@
 						role: 'حسابدار ارشد',
 						period: '۲۰۱۵ - ۲۰۱۹',
 						place: 'شرکت پخش مواد غذایی اصالت · بیرجند، ایران',
-						text: 'مدیریت گزارشگری مالی، اظهارنامه های فصلی، بستن سال و حسابرسی مالی انبار. رسیدگی به ۲۰ تا ۳۰ فاکتور روزانه، پرداختنی و دریافتنی، دفتر کل، حقوق و دستمزد، بیمه و مغایرت گیری بانکی؛ ساخت مدل های خودکار محاسبه پورسانت فروش.'
+						text: 'تهیه صورت های مالی بر مبنای تعهدی با شناسایی درآمد و هزینه؛ مدیریت اظهارنامه های فصلی، بستن سال و حسابرسی مالی انبار. رسیدگی به ۲۰ تا ۳۰ فاکتور روزانه، پرداختنی و دریافتنی، دفتر کل، حقوق و دستمزد، بیمه و مغایرت گیری بانکی؛ ساخت مدل های خودکار محاسبه پورسانت فروش.'
 					},
 					{
 						role: 'حسابدار و پیاده ساز سیستم',
@@ -631,6 +634,9 @@
 						group: 'حسابداری و سیستم ها',
 						items: [
 							'حسابداری کامل',
+							'صورت های مالی بر مبنای تعهدی',
+							'شناسایی درآمد و هزینه',
+							'اصول US GAAP و IFRS',
 							'پرداختنی و دریافتنی',
 							'بستن سال و گزارش مالیاتی',
 							'هلو و سپیدار',

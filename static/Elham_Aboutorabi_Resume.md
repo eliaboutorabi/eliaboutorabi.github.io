@@ -8,7 +8,7 @@ Accounting professional and full-stack AI builder with a master's degree and 10+
 
 ## Core skills
 
-- **Accounting:** Full-cycle accounting, accounts payable/receivable (A/P, A/R), general ledger (GL), bank reconciliation, year-end close, tax reporting
+- **Accounting:** Full-cycle accounting, accrual-basis financial statements, revenue/expense recognition (US GAAP and IFRS principles), accounts payable/receivable (A/P, A/R), general ledger (GL), bank reconciliation, year-end close, tax reporting
 - **Financial operations:** Cash flow monitoring, payroll and insurance processing, inventory variance analysis
 - **Excel & reporting:** PivotTables, VLOOKUP, SUMIF, formula-driven reporting, performance scorecards, incentive calculations, Copilot
 - **Financial analysis:** Sales and revenue forecasting, KPI and variance analysis, customer purchase trends, route/product analysis
@@ -47,7 +47,8 @@ Accounting professional and full-stack AI builder with a master's degree and 10+
 ### Esalat Food Distribution Company | Birjand, Iran | Senior Accountant | 2015 - 2019
 
 - Managed A/P, A/R and the general ledger, handling 20-30 vendor and other invoices daily.
-- Led financial reporting, quarterly tax filings and year-end close; managed payroll and insurance.
+- Prepared accrual-basis financial statements, including revenue and expense recognition.
+- Led quarterly tax filings and year-end close; managed payroll and insurance.
 - Reconciled bank accounts, analyzed inventory variances and led warehouse financial audits.
 - Developed automated sales commission tracking models.
 
@@ -65,7 +66,7 @@ Master's Degree in Accounting | 2013 - 2017
 
 Thesis: Investigating the Relationship Between Board Composition and Corporate Debt Levels.
 
-Advanced accounting coursework in undergraduate and graduate studies.
+Financial accounting coursework grounded in the same conceptual framework as US GAAP and IFRS.
 
 ### Islamic Azad University of Birjand
 
